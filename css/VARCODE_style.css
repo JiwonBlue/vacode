@@ -74,7 +74,7 @@ img {
    상단 네비게이션 헤더 (메인/서브 완벽 동기화)
    ========================================== */
 #VARCODE_header {
-    position: relative !important;
+    position: fixed !important; /* 스크롤해도 계속 고정되어 따라오도록 fixed로 변경 */
     top: 0;
     left: 0;
     width: 100%;
@@ -136,7 +136,7 @@ img {
 /* 스플릿 사이드바 프레임 바디 */
 .VARCODE_layout {
     display: flex;
-    padding-top: 0; /* ★ relative 헤더이므로 padding-top을 0으로 만들어 메인/서브 상단 여백을 일치시킵니다 */
+    padding-top: 90px; /* ★ 고정(fixed) 헤더의 높이인 90px만큼 상단 여백을 줍니다 (메인은 인라인 style="padding-top:0;"로 상쇄됨) */
     min-height: calc(100vh - 90px);
 }
 
