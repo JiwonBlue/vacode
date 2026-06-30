@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VACODE. - ABOUT</title>
-    <link rel="stylesheet" href="../css/VARCODE_style.css?v=1.9">
+    <link rel="stylesheet" href="../css/VARCODE_style.css?v=2.0">
     
-    <!-- 웹폰트 비동기 로드 처리 (블로킹 방지) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sunnpoet/SUITE/fonts/static/woff2/SUITE.css" media="print" onload="this.media='all'">
+    <!-- 웹폰트 SUITE 로드 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sunnpoet/SUITE/fonts/static/woff2/SUITE.css">
 
     <style>
         /* --- [ABOUT 페이지 개별 여백 및 디자인 조정] --- */
@@ -23,12 +23,12 @@
 
         .about_visual_box {
             width: auto !important; /* 가로 가변 처리 */
-            height: calc(100vh - 70px) !important; /* 70px 헤더를 제외한 화면 높이 100% 꽉 채우기 */
-            min-height: 700px !important; /* 최소 높이 보장 */
+            height: 800px !important; /* 시안 규격인 800px로 복원 */
+            min-height: 800px !important;
             max-width: none !important;
             margin-right: -50px !important; /* 부모 sub_contents의 padding-right(50px)을 상쇄하여 우측 끝까지 꽉 채움 */
             background-color: var(--vc-bg-light) !important;
-            padding: 0 10% 0 8% !important; /* 좌우 비율에 맞게 패딩 조정 */
+            padding: 0 80px !important; /* 좌우 패딩을 고정 80px로 변경하여 넓은 해상도에서 균형 유지 */
             display: flex !important;
             justify-content: space-between !important;
             align-items: center !important;
@@ -37,9 +37,8 @@
         }
 
         .visual_txt {
-            flex: 1;
-            max-width: 600px;
-            margin-right: 50px;
+            width: 600px !important; /* 가로폭 600px 지정 */
+            flex-shrink: 0;
             font-family: var(--vc-font-suite) !important;
         }
         .visual_txt h2 {
@@ -59,7 +58,7 @@
 
         .visual_img {
             flex-shrink: 0;
-            width: 520px; /* 시안 대비 이미지 가로폭 최적화 */
+            width: 680px !important; /* 시안 대비 이미지 가로폭 680px로 복원 */
             display: flex;
             align-items: center;
             justify-content: center;
