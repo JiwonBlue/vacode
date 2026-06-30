@@ -4,10 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VACODE. - ABOUT</title>
-    <link rel="stylesheet" href="../css/VARCODE_style.css">
+    <link rel="stylesheet" href="../css/VARCODE_style.css?v=1.8">
     
     <!-- 웹폰트 비동기 로드 처리 (블로킹 방지) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sunnpoet/SUITE/fonts/static/woff2/SUITE.css" media="print" onload="this.media='all'">
+
+    <style>
+        /* --- [ABOUT 페이지 개별 여백 및 디자인 조정] --- */
+        .VARCODE_contents.sub_contents {
+            padding-top: 0 !important;  /* 회색 박스가 상단 끝까지 닿도록 여백 제거 */
+            padding-bottom: 160px !important; /* 바닥 여백 160px */
+        }
+
+        /* Intro 섹션 상단 흰색 여백 제거 및 회색 박스 확장 */
+        .about_section:first-of-type {
+            margin-top: 0 !important;
+        }
+
+        .about_visual_box {
+            width: auto !important; /* 가로 가변 처리 */
+            height: calc(100vh - 70px) !important; /* 70px 헤더를 제외한 화면 높이 100% 꽉 채우기 */
+            min-height: 700px !important; /* 최소 높이 보장 */
+            max-width: none !important;
+            margin-right: -50px !important; /* 부모 sub_contents의 padding-right(50px)을 상쇄하여 우측 끝까지 꽉 채움 */
+            background-color: var(--vc-bg-light) !important;
+            padding: 60px 160px 60px 80px !important; /* 이미지 우측 160px 띄고 배치 */
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            box-sizing: border-box !important;
+            margin-bottom: 60px !important;
+        }
+
+        /* 중간 섹션 여백 삭제 */
+        .about_section {
+            margin-bottom: 80px !important; /* 섹션 간격 간소화 */
+        }
+
+        /* Work Process 가이드 수치 맞춤형 스타일 */
+        .process_grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px 40px !important;
+            border-top: 1px solid var(--vc-black) !important;
+            padding-top: 40px !important;
+            margin-top: 40px !important;
+        }
+        .process_item {
+            border-bottom: 1px solid var(--vc-bg-light) !important;
+            padding-bottom: 40px !important;
+        }
+        .process_num {
+            font-size: 16px !important;
+            margin-bottom: 20px !important;
+        }
+        .process_name {
+            font-size: 20px !important;
+            margin-bottom: 20px !important;
+        }
+        .process_desc {
+            font-size: 14px !important;
+            line-height: 1.7 !important;
+        }
+
+        /* Partnership 아이콘 크기 및 레이아웃 조정 */
+        .partner_card {
+            min-height: 480px !important;
+            padding: 40px 30px !important;
+        }
+        .partner_icon img {
+            width: 140px !important; /* 아이콘 크기 140x140으로 확대 */
+            height: 140px !important;
+        }
+
+        /* 반응형 모바일/태블릿 최적화 대응 */
+        @media (max-width: 1024px) {
+            /* 회색 비주얼 박스 세로 배치 및 패딩/높이 축소 */
+            .about_visual_box {
+                width: 100% !important;
+                height: auto !important;
+                padding: 40px 20px !important;
+                flex-direction: column-reverse !important;
+                gap: 30px !important;
+            }
+            .about_visual_box .visual_txt {
+                text-align: center !important;
+            }
+            .about_visual_box .visual_img {
+                width: 80% !important;
+                max-width: 320px !important;
+                margin: 0 auto !important;
+            }
+
+            /* 프로세스 그리드 1열 처리 */
+            .process_grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
+
+            /* 파트너 카드 축소 */
+            .partner_card {
+                min-height: auto !important;
+                padding: 30px 20px !important;
+            }
+        }
+
+        /* 모바일 쇼케이스 이미지 가로 터짐 방지 및 세로 배치 */
+        @media (max-width: 768px) {
+            .about_showcase_images {
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 20px !important;
+            }
+            .about_showcase_images div {
+                margin-top: 0 !important;
+                width: 100% !important;
+            }
+            .about_showcase_images img {
+                width: 100% !important;
+                height: auto !important;
+                aspect-ratio: 1 / 1 !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -53,15 +172,22 @@
                         <img src="../img/제목-없음-2.png" alt="VACODE" style="width:100%; height:auto; display:block; border-radius:4px;">
                     </div>
                 </div>
-                <div style="text-align: center; margin-top: 60px; margin-bottom: 60px;">
-                    <p class="vc-style-2" style="font-size: 18px; color: #2A362C; line-height: 1.6;">"우리는 간판을 단순한 표시가 아닌 브랜드의 첫인상으로 봅니다.<br>진료의 가치와 공간의 분위기를 시각 언어로 번역하겠습니다."</p>
+                <div style="text-align: center; margin-top: 100px; margin-bottom: 100px;">
+                    <p style="font-size: 22px; color: var(--vc-gray-dark); line-height: 1.6; margin-bottom: 30px; font-weight: normal; font-family: var(--vc-font-suite);">
+                        우리는 간판을 단순한 글자가 아닌<br>
+                        브랜드의 첫인상으로 봅니다.
+                    </p>
+                    <p style="font-size: 22px; color: var(--vc-black); line-height: 1.6; font-weight: bold; font-family: var(--vc-font-suite);">
+                        진료의 가치와 공간의 분위기를<br>
+                        시각 언어로 번역하겠습니다.
+                    </p>
                 </div>
-                <div class="about_showcase_images" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 50px; margin-bottom: 30px;">
+                <div class="about_showcase_images" style="display: flex; gap: 40px; margin-top: 50px; margin-bottom: 30px; justify-content: center; align-items: flex-start;">
                     <div>
-                        <img src="../img/portfolio_01.png" alt="365산본플란트치과의원" style="width: 100%; height: auto; border-radius: 4px; object-fit: cover; aspect-ratio: 4/3;">
+                        <img src="../img/portfolio_01.png" alt="365산본플란트치과의원" style="width: 440px; height: 440px; border-radius: 4px; object-fit: cover; display: block;">
                     </div>
-                    <div>
-                        <img src="../img/portfolio_02.png" alt="다움치과의원" style="width: 100%; height: auto; border-radius: 4px; object-fit: cover; aspect-ratio: 4/3; margin-top: 40px;">
+                    <div style="margin-top: 80px;">
+                        <img src="../img/portfolio_02.png" alt="다움치과의원" style="width: 440px; height: 440px; border-radius: 4px; object-fit: cover; display: block;">
                     </div>
                 </div>
             </section>

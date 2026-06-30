@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VACODE. - MAIN</title>
-    <link rel="stylesheet" href="./css/VARCODE_style.css">
+    <link rel="stylesheet" href="./css/VARCODE_style.css?v=1.8">
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
 
@@ -15,7 +15,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 90px;
+            height: 70px;
             background-color: transparent !important;
             border-bottom: none !important;
             display: flex !important;
@@ -28,7 +28,7 @@
 
         /* 로고와 메뉴 사이의 간격을 늘려 시안 특유의 세련된 좌측 정렬 여백 구현 */
         #VARCODE_header .logo {
-            margin-right: 180px; 
+            margin-right: 254px !important; 
             flex-shrink: 0;
         }
         
@@ -78,7 +78,9 @@
         
         .visual_full_width {
             width: 100% !important;
-            height: 100vh !important; /* ★ 화면 높이를 꽉 채우도록 변경 */
+            aspect-ratio: 16 / 9 !important;
+            height: auto !important;
+            min-height: unset !important;
             
             /* ★ 핵심 포인트: 
                 흰색 헤더 영역 때문에 배너를 아래로 밀어내던 마진(margin-top: 90px)을 '0'으로 지웁니다.
@@ -89,7 +91,7 @@
         }
 
         .main_content_inner {
-            max-width: 1200px;
+            max-width: 1200px !important; /* 기존 1200px 디자인으로 좌측 정렬 복원 */
             margin: 0 auto;
             padding: 0 50px 120px 50px;
             box-sizing: border-box;
@@ -104,14 +106,29 @@
         }
 
         /* --- [아베크 스타일 스와이퍼 UI] --- */
+        #VARCODE_wrap {
+            overflow-x: hidden;
+        }
         .portfolio-container-wrapper {
             position: relative;
-            width: 100%;
+            width: auto !important;
+            margin-right: calc((100vw - 100%) / -2) !important; /* 오른쪽 끝 화면 너머까지 슬라이드 궤적 확장 */
+            overflow: hidden !important; /* 왼쪽 정렬선 밖으로 넘어가는 이전/루프 슬라이드는 완벽히 클립(숨김) */
         }
         .swiper-portfolio {
-            width: 100%;
+            width: 100% !important;
             height: auto;
-            overflow: hidden;
+            overflow: visible !important; /* 부모의 overflow:hidden 영역 내에서 우측으로 자연스럽게 오버플로우되도록 설정 */
+        }
+        .swiper-portfolio .portfolio_item {
+            width: 640px !important; /* 시안 고정 가로폭 적용 */
+            height: 360px !important; /* 시안 고정 세로폭 적용 */
+        }
+        .swiper-portfolio .portfolio_thumb {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            border-radius: 4px;
         }
         
         .swiper-button-next, .swiper-button-prev {
@@ -133,14 +150,17 @@
         /* --- ★ [속도 최적화 2] CLIENT 롤링 하드웨어 가속 적용 --- */
         .client_marquee_wrap {
             overflow: hidden;
-            width: 100%;
-            max-width: 100%;
+            width: 100vw !important;
+            position: relative !important;
+            left: 50% !important;
+            right: 50% !important;
+            margin-left: -50vw !important;
+            margin-right: -50vw !important;
+            background-color: transparent !important; /* 배경 제거 */
             display: flex;
-            padding: 20px 0;
+            padding: 30px 0 !important;
             flex-shrink: 0;
             box-sizing: border-box;
-            
-            /* 마우스 오버 시 연산 부하 완화 처리를 위한 레이어 격리 */
             contain: layout paint; 
         }
         .client_inner {
@@ -151,21 +171,37 @@
             animation: client_rolling 30s linear infinite;
         }
         .client_box {
-            width: 180px;
-            height: 65px;
-            background-color: var(--vc-bg-light);
-            border-radius: 2px;
-            margin-right: 25px;
+            width: 380px !important;
+            height: 80px !important;
+            background-color: #FFFFFF !important; /* 백그라운드 흰색 카드 복원 */
+            border: 1px solid #eaeaea; /* 테두리 복원 */
+            border-radius: 4px;
+            margin-right: 30px !important;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
             color: var(--vc-gray-dark);
         }
         @keyframes client_rolling {
             0% { transform: translate3d(0, 0, 0); }
             100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* 메인 비주얼 배너 텍스트 등장 애니메이션 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -30%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+        .visual_txt_animate {
+            animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         /* ==========================================================================
@@ -188,20 +224,25 @@
         /* 스마트폰 구간 (화면 폭 768px 이하일 때 발동) */
         @media (max-width: 768px) {
             #VARCODE_header {
-                height: 60px !important;   /* 70px에서 60px로 교정 */
-                padding: 0 15px !important;  /* 20px에서 15px로 교정 */
+                height: 60px !important;
+                padding: 0 15px !important;
+                background-color: transparent !important; /* 모바일 메인 헤더 투명 유지 */
+                border-bottom: none !important;
             }
             #VARCODE_header .logo {
                 margin-right: 25px !important;
             }
             #VARCODE_header .nav_menu {
+                flex: none !important; /* 플렉스 확장 제거로 모바일 정렬 통일 */
                 gap: 15px !important;
+                margin-right: 10px !important;
             }
             #VARCODE_header .nav_menu a {
-                font-size: 13px !important; /* 메뉴 글자 크기 축소 */
+                color: #FFFFFF !important; /* 모바일 메인 텍스트 흰색 유지 */
+                font-size: 13px !important;
             }
             #VARCODE_header .sns_links img {
-                width: 18px !important;  /* SNS 아이콘 축소 */
+                width: 18px !important;
                 height: 18px !important;
             }
 
@@ -211,7 +252,9 @@
 
             /* 메인 비주얼 배너 폰 화면 맞춤 축소 */
             .visual_full_width {
-                height: 75vh !important; 
+                height: auto !important;
+                aspect-ratio: 16 / 9 !important;
+                min-height: unset !important;
                 margin-bottom: 70px !important;
             }
             .visual_full_width h2 {
@@ -263,7 +306,7 @@
         // HTML 문서 로드가 완전히 끝난 직후 0.001초 만에 슬라이더를 켜주는 최적화 스크립트
         document.addEventListener('DOMContentLoaded', function() {
             const swiper = new Swiper('.swiper-portfolio', {
-                slidesPerView: 3,
+                slidesPerView: 'auto', // 고정 폭 640px를 보장하기 위해 auto로 변경
                 spaceBetween: 25,
                 loop: true,
                 autoplay: {
@@ -276,9 +319,8 @@
                     prevEl: '.swiper-button-prev',
                 },
                 breakpoints: {
-                    320: { slidesPerView: 1 },
-                    768: { slidesPerView: 2 },
-                    1024: { slidesPerView: 3 }
+                    320: { slidesPerView: 1, spaceBetween: 15 },
+                    768: { slidesPerView: 'auto', spaceBetween: 25 }
                 }
             });
         });
@@ -308,7 +350,7 @@
         <main class="VARCODE_contents main_full_contents">
             
             <section id="main_visual" class="visual_full_width" style="background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('./img/마스크 그룹 1.png') no-repeat center/cover; position: relative;">
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #FFFFFF; width: 100%;">
+                <div class="visual_txt_animate" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #FFFFFF; width: 100%;">
                     <h2 style="font-size: 42px; font-weight: bold; line-height: 1.5; letter-spacing: -0.5px;">시각적으로 기획 · 제작 · 설치하는<br>의료공간의 첫 인상</h2>
                 </div>
             </section>
@@ -316,7 +358,7 @@
             <div class="main_content_inner">
 
                 <section class="about_section" style="display: flex; flex-direction: column; gap: 80px; margin-bottom: 140px;">
-                    <div style="padding-bottom: 40px;">
+                    <div class="scroll-animate" style="padding-bottom: 40px;">
                         <h3 class="vc-style-3" style="color: var(--vc-dark); margin-bottom: 25px; font-size: 22px; letter-spacing: 1px;">INDOOR</h3>
                         <p class="vc-style-1" style="color: var(--vc-gray-dark); font-size: 16px; line-height: 1.8;">
                             사람 중심의 가장 편안하고 효율적인 동선<br>
@@ -324,7 +366,7 @@
                             공간의 가치를 올려주는 프리미엄 자재 선정
                         </p>
                     </div>
-                    <div style="padding-bottom: 20px;">
+                    <div class="scroll-animate" style="padding-bottom: 20px;">
                         <h3 class="vc-style-3" style="color: var(--vc-dark); margin-bottom: 25px; font-size: 22px; letter-spacing: 1px;">OUTDOOR</h3>
                         <p class="vc-style-1" style="color: var(--vc-gray-dark); font-size: 16px; line-height: 1.8;">
                             날씨와 세월의 흔적 앞에서도 변치 않는 내구성<br>
@@ -371,8 +413,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
                     </div>
                 </section>
 
@@ -436,5 +476,21 @@
     </div>
 </footer>
 
+    <!-- 스크롤 등장 애니메이션 감지 스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, { threshold: 0.15 });
+            
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
 </body>
 </html>

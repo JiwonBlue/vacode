@@ -4,10 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VACODE. - PORTFOLIO DETAIL</title>
-    <link rel="stylesheet" href="../css/VARCODE_style.css">
+    <link rel="stylesheet" href="../css/VARCODE_style.css?v=1.8">
     
     <!-- 웹폰트 비동기 로드 처리 (블로킹 방지) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sunnpoet/SUITE/fonts/static/woff2/SUITE.css" media="print" onload="this.media='all'">
+
+    <style>
+        /* 헤더와 콘텐츠 사이의 상단 여백 제거 */
+        .VARCODE_contents.sub_contents {
+            padding-top: 20px !important;
+        }
+
+        /* 반응형 메이슨리 그리드 설정 */
+        .masonry_grid {
+            column-count: 3;
+            column-gap: 25px;
+            width: 100%;
+        }
+
+        @media (max-width: 1024px) {
+            .masonry_grid {
+                column-count: 2;
+                column-gap: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .masonry_grid {
+                column-count: 1;
+                column-gap: 0;
+            }
+            .masonry_grid div {
+                margin-bottom: 15px !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -42,8 +73,8 @@
             <div class="info_footer"><p>vacode00@naver.com</p><p>F. 010-4738-8278</p></div>
         </aside>
 
-        <main class="VARCODE_contents sub_contents" style="padding-top: 50px;">
-            <div class="masonry_grid" style="column-count: 3; column-gap: 25px; width: 100%;">
+        <main class="VARCODE_contents sub_contents">
+            <div class="masonry_grid">
                 <div style="background-color: #E0E0E0; width: 100%; aspect-ratio: 1/1; border-radius: 4px; break-inside: avoid; margin-bottom: 25px;"></div>
                 <div style="background-color: #E0E0E0; width: 100%; aspect-ratio: 2/3; border-radius: 4px; break-inside: avoid; margin-bottom: 25px;"></div>
                 <div style="background-color: #E0E0E0; width: 100%; aspect-ratio: 4/3; border-radius: 4px; break-inside: avoid; margin-bottom: 25px;"></div>

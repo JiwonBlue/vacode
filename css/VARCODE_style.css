@@ -25,6 +25,7 @@ body {
     background-color: var(--vc-white);
     color: var(--vc-black);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden; /* 가로 스크롤 방지 */
 }
 a {
     color: inherit;
@@ -68,19 +69,20 @@ img {
 #VARCODE_wrap {
     width: 100%;
     position: relative;
+    overflow-x: hidden; /* 가로 터짐 방지 */
 }
 
 /* ==========================================
    상단 네비게이션 헤더 (메인/서브 완벽 동기화)
    ========================================== */
 #VARCODE_header {
-    position: fixed !important; /* 스크롤해도 계속 고정되어 따라오도록 fixed로 변경 */
+    position: fixed !important;
     top: 0;
     left: 0;
     width: 100%;
-    height: 90px;
-    background-color: #FFFFFF !important;
-    border-bottom: 1px solid var(--vc-bg-light) !important;
+    height: 70px;
+    background-color: #FFFFFF !important; /* 백그라운드 흰색 복원 */
+    border-bottom: none !important; /* 하단 경계선 제거 */
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -91,13 +93,15 @@ img {
 
 /* 로고 영역 */
 #VARCODE_header .logo {
-    margin-right: 180px; 
+    margin-right: 254px !important; /* 로고 이미지의 실제 렌더링 너비(116px)를 계산하여 메뉴 시작점(ABOUT)이 정확히 420px 라인에 오도록 패딩(50px) + 로고(116px) + 마진(254px) = 420px로 정교하게 맞춤 */
     flex-shrink: 0;
 }
 #VARCODE_header .logo a {
-    font-size: 24px;
-    font-weight: 900;
-    letter-spacing: -0.11px;
+    font-family: var(--vc-font-suite);
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.44px;
+    display: block;
     color: var(--vc-dark);
 }
 
@@ -136,22 +140,23 @@ img {
 /* 스플릿 사이드바 프레임 바디 */
 .VARCODE_layout {
     display: flex;
-    padding-top: 90px; /* ★ 고정(fixed) 헤더의 높이인 90px만큼 상단 여백을 줍니다 (메인은 인라인 style="padding-top:0;"로 상쇄됨) */
-    min-height: calc(100vh - 90px);
+    padding-top: 70px; /* ★ 고정(fixed) 헤더의 높이인 70px만큼 상단 여백을 줍니다 (메인은 인라인 style="padding-top:0;"로 상쇄됨) */
+    min-height: calc(100vh - 70px);
 }
 
 /* 좌측 고정 슬로건 사이드바 */
 .VARCODE_sidebar {
-    width: 350px;
+    width: 420px; /* 시안 스펙 420px로 확장 */
     position: fixed;
-    top: 90px;
-    left: 50px;
-    bottom: 50px;
+    top: 70px;
+    left: 0; /* 좌측 끝에 밀착 */
+    bottom: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     z-index: 900;
-    padding: 60px 0 20px 0;
+    padding: 60px 50px 50px 50px; /* 패딩을 추가하여 텍스트 정렬 인덴트 50px 유지 */
+    border-right: none; /* 우측 경계선 제거 */
 }
 .VARCODE_sidebar .slogan_title {
     font-size: 26px;
@@ -177,9 +182,9 @@ img {
 
 /* 서브 페이지(ABOUT, PORTFOLIO, CONTACT) 전용 스타일 */
 .VARCODE_contents.sub_contents {
-    margin-left: 400px; 
-    padding: 60px 50px 100px 0;
-    max-width: calc(100% - 400px); 
+    margin-left: 420px; /* 420px 라인으로 정렬 매칭 */
+    padding: 0 50px 100px 0; /* 패딩 탑 0으로 조정하여 회색 박스가 헤더 바로 밑에 붙도록 처리 */
+    max-width: calc(100% - 420px); 
 }
 
 /* 메인화면 전용 Full Width 레이아웃 스타일 */
@@ -256,7 +261,7 @@ img {
     gap: 30px;
 }
 .portfolio_item { position: relative; overflow: hidden; cursor: pointer; }
-.portfolio_thumb { width: 100%; aspect-ratio: 4/3; object-fit: cover; filter: brightness(0.85); transition: transform 0.4s ease; }
+.portfolio_thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; filter: brightness(0.85); transition: transform 0.4s ease; }
 .portfolio_item:hover .portfolio_thumb { transform: scale(1.03); }
 .portfolio_info {
     position: absolute;
@@ -529,11 +534,13 @@ img {
         font-size: 18px !important; 
     }
     #VARCODE_header .nav_menu {
-        gap: 15px !important;          /* 메뉴 사이 좁은 간격 통일 */
+        flex: none !important; /* 플렉스 확장 제거로 모바일 정렬 통일 */
+        gap: 15px !important;
         margin-right: 10px !important;
     }
     #VARCODE_header .nav_menu a {
         font-size: 13px !important; 
+        color: var(--vc-black) !important;
     }
     #VARCODE_header .sns_links {
         gap: 8px !important;
@@ -564,3 +571,34 @@ img {
     }
 }
 /* ◀ 이전의 꼬였던 이중 중괄호 찌꺼기 완벽하게 제거됨 */
+
+/* 3. 초소형 미니 폰 구간 (화면 너비 420px 이하) */
+@media (max-width: 420px) {
+    #VARCODE_header {
+        padding: 0 10px !important;
+    }
+    #VARCODE_header .logo a {
+        font-size: 14px !important;
+    }
+    #VARCODE_header .nav_menu {
+        gap: 10px !important;
+    }
+    #VARCODE_header .nav_menu a {
+        font-size: 11px !important;
+    }
+    #VARCODE_header .sns_links {
+        display: flex !important;
+        gap: 6px !important;
+    }
+}
+
+/* 스크롤 등장 애니메이션 효과 */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.scroll-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
