@@ -1,13 +1,15 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VACODE. - MAIN</title>
     <link rel="stylesheet" href="./css/VACODE_style.css?v=2.1">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
-    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print"
+        onload="this.media='all'">
+
     <!-- 웹폰트 SUITE 로드 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sunnpoet/SUITE/fonts/static/woff2/SUITE.css">
 
@@ -31,43 +33,44 @@
 
         /* 로고와 메뉴 사이의 간격을 늘려 시안 특유의 세련된 좌측 정렬 여백 구현 */
         #VACODE_header .logo {
-            margin-right: 254px !important; 
+            margin-right: 254px !important;
             flex-shrink: 0;
         }
-        
+
         /* ★ [교정] 로고 글자색을 흰색으로 변경 */
         #VACODE_header .logo a {
-            color: #FFFFFF !important; 
+            color: #FFFFFF !important;
         }
 
         #VACODE_header .nav_menu {
             display: flex !important;
             gap: 50px !important;
-            position: static !important; 
-            transform: none !important;  
-            flex: 1; 
+            position: static !important;
+            transform: none !important;
+            flex: 1;
         }
-        
+
         /* 기본 메뉴 글자색 (기존 코드 유지) */
         #VACODE_header .nav_menu a {
             font-size: 15px;
             font-weight: bold;
             color: #FFFFFF !important;
-            
+
             /* ★ [추가] 마우스를 올리거나 뗄 때 색상이 0.3초 동안 부드럽게 변하도록 애니메이션 효과 부여 */
-            transition: color 0.3s ease !important; 
+            transition: color 0.3s ease !important;
         }
 
         /* ★ [새로 추가] 마우스를 갖다 댔을 때(hover) 반응하는 스타일 */
         #VACODE_header .nav_menu a:hover {
             /* 은은하게 반투명해지는 흰색으로 변경 (취향에 따라 #CCCCCC 같은 연그레이로 바꾸셔도 됩니다) */
-            color: rgba(255, 255, 255, 0.6) !important; 
+            color: rgba(255, 255, 255, 0.6) !important;
         }
-        
+
         /* ★ [새로 추가] 로고에도 마우스를 올렸을 때 흐려지는 호버 효과를 똑같이 주고 싶다면 함께 넣어주세요 */
         #VACODE_header .logo a {
             transition: opacity 0.3s ease !important;
         }
+
         #VACODE_header .logo a:hover {
             opacity: 0.6 !important;
         }
@@ -78,23 +81,24 @@
             padding: 0 !important;
             width: 100% !important;
         }
-        
+
         .visual_full_width {
             width: 100% !important;
             aspect-ratio: 16 / 9 !important;
             height: auto !important;
             min-height: unset !important;
-            
+
             /* ★ 핵심 포인트: 
                 흰색 헤더 영역 때문에 배너를 아래로 밀어내던 마진(margin-top: 90px)을 '0'으로 지웁니다.
                 이렇게 해야 나무 그림 배너가 모니터 맨 위 천장 끝까지 바짝 달라붙어 헤더 뒷배경을 채우게 됩니다.
             */
-            margin-top: 0 !important; 
+            margin-top: 0 !important;
             margin-bottom: 120px !important;
         }
 
         .main_content_inner {
-            max-width: 1200px !important; /* 기존 1200px 디자인으로 좌측 정렬 복원 */
+            max-width: 1200px !important;
+            /* 기존 1200px 디자인으로 좌측 정렬 복원 */
             margin: 0 auto;
             padding: 0 50px 120px 50px;
             box-sizing: border-box;
@@ -112,43 +116,63 @@
         #VACODE_wrap {
             overflow-x: hidden;
         }
+
         .portfolio-container-wrapper {
             position: relative;
             width: auto !important;
-            margin-right: calc((100vw - 100%) / -2) !important; /* 오른쪽 끝 화면 너머까지 슬라이드 궤적 확장 */
-            overflow: hidden !important; /* 왼쪽 정렬선 밖으로 넘어가는 이전/루프 슬라이드는 완벽히 클립(숨김) */
+            margin-right: calc((100vw - 100%) / -2) !important;
+            /* 오른쪽 끝 화면 너머까지 슬라이드 궤적 확장 */
+            overflow: hidden !important;
+            /* 왼쪽 정렬선 밖으로 넘어가는 이전/루프 슬라이드는 완벽히 클립(숨김) */
         }
+
         .swiper-portfolio {
             width: 100% !important;
             height: auto;
-            overflow: visible !important; /* 부모의 overflow:hidden 영역 내에서 우측으로 자연스럽게 오버플로우되도록 설정 */
+            overflow: visible !important;
+            /* 부모의 overflow:hidden 영역 내에서 우측으로 자연스럽게 오버플로우되도록 설정 */
         }
+
         .swiper-portfolio .portfolio_item {
-            width: 640px !important; /* 시안 고정 가로폭 적용 */
-            height: 360px !important; /* 시안 고정 세로폭 적용 */
+            width: 640px !important;
+            /* 시안 고정 가로폭 적용 */
+            height: 360px !important;
+            /* 시안 고정 세로폭 적용 */
         }
+
         .swiper-portfolio .portfolio_thumb {
             width: 100% !important;
             height: 100% !important;
             object-fit: cover !important;
             border-radius: 4px;
         }
-        
-        .swiper-button-next, .swiper-button-prev {
+
+        .swiper-button-next,
+        .swiper-button-prev {
             color: #000000 !important;
             width: 50px !important;
             height: 50px !important;
             transition: all 0.3s ease;
         }
-        .swiper-button-next::after, .swiper-button-prev::after {
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
             font-size: 20px !important;
             font-weight: 300 !important;
         }
-        .swiper-button-next:hover, .swiper-button-prev:hover {
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
             opacity: 0.6;
         }
-        .swiper-button-prev { left: -60px !important; }
-        .swiper-button-next { right: -60px !important; }
+
+        .swiper-button-prev {
+            left: -60px !important;
+        }
+
+        .swiper-button-next {
+            right: -60px !important;
+        }
 
         /* --- ★ [속도 최적화 2] CLIENT 롤링 하드웨어 가속 적용 --- */
         .client_marquee_wrap {
@@ -159,13 +183,15 @@
             right: 50% !important;
             margin-left: -50vw !important;
             margin-right: -50vw !important;
-            background-color: transparent !important; /* 배경 제거 */
+            background-color: transparent !important;
+            /* 배경 제거 */
             display: flex;
             padding: 30px 0 !important;
             flex-shrink: 0;
             box-sizing: border-box;
-            contain: layout paint; 
+            contain: layout paint;
         }
+
         .client_inner {
             display: flex;
             white-space: nowrap;
@@ -173,11 +199,14 @@
             will-change: transform;
             animation: client_rolling 30s linear infinite;
         }
+
         .client_box {
             width: 380px !important;
             height: 80px !important;
-            background-color: #FFFFFF !important; /* 백그라운드 흰색 카드 복원 */
-            border: 1px solid #eaeaea; /* 테두리 복원 */
+            background-color: #FFFFFF !important;
+            /* 백그라운드 흰색 카드 복원 */
+            border: 1px solid #eaeaea;
+            /* 테두리 복원 */
             border-radius: 4px;
             margin-right: 30px !important;
             display: inline-flex;
@@ -187,9 +216,15 @@
             font-weight: bold;
             color: var(--vc-gray-dark);
         }
+
         @keyframes client_rolling {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-50%, 0, 0); }
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            100% {
+                transform: translate3d(-50%, 0, 0);
+            }
         }
 
         /* 메인 비주얼 배너 텍스트 등장 애니메이션 */
@@ -198,11 +233,13 @@
                 opacity: 0;
                 transform: translate(-50%, -30%);
             }
+
             to {
                 opacity: 1;
                 transform: translate(-50%, -50%);
             }
         }
+
         .visual_txt_animate {
             animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
@@ -210,18 +247,27 @@
         /* ==========================================================================
            [추가] 메인화면 가로 터짐 방지 및 스마트폰/태블릿 최적화 반응형 믹스인
            ========================================================================== */
-        
+
         /* 태블릿 및 일반 노트북 해상도 (화면 폭 1199px 이하일 때 발동) */
         @media (max-width: 1199px) {
             #VACODE_header .logo {
-                margin-right: 50px !important; /* 가로 터짐의 주범이었던 180px 여백을 유연하게 압축 */
+                margin-right: 50px !important;
+                /* 가로 터짐의 주범이었던 180px 여백을 유연하게 압축 */
             }
+
             #VACODE_header .nav_menu {
-                gap: 30px !important; /* 메뉴 사이 간격 좁힘 */
+                gap: 30px !important;
+                /* 메뉴 사이 간격 좁힘 */
             }
+
             /* 스와이퍼 화살표가 화면 밖으로 나가서 공백을 만드는 현상 방지 */
-            .swiper-button-prev { left: -20px !important; }
-            .swiper-button-next { right: -20px !important; }
+            .swiper-button-prev {
+                left: -20px !important;
+            }
+
+            .swiper-button-next {
+                right: -20px !important;
+            }
         }
 
         /* 스마트폰 구간 (화면 폭 768px 이하일 때 발동) */
@@ -229,28 +275,36 @@
             #VACODE_header {
                 height: 60px !important;
                 padding: 0 15px !important;
-                background-color: transparent !important; /* 모바일 메인 헤더 투명 유지 */
+                background-color: transparent !important;
+                /* 모바일 메인 헤더 투명 유지 */
                 border-bottom: none !important;
             }
+
             #VACODE_header .logo {
                 margin-right: 25px !important;
             }
+
             #VACODE_header .nav_menu {
-                flex: none !important; /* 플렉스 확장 제거로 모바일 정렬 통일 */
+                flex: none !important;
+                /* 플렉스 확장 제거로 모바일 정렬 통일 */
                 gap: 15px !important;
                 margin-right: 10px !important;
             }
+
             #VACODE_header .nav_menu a {
-                color: #FFFFFF !important; /* 모바일 메인 텍스트 흰색 유지 */
+                color: #FFFFFF !important;
+                /* 모바일 메인 텍스트 흰색 유지 */
                 font-size: 13px !important;
             }
+
             #VACODE_header .sns_links img {
                 width: 18px !important;
                 height: 18px !important;
             }
 
             .main_content_inner {
-                padding: 0 20px 80px 20px !important; /* 모바일 전용 내부 콘텐츠 여백 */
+                padding: 0 20px 80px 20px !important;
+                /* 모바일 전용 내부 콘텐츠 여백 */
             }
 
             /* 메인 비주얼 배너 폰 화면 맞춤 축소 */
@@ -260,20 +314,23 @@
                 min-height: unset !important;
                 margin-bottom: 70px !important;
             }
+
             .visual_full_width h2 {
-                font-size: 26px !important; /* "시각적으로 기획..." 메인 문구 축소 */
+                font-size: 26px !important;
+                /* "시각적으로 기획..." 메인 문구 축소 */
                 line-height: 1.4 !important;
                 padding: 0 15px;
                 box-sizing: border-box;
             }
-            
+
             /* 모바일에서는 스와이퍼 외부 화살표 숨기고 터치 슬라이드 위주로 동작 유도 */
-            .swiper-button-next, .swiper-button-prev {
+            .swiper-button-next,
+            .swiper-button-prev {
                 display: none !important;
             }
-            
+
             /* 하단 문의사항 레이아웃을 3열에서 1열 세로 정렬로 변경 */
-            .main_content_inner section style, 
+            .main_content_inner section style,
             .main_content_inner div[style*="grid-template-columns"] {
                 grid-template-columns: 1fr !important;
                 gap: 30px !important;
@@ -285,19 +342,24 @@
             #VACODE_header {
                 padding: 0 10px !important;
             }
+
             #VACODE_header .logo a {
                 font-size: 14px !important;
             }
+
             #VACODE_header .nav_menu {
                 gap: 10px !important;
             }
+
             #VACODE_header .nav_menu a {
                 font-size: 11px !important;
             }
+
             #VACODE_header .sns_links {
                 display: flex;
                 gap: 6px;
             }
+
             .visual_full_width h2 {
                 font-size: 20px !important;
             }
@@ -308,12 +370,14 @@
             margin-top: 160px;
             margin-bottom: 120px;
         }
+
         .custom_contact_section .thick_line {
             border-top: 2.5px solid #000000;
             margin-bottom: 25px;
             margin-left: -50px;
             margin-right: -50px;
         }
+
         .custom_contact_section .contact_title {
             font-family: var(--vc-font-suite);
             font-size: 22px;
@@ -324,17 +388,21 @@
             padding-left: 0;
             text-transform: uppercase;
         }
+
         .custom_contact_section .thin_line {
             border-top: 1px solid #aeaeae;
             margin-left: -50px;
             margin-right: -50px;
         }
+
         .custom_contact_section .thin_line_top {
             margin-bottom: 45px;
         }
+
         .custom_contact_section .thin_line_bottom {
             margin-top: 45px;
         }
+
         .custom_contact_grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -342,6 +410,7 @@
             padding-left: 0;
             padding-right: 0;
         }
+
         .custom_contact_grid .col_title {
             font-family: var(--vc-font-suite);
             font-size: 13px;
@@ -351,6 +420,7 @@
             margin-bottom: 20px;
             text-transform: uppercase;
         }
+
         .custom_contact_grid .col_content {
             font-family: var(--vc-font-suite);
             font-size: 13px;
@@ -358,51 +428,57 @@
             line-height: 1.8;
             font-weight: 500;
         }
+
         .custom_contact_grid .col_content a {
             color: #666666;
             text-decoration: none;
         }
-        
+
         @media (max-width: 768px) {
             .custom_contact_section .thick_line {
                 margin-left: -20px;
                 margin-right: -20px;
             }
+
             .custom_contact_section .thin_line {
                 margin-left: -20px;
                 margin-right: -20px;
             }
+
             .custom_contact_grid {
                 grid-template-columns: 1fr !important;
                 gap: 30px !important;
                 padding-left: 0;
                 padding-right: 0;
             }
+
             .custom_contact_section .contact_title {
                 padding-left: 0;
             }
+
             .custom_contact_section .thin_line_top {
                 margin-bottom: 30px;
             }
+
             .custom_contact_section .thin_line_bottom {
                 margin-top: 30px;
             }
         }
     </style>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     <script>
         // HTML 문서 로드가 완전히 끝난 직후 0.001초 만에 슬라이더를 켜주는 최적화 스크립트
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const swiper = new Swiper('.swiper-portfolio', {
                 slidesPerView: 'auto', // 고정 폭 640px를 보장하기 위해 auto로 변경
                 spaceBetween: 25,
                 loop: true,
                 autoplay: {
-                    delay: 3000, 
+                    delay: 3000,
                     disableOnInteraction: false,
                 },
-                grabCursor: true, 
+                grabCursor: true,
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
@@ -415,175 +491,189 @@
         });
     </script>
 </head>
+
 <body>
 
-<header id="VACODE_header">
-    <div class="logo"><a href="./index.html"><img src="./img/logo_white.svg" alt="VACODE." style="height:22px; display:block;"></a></div>
-    <nav class="nav_menu">
-        <a href="./VACODE/about.html">ABOUT</a>
-        <a href="./VACODE/portfolio.html">PORTFOLIO</a>
-        <a href="./VACODE/contact.html">CONTACT</a>
-    </nav>
-    <div class="sns_links">
-        <a href="#" target="_blank" aria-label="Naver Blog">
-            <img src="./img/그룹 17.svg" alt="Naver Blog" style="width:22px; height:22px; vertical-align:middle;">
-        </a>
-        <a href="#" target="_blank" aria-label="Instagram">
-            <img src="./img/그룹 14.svg" alt="Instagram" style="width:22px; height:22px; vertical-align:middle;">
-        </a>
-    </div>
-</header>
+    <header id="VACODE_header">
+        <div class="logo"><a href="./index.html"><img src="./img/logo_white.svg" alt="VACODE."
+                    style="height:22px; display:block;"></a></div>
+        <nav class="nav_menu">
+            <a href="./VACODE/about.html">ABOUT</a>
+            <a href="./VACODE/portfolio.html">PORTFOLIO</a>
+            <a href="./VACODE/contact.html">CONTACT</a>
+        </nav>
+        <div class="sns_links">
+            <a href="#" target="_blank" aria-label="Naver Blog">
+                <img src="./img/그룹 17.svg" alt="Naver Blog" style="width:22px; height:22px; vertical-align:middle;">
+            </a>
+            <a href="#" target="_blank" aria-label="Instagram">
+                <img src="./img/그룹 14.svg" alt="Instagram" style="width:22px; height:22px; vertical-align:middle;">
+            </a>
+        </div>
+    </header>
 
-<div id="VACODE_wrap">
-    <div class="VACODE_layout" style="padding-top: 0;">
-        <main class="VACODE_contents main_full_contents">
-            
-            <section id="main_visual" class="visual_full_width" style="position: relative; overflow: hidden;">
-                <video autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;">
-                    <source src="./메인비주얼_영상.mp4" type="video/mp4">
-                </video>
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.25); z-index: 2;"></div>
-                <div class="visual_txt_animate" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #FFFFFF; width: 100%; z-index: 3;">
-                    <h2 style="font-size: 70px; font-weight: 700; line-height: 1.35; letter-spacing: -1px;">시각적으로 기획 · 제작 · 설치하는<br>의료공간의 첫 인상</h2>
-                </div>
-            </section>
+    <div id="VACODE_wrap">
+        <div class="VACODE_layout" style="padding-top: 0;">
+            <main class="VACODE_contents main_full_contents">
 
-            <div class="main_content_inner">
-
-                <section class="about_section" style="display: flex; flex-direction: column; gap: 80px; margin-bottom: 140px;">
-                    <div class="scroll-animate" style="padding-bottom: 40px;">
-                        <h3 class="vc-style-3" style="margin-bottom: 25px;">INDOOR</h3>
-                        <p class="vc-style-1" style="color: var(--vc-gray-dark); font-size: 18px; line-height: 1.8; font-weight: 500;">
-                            사람 중심의 가장 편안하고 효율적인 동선<br>
-                            공간의 목적에 맞는 조도와 톤앤매너를 설정<br>
-                            공간의 가치를 올려주는 프리미엄 자재 선정
-                        </p>
+                <section id="main_visual" class="visual_full_width" style="position: relative; overflow: hidden;">
+                    <video autoplay loop muted playsinline
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;">
+                        <source src="./메인비주얼_영상.mp4" type="video/mp4">
+                    </video>
+                    <div
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.25); z-index: 2;">
                     </div>
-                    <div class="scroll-animate" style="padding-bottom: 20px;">
-                        <h3 class="vc-style-3" style="margin-bottom: 25px;">OUTDOOR</h3>
-                        <p class="vc-style-1" style="color: var(--vc-gray-dark); font-size: 18px; line-height: 1.8; font-weight: 500;">
-                            날씨와 세월의 흔적 앞에서도 변치 않는 내구성<br>
-                            주변 환경과 어울리면서도 독창적인 정체성<br>
-                            완벽한 안전 진단을 바탕으로 한 외관 디자인
-                        </p>
+                    <div class="visual_txt_animate"
+                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #FFFFFF; width: 100%; z-index: 3;">
+                        <h2 style="font-size: 70px; font-weight: 700; line-height: 1.35; letter-spacing: -1px;">시각적으로 기획
+                            · 제작 · 설치하는<br>의료공간의 첫 인상</h2>
                     </div>
                 </section>
 
-                <section class="about_section" style="margin-top: 120px; margin-bottom: 140px;">
-                    <h3 class="vc-style-3">PORTFOLIO IMAGE</h3>
-                    <div class="title_black_bar"></div>
-                    
-                    <div class="portfolio-container-wrapper">
-                        <div class="swiper swiper-portfolio">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide portfolio_item" onclick="location.href='./VACODE/portfolio_detail.html'">
-                                    <img src="./img/portfolio_01.png" class="portfolio_thumb" alt="365산본플란트치과의원">
-                                    <div class="portfolio_info">
-                                        <div class="pf_title">365산본플란트치과의원</div>
-                                        <div class="pf_link">VIEW MORE &gt;</div>
+                <div class="main_content_inner">
+
+                    <section class="about_section"
+                        style="display: flex; flex-direction: column; gap: 80px; margin-bottom: 140px;">
+                        <div class="scroll-animate" style="padding-bottom: 40px;">
+                            <h3 class="vc-style-3" style="margin-bottom: 25px;">INDOOR</h3>
+                            <p class="vc-style-1"
+                                style="color: var(--vc-gray-dark); font-size: 18px; line-height: 1.8; font-weight: 500;">
+                                사람 중심의 가장 편안하고 효율적인 동선<br>
+                                공간의 목적에 맞는 조도와 톤앤매너를 설정<br>
+                                공간의 가치를 올려주는 프리미엄 자재 선정
+                            </p>
+                        </div>
+                        <div class="scroll-animate" style="padding-bottom: 20px;">
+                            <h3 class="vc-style-3" style="margin-bottom: 25px;">OUTDOOR</h3>
+                            <p class="vc-style-1"
+                                style="color: var(--vc-gray-dark); font-size: 18px; line-height: 1.8; font-weight: 500;">
+                                날씨와 세월의 흔적 앞에서도 변치 않는 내구성<br>
+                                주변 환경과 어울리면서도 독창적인 정체성<br>
+                                완벽한 안전 진단을 바탕으로 한 외관 디자인
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="about_section" style="margin-top: 120px; margin-bottom: 140px;">
+                        <h3 class="vc-style-3">PORTFOLIO IMAGE</h3>
+                        <div class="title_black_bar"></div>
+
+                        <div class="portfolio-container-wrapper">
+                            <div class="swiper swiper-portfolio">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide portfolio_item"
+                                        onclick="location.href='./VACODE/portfolio_detail.html'">
+                                        <img src="./img/portfolio_01.png" class="portfolio_thumb" alt="365산본플란트치과의원">
+                                        <div class="portfolio_info">
+                                            <div class="pf_title">365산본플란트치과의원</div>
+                                            <div class="pf_link">VIEW MORE &gt;</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide portfolio_item" onclick="location.href='./VACODE/portfolio_detail.html'">
-                                    <img src="./img/portfolio_02.png" class="portfolio_thumb" alt="다움치과의원">
-                                    <div class="portfolio_info">
-                                        <div class="pf_title">다움치과의원</div>
-                                        <div class="pf_link">VIEW MORE &gt;</div>
+                                    <div class="swiper-slide portfolio_item"
+                                        onclick="location.href='./VACODE/portfolio_detail.html'">
+                                        <img src="./img/portfolio_02.png" class="portfolio_thumb" alt="다움치과의원">
+                                        <div class="portfolio_info">
+                                            <div class="pf_title">다움치과의원</div>
+                                            <div class="pf_link">VIEW MORE &gt;</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide portfolio_item" onclick="location.href='./VACODE/portfolio_detail.html'">
-                                    <img src="./img/portfolio_03.png" class="portfolio_thumb" alt="목동공감한의원">
-                                    <div class="portfolio_info">
-                                        <div class="pf_title">목동공감한의원</div>
-                                        <div class="pf_link">VIEW MORE &gt;</div>
+                                    <div class="swiper-slide portfolio_item"
+                                        onclick="location.href='./VACODE/portfolio_detail.html'">
+                                        <img src="./img/portfolio_03.png" class="portfolio_thumb" alt="목동공감한의원">
+                                        <div class="portfolio_info">
+                                            <div class="pf_title">목동공감한의원</div>
+                                            <div class="pf_link">VIEW MORE &gt;</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="swiper-slide portfolio_item" onclick="location.href='./VACODE/portfolio_detail.html'">
-                                    <img src="./img/portfolio_04.png" class="portfolio_thumb" alt="의정부웰365의원">
-                                    <div class="portfolio_info">
-                                        <div class="pf_title">의정부웰365의원</div>
-                                        <div class="pf_link">VIEW MORE &gt;</div>
+                                    <div class="swiper-slide portfolio_item"
+                                        onclick="location.href='./VACODE/portfolio_detail.html'">
+                                        <img src="./img/portfolio_04.png" class="portfolio_thumb" alt="의정부웰365의원">
+                                        <div class="portfolio_info">
+                                            <div class="pf_title">의정부웰365의원</div>
+                                            <div class="pf_link">VIEW MORE &gt;</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                <section class="about_section" style="margin-top: 100px; margin-bottom: 140px;">
-                    <h3 class="vc-style-3">OUR CLIENT</h3>
-                    <div class="title_black_bar"></div>
-                    
-                    <div class="client_marquee_wrap">
-                        <div class="client_inner">
-                            <div class="client_box">산본플란트치과</div>
-                            <div class="client_box">다움치과의원</div>
-                            <div class="client_box">목동공감한의원</div>
-                            <div class="client_box">의정부웰의원</div>
-                            <div class="client_box">서울정형외과</div>
-                            <div class="client_box">삼성내과의원</div>
-                            <div class="client_box">산본플란트치과</div>
-                            <div class="client_box">다움치과의원</div>
-                            <div class="client_box">목동공감한의원</div>
-                            <div class="client_box">의정부웰의원</div>
-                            <div class="client_box">서울정형외과</div>
-                            <div class="client_box">삼성내과의원</div>
-                        </div>
-                    </div>
-                </section>
+                    <section class="about_section" style="margin-top: 100px; margin-bottom: 140px;">
+                        <h3 class="vc-style-3">OUR CLIENT</h3>
+                        <div class="title_black_bar"></div>
 
-                <section class="custom_contact_section">
-                    <div class="thick_line"></div>
-                    <h3 class="contact_title">CONTACT</h3>
-                    <div class="thin_line thin_line_top"></div>
-                    
-                    <div class="custom_contact_grid">
-                        <div>
-                            <h4 class="col_title">INQUIRIES</h4>
-                            <p class="col_content">
-                                vacode00@naver.com<br>
-                                010-4738-8278
-                            </p>
+                        <div class="client_marquee_wrap">
+                            <div class="client_inner">
+                                <div class="client_box">산본플란트치과</div>
+                                <div class="client_box">다움치과의원</div>
+                                <div class="client_box">목동공감한의원</div>
+                                <div class="client_box">의정부웰의원</div>
+                                <div class="client_box">서울정형외과</div>
+                                <div class="client_box">삼성내과의원</div>
+                                <div class="client_box">산본플란트치과</div>
+                                <div class="client_box">다움치과의원</div>
+                                <div class="client_box">목동공감한의원</div>
+                                <div class="client_box">의정부웰의원</div>
+                                <div class="client_box">서울정형외과</div>
+                                <div class="client_box">삼성내과의원</div>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="col_title">LOCATION</h4>
-                            <p class="col_content">
-                                33-16, Deumbak-ro, Yangchon-eup,<br>
-                                Gimpo-si, Gyeonggi-do
-                            </p>
+                    </section>
+
+                    <section class="custom_contact_section">
+                        <div class="thick_line"></div>
+                        <h3 class="contact_title">CONTACT</h3>
+                        <div class="thin_line thin_line_top"></div>
+
+                        <div class="custom_contact_grid">
+                            <div>
+                                <h4 class="col_title">INQUIRIES</h4>
+                                <p class="col_content">
+                                    vacode00@naver.com<br>
+                                    010-4738-8278
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="col_title">LOCATION</h4>
+                                <p class="col_content">
+                                    33-16, Deumbak-ro, Yangchon-eup,<br>
+                                    Gimpo-si, Gyeonggi-do
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="col_title">FOLLOW</h4>
+                                <p class="col_content">
+                                    <a href="#" target="_blank">BLOG</a><br>
+                                    <a href="#" target="_blank">INSTAGRAM</a>
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="col_title">FOLLOW</h4>
-                            <p class="col_content">
-                                <a href="#" target="_blank">BLOG</a><br>
-                                <a href="#" target="_blank">INSTAGRAM</a>
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="thin_line thin_line_bottom"></div>
-                </section>
-                
+
+                        <div class="thin_line thin_line_bottom"></div>
+                    </section>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer id="VACODE_footer">
+        <div class="footer_inner">
+            <div class="footer_info_list vc-style-1">
+                <span class="info_item">사업자등록번호 : 384-86-0****</span>
+                <span class="info_item">바코드 유한회사 대표이사 : 성현호/김대현/김원중</span>
+                <span class="info_item">TEL : 010-4738-8278</span>
             </div>
-        </main>
-    </div>
-</div>
-
-<footer id="VACODE_footer">
-    <div class="footer_inner">
-        <div class="footer_info_list vc-style-1">
-            <span class="info_item">사업자등록번호 : 384-86-0****</span>
-            <span class="info_item">바코드 유한회사 대표이사 : 성현호/김대현/김원중</span>
-            <span class="info_item">TEL : 010-4738-8278</span>
+            <div class="footer_copyright">
+                Copyright &copy; 2026 VACODE | Powered by VACODE
+            </div>
         </div>
-        <div class="footer_copyright">
-            Copyright &copy; 2026 VACODE | Powered by VACODE
-        </div>
-    </div>
-</footer>
+    </footer>
 
     <!-- 스크롤 등장 애니메이션 감지 스크립트 -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -591,11 +681,12 @@
                     }
                 });
             }, { threshold: 0.15 });
-            
+
             document.querySelectorAll('.scroll-animate').forEach(el => {
                 observer.observe(el);
             });
         });
     </script>
 </body>
+
 </html>
