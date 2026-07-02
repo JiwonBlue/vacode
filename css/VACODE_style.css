@@ -183,13 +183,13 @@ img {
     font-family: var(--vc-font-suite);
     font-size: 16px;
     font-weight: 400;
-    color: #838383 !important;
+    color: #B3B3B3 !important;
     transition: color 0.3s ease, font-weight 0.3s ease;
 }
 .sidebar_filter_menu a.active,
 .sidebar_filter_menu a:hover {
-    color: #000000 !important;
-    font-weight: 800;
+    color: var(--vc-dark) !important;
+    font-weight: 700;
 }
 
 /* 우측 가변 컨텐츠 영역 기본 세팅 */
@@ -252,7 +252,7 @@ img {
 }
 .process_num { font-size: 14px; font-weight: bold; color: var(--vc-primary); margin-bottom: 15px; }
 .process_name { font-size: 18px; font-weight: bold; margin-bottom: 15px; }
-.process_desc { font-size: 14px; line-height: 1.6; color: var(--vc-gray-dark); }
+.process_desc { font-size: 16px; line-height: 1.6; color: var(--vc-gray-dark); }
 
 /* 파트너십 카드 */
 .partnership_grid {
@@ -268,9 +268,9 @@ img {
     flex-direction: column;
     justify-content: space-between;
 }
-.partner_card h4 { font-size: 18px; font-weight: bold; margin-bottom: 25px; }
+.partner_card h4 { font-size: 20px; font-weight: bold; margin-bottom: 25px; }
 .partner_card ul { list-style: none; }
-.partner_card ul li { font-size: 14px; line-height: 1.8; color: var(--vc-gray-dark); margin-bottom: 8px; }
+.partner_card ul li { font-size: 16px; line-height: 1.8; color: var(--vc-gray-dark); margin-bottom: 8px; }
 .partner_icon { display: flex; justify-content: flex-end; }
 .partner_icon svg,
 .partner_icon img { width: 50px; height: 50px; fill: var(--vc-primary); }
