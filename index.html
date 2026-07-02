@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -302,6 +302,81 @@
                 font-size: 20px !important;
             }
         }
+
+        /* --- CONTACT Section Custom Styling (to match design exactly) --- */
+        .custom_contact_section {
+            margin-top: 160px;
+            margin-bottom: 120px;
+        }
+        .custom_contact_section .thick_line {
+            border-top: 2.5px solid #000000;
+            margin-bottom: 25px;
+        }
+        .custom_contact_section .contact_title {
+            font-family: var(--vc-font-suite);
+            font-size: 14px;
+            font-weight: 800;
+            color: #000000;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
+            padding-left: 25px;
+        }
+        .custom_contact_section .thin_line {
+            border-top: 1px solid #aeaeae;
+        }
+        .custom_contact_section .thin_line_top {
+            margin-bottom: 45px;
+        }
+        .custom_contact_section .thin_line_bottom {
+            margin-top: 45px;
+        }
+        .custom_contact_grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+        .custom_contact_grid .col_title {
+            font-family: var(--vc-font-suite);
+            font-size: 13px;
+            font-weight: 800;
+            color: #000000;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .custom_contact_grid .col_content {
+            font-family: var(--vc-font-suite);
+            font-size: 13px;
+            color: #666666;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+        .custom_contact_grid .col_content a {
+            color: #666666;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .custom_contact_grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            .custom_contact_section .contact_title {
+                padding-left: 10px;
+            }
+            .custom_contact_section .thin_line_top {
+                margin-bottom: 30px;
+            }
+            .custom_contact_section .thin_line_bottom {
+                margin-top: 30px;
+            }
+        }
     </style>
     
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
@@ -352,8 +427,12 @@
     <div class="VACODE_layout" style="padding-top: 0;">
         <main class="VACODE_contents main_full_contents">
             
-            <section id="main_visual" class="visual_full_width" style="background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('./img/마스크 그룹 1.png') no-repeat center/cover; position: relative;">
-                <div class="visual_txt_animate" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #FFFFFF; width: 100%;">
+            <section id="main_visual" class="visual_full_width" style="position: relative; overflow: hidden;">
+                <video autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;">
+                    <source src="./메인비주얼_영상.mp4" type="video/mp4">
+                </video>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.25); z-index: 2;"></div>
+                <div class="visual_txt_animate" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #FFFFFF; width: 100%; z-index: 3;">
                     <h2 style="font-size: 42px; font-weight: bold; line-height: 1.5; letter-spacing: -0.5px;">시각적으로 기획 · 제작 · 설치하는<br>의료공간의 첫 인상</h2>
                 </div>
             </section>
@@ -441,24 +520,36 @@
                     </div>
                 </section>
 
-                <section style="margin-top: 160px; border-top: 3px solid #000000; padding-top: 40px; margin-bottom: 20px;">
-                    <h3 class="vc-style-3" style="font-size: 15px; font-weight: bold; margin-bottom: 40px; letter-spacing: 0.5px;">CONTACT</h3>
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; border-top: 1px solid var(--vc-bg-light); padding-top: 30px;">
+                <section class="custom_contact_section">
+                    <div class="thick_line"></div>
+                    <h3 class="contact_title">CONTACT</h3>
+                    <div class="thin_line thin_line_top"></div>
+                    
+                    <div class="custom_contact_grid">
                         <div>
-                            <h4 class="vc-style-2" style="font-size: 14px; color: var(--vc-gray-dark); margin-bottom: 15px; text-transform: uppercase;">Inquiries</h4>
-                            <p class="vc-style-1" style="font-size: 15px; font-weight: bold;">VACODE00@naver.com</p>
-                            <p class="vc-style-1" style="font-size: 15px; font-weight: bold; margin-top: 5px;">010-4738-8278</p>
+                            <h4 class="col_title">INQUIRIES</h4>
+                            <p class="col_content">
+                                vacode00@naver.com<br>
+                                010-4738-8278
+                            </p>
                         </div>
                         <div>
-                            <h4 class="vc-style-2" style="font-size: 14px; color: var(--vc-gray-dark); margin-bottom: 15px; text-transform: uppercase;">Location</h4>
-                            <p class="vc-style-1" style="font-size: 14px; line-height: 1.5; color: #000000;">33-16, Deumbak-ro, Yangchon-eup,<br>Gimpo-si, Gyeonggi-do</p>
+                            <h4 class="col_title">LOCATION</h4>
+                            <p class="col_content">
+                                33-16, Deumbak-ro, Yangchon-eup,<br>
+                                Gimpo-si, Gyeonggi-do
+                            </p>
                         </div>
                         <div>
-                            <h4 class="vc-style-2" style="font-size: 14px; color: var(--vc-gray-dark); margin-bottom: 15px; text-transform: uppercase;">Follow</h4>
-                            <p class="vc-style-1" style="font-size: 15px; font-weight: bold;"><a href="#" style="border-bottom: 1px solid #000000;">BLOG</a></p>
-                            <p class="vc-style-1" style="font-size: 15px; font-weight: bold; margin-top: 8px;"><a href="#" style="border-bottom: 1px solid #000000;">INSTAGRAM</a></p>
+                            <h4 class="col_title">FOLLOW</h4>
+                            <p class="col_content">
+                                <a href="#" target="_blank">BLOG</a>
+                                <a href="#" target="_blank">INSTAGRAM</a>
+                            </p>
                         </div>
                     </div>
+                    
+                    <div class="thin_line thin_line_bottom"></div>
                 </section>
                 
             </div>
