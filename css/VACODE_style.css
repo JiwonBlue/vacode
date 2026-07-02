@@ -185,12 +185,16 @@ img {
 }
 
 .VACODE_sidebar .info_footer {
-    font-size: 18px;
-    font-weight: 300;
-    /* Light */
+    font-size: 16px;
+    font-weight: 400; /* Regular */
     line-height: 1.7;
-    color: var(--vc-gray-dark);
-    /* #838383 */
+    color: var(--vc-black); /* #000000 */
+}
+.VACODE_sidebar .info_footer p {
+    font-family: var(--vc-font-suite) !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: var(--vc-black) !important;
 }
 
 /* 사이드바 카테고리 필터 메뉴 문자 스타일 맞춤 (Regular - 16px / Bold - 16px) */
