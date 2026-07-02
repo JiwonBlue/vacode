@@ -311,6 +311,8 @@
         .custom_contact_section .thick_line {
             border-top: 2.5px solid #000000;
             margin-bottom: 25px;
+            margin-left: -50px;
+            margin-right: -50px;
         }
         .custom_contact_section .contact_title {
             font-family: var(--vc-font-suite);
@@ -319,10 +321,12 @@
             color: #000000;
             letter-spacing: 0.5px;
             margin-bottom: 25px;
-            padding-left: 25px;
+            padding-left: 0;
         }
         .custom_contact_section .thin_line {
             border-top: 1px solid #aeaeae;
+            margin-left: -50px;
+            margin-right: -50px;
         }
         .custom_contact_section .thin_line_top {
             margin-bottom: 45px;
@@ -334,8 +338,8 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 40px;
-            padding-left: 25px;
-            padding-right: 25px;
+            padding-left: 0;
+            padding-right: 0;
         }
         .custom_contact_grid .col_title {
             font-family: var(--vc-font-suite);
@@ -356,19 +360,25 @@
         .custom_contact_grid .col_content a {
             color: #666666;
             text-decoration: none;
-            display: block;
-            margin-bottom: 5px;
         }
         
         @media (max-width: 768px) {
+            .custom_contact_section .thick_line {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+            .custom_contact_section .thin_line {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
             .custom_contact_grid {
                 grid-template-columns: 1fr !important;
                 gap: 30px !important;
-                padding-left: 10px;
-                padding-right: 10px;
+                padding-left: 0;
+                padding-right: 0;
             }
             .custom_contact_section .contact_title {
-                padding-left: 10px;
+                padding-left: 0;
             }
             .custom_contact_section .thin_line_top {
                 margin-bottom: 30px;
@@ -543,7 +553,7 @@
                         <div>
                             <h4 class="col_title">FOLLOW</h4>
                             <p class="col_content">
-                                <a href="#" target="_blank">BLOG</a>
+                                <a href="#" target="_blank">BLOG</a><br>
                                 <a href="#" target="_blank">INSTAGRAM</a>
                             </p>
                         </div>
