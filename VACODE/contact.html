@@ -6,8 +6,8 @@
     <title>VACODE. - CONTACT</title>
     <link rel="stylesheet" href="../css/VACODE_style.css?v=2.1">
     
-    <!-- 웹폰트 SUITE 로드 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sunnpoet/SUITE/fonts/static/woff2/SUITE.css">
+    <!-- 웹폰트 SUITE 로드 (Variable 패키지로 특수문자 로드 교정) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE@2/fonts/variable/woff2/SUITE-Variable.css">
 
     <style>
         /* 헤더와 콘텐츠 사이의 상단 여백 제거 */
@@ -111,19 +111,19 @@
                 </div>
                 <div class="contact_meta_info" style="position: relative; overflow: visible;">
                     <!-- 대형 contact 블러 효과 배경 텍스트 (140px, blur ~3px) -->
-                    <div style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); font-size: 140px; font-weight: 900; color: rgba(0, 0, 0, 0.03); filter: blur(3px); z-index: -1; user-select: none; pointer-events: none; text-transform: lowercase; font-family: sans-serif; line-height: 1;">contact</div>
+                    <div style="position: absolute; top: -15px; left: 0; transform: none; font-size: 140px; font-weight: 900; color: rgba(0, 0, 0, 0.03); filter: blur(3px); z-index: -1; user-select: none; pointer-events: none; text-transform: lowercase; font-family: sans-serif; line-height: 1;">contact</div>
                     
                     <div class="meta_row"><h5>상담 시간</h5><p>09:00 ~ 18:00</p></div>
                     <div class="meta_row"><h5>주소</h5><p>경기 김포시 양촌읍 듬박로 33-16</p></div>
                 </div>
             </div>
 
-            <form id="contact_form" onsubmit="alert('문의가 전송되었습니다.'); return false;">
-                <div class="form_group"><label class="form_label">+ COMPANY NAME</label><input type="text" class="form_input" placeholder="업체명을 입력해 주세요" required></div>
-                <div class="form_group"><label class="form_label">+ ADDRESS</label><input type="text" class="form_input" placeholder="주소를 입력해 주세요" required></div>
-                <div class="form_group"><label class="form_label">+ CONTACT ADDRESS</label><input type="tel" class="form_input" placeholder="연락처를 입력해 주세요" required></div>
-                <div class="form_group"><label class="form_label">+ E-MAIL</label><input type="email" class="form_input" placeholder="이메일을 입력해 주세요" required></div>
-                <div class="form_group"><label class="form_label">+ CONTENTS</label><textarea class="form_input form_textarea" placeholder="내용을 입력해 주세요" required></textarea></div>
+            <form id="contact_form" class="contact_form_aligned" onsubmit="alert('문의가 전송되었습니다.'); return false;">
+                <div class="form_group"><label class="form_label">COMPANY NAME</label><input type="text" class="form_input" placeholder="업체명을 입력해 주세요" required></div>
+                <div class="form_group"><label class="form_label">ADDRESS</label><input type="text" class="form_input" placeholder="주소를 입력해 주세요" required></div>
+                <div class="form_group"><label class="form_label">CONTACT ADDRESS</label><input type="tel" class="form_input" placeholder="연락처를 입력해 주세요" required></div>
+                <div class="form_group"><label class="form_label">E-MAIL</label><input type="email" class="form_input" placeholder="이메일을 입력해 주세요" required></div>
+                <div class="form_group"><label class="form_label">CONTENTS</label><textarea class="form_input form_textarea" placeholder="내용을 입력해 주세요" required></textarea></div>
                 <button type="submit" class="form_submit_btn"><span>SEND &gt;</span></button>
             </form>
         </main>

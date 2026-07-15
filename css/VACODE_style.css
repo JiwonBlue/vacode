@@ -11,7 +11,7 @@
     --vc-gray-light: #B3B3B3;
 
     /* 웹폰트 SUITE 세팅 */
-    --vc-font-suite: 'SUITE', sans-serif;
+    --vc-font-suite: 'SUITE Variable', 'SUITE', sans-serif;
 }
 
 /* 기본 스타일 초기화 및 폰트 지정 */
@@ -86,22 +86,26 @@ img {
     left: 0;
     width: 100%;
     height: 70px;
-    background-color: #FFFFFF !important;
-    /* 백그라운드 흰색 복원 */
+    background-color: #FFFFFF !important; /* 서브 페이지 헤더 기본: 흰색 배경 */
     border-bottom: none !important;
-    /* 하단 경계선 제거 */
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
     padding: 0 50px !important;
     z-index: 99999 !important;
     box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+/* 메인 페이지 헤더 스타일 (배경 투명, 절대 위치) */
+#VACODE_header.main_header {
+    position: absolute !important;
+    background-color: transparent !important;
 }
 
 /* 로고 영역 */
 #VACODE_header .logo {
     margin-right: 254px !important;
-    /* 로고 이미지의 실제 렌더링 너비(116px)를 계산하여 메뉴 시작점(ABOUT)이 정확히 420px 라인에 오도록 패딩(50px) + 로고(116px) + 마진(254px) = 420px로 정교하게 맞춤 */
     flex-shrink: 0;
 }
 
@@ -111,7 +115,16 @@ img {
     font-size: 22px;
     letter-spacing: -0.44px;
     display: block;
-    color: var(--vc-dark);
+    color: var(--vc-dark) !important; /* 서브 헤더 기본: 검정 톤 */
+    transition: opacity 0.3s ease !important;
+}
+
+#VACODE_header.main_header .logo a {
+    color: #FFFFFF !important; /* 메인 헤더: 흰색 로고 */
+}
+
+#VACODE_header .logo a:hover {
+    opacity: 0.6 !important;
 }
 
 /* 메뉴 링크 정렬 */
@@ -127,13 +140,25 @@ img {
     font-size: 15px;
     font-weight: bold;
     letter-spacing: -0.16px;
-    color: var(--vc-black);
-    transition: color 0.2s ease;
+    color: var(--vc-black) !important; /* 서브 헤더 기본: 검정 톤 */
+    transition: color 0.3s ease !important;
+}
+
+#VACODE_header.main_header .nav_menu a {
+    color: #FFFFFF !important; /* 메인 헤더: 흰색 메뉴 */
 }
 
 #VACODE_header .nav_menu a:hover,
 #VACODE_header .nav_menu a.active {
-    color: var(--vc-primary);
+    color: var(--vc-primary) !important;
+}
+
+#VACODE_header.main_header .nav_menu a:hover {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+#VACODE_header:not(.main_header) .nav_menu a:hover {
+    color: rgba(0, 0, 0, 0.6) !important;
 }
 
 /* 우측 끝 SNS 아이콘 영역 */
@@ -505,6 +530,7 @@ img {
     color: var(--vc-black);
     font-size: 16px;
     font-weight: bold;
+    font-family: var(--vc-font-suite) !important; /* SEND > 버튼 내부 특수문자 및 영문 서체 상속 강제화 */
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -525,9 +551,18 @@ img {
     max-width: 100%;
     display: flex;
     padding: 30px 0;
-    border-bottom: 1px solid var(--vc-bg-light);
+    border-bottom: none !important; /* 구분선 완벽히 제거 */
     margin-bottom: 80px;
     flex-shrink: 0;
+}
+
+/* 메인 비주얼 배너 텍스트 기본 스타일 */
+.visual_full_width h2 {
+    font-size: 70px !important;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -1px;
+    transition: font-size 0.3s ease;
 }
 
 /* 롤링 애니메이션 상자 */
@@ -540,10 +575,9 @@ img {
 
 .marquee_inner span {
     font-family: var(--vc-font-suite);
-    font-weight: 400;
-    /* Regular */
-    font-size: 16px;
-    letter-spacing: -0.11px;
+    font-weight: 300; /* 조금 더 얇고 고급스러운 두께로 조정 */
+    font-size: 24px !important; /* 병원 목록 텍스트 크기 시안처럼 24px로 확대 */
+    letter-spacing: -0.5px;
     color: var(--vc-gray-dark);
     /* #838383 */
     margin-right: 60px;
@@ -602,76 +636,7 @@ img {
 }
 
 /* ==========================================
-   [반응형 처리] 태블릿 및 모바일 오타 수정 동기화
-   ========================================== */
-
-/* 1. 태블릿 구간 (화면 너비 1024px 이하) */
-@media (max-width: 1024px) {
-    #VACODE_header {
-        padding: 0 20px !important;
-        height: 70px !important;
-    }
-
-    #VACODE_header .logo {
-        margin-right: 40px;
-    }
-
-    #VACODE_header .nav_menu {
-        gap: 25px !important;
-    }
-
-    .VACODE_layout {
-        flex-direction: column;
-        padding-top: 0px;
-    }
-
-    .VACODE_sidebar {
-        position: relative;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 40px 20px;
-        bottom: auto;
-    }
-
-    .VACODE_sidebar .slogan_title {
-        margin-top: 0;
-        font-size: 22px;
-    }
-
-    .VACODE_sidebar .info_footer {
-        display: none;
-    }
-
-    .VACODE_contents.sub_contents {
-        margin-left: 0;
-        max-width: 100%;
-        padding: 40px 20px;
-    }
-
-    .process_grid,
-    .partnership_grid,
-    .portfolio_grid {
-        grid-template-columns: 1fr;
-    }
-
-    .main_content_inner {
-        padding: 0 20px 80px 20px;
-    }
-
-    .contact_info_layout {
-        flex-direction: column;
-        padding: 20px;
-    }
-
-    .contact_map_placeholder,
-    .contact_meta_info {
-        width: 100%;
-    }
-}
-
-/* ==========================================
-   [반응형 처리] 태블릿 및 모바일 오타 수정 동기화 (최종본)
+   [반응형 처리] 태블릿 및 모바일 반응형 통합
    ========================================== */
 
 /* 1. 태블릿 구간 (화면 너비 1024px 이하) */
@@ -718,10 +683,16 @@ img {
         padding: 40px 20px;
     }
 
-    .process_grid,
+    /* [오타 수정] process_grid 대신 실제 마크업인 process_row를 1열 처리함 */
+    .process_row,
     .partnership_grid,
     .portfolio_grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+    }
+    
+    .process_row {
+        gap: 30px !important;
+        padding: 30px 0 !important;
     }
 
     .main_content_inner {
@@ -737,6 +708,11 @@ img {
     .contact_meta_info {
         width: 100%;
     }
+
+    /* 메인 비주얼 배너 텍스트 태블릿 축소 */
+    .visual_full_width h2 {
+        font-size: 44px !important;
+    }
 }
 
 /* 2. 스마트폰 구간 (화면 너비 768px 이하) */
@@ -746,10 +722,8 @@ img {
         padding: 0 15px !important;
     }
 
-    /* ★ [동기화 마감] 메인페이지에만 있던 모바일 압축 로직을 공통 파일에도 이식합니다 */
     #VACODE_header .logo {
         margin-right: 25px !important;
-        /* 화면이 작을 때 로고 우측 마진 통일 */
     }
 
     #VACODE_header .logo a {
@@ -758,13 +732,19 @@ img {
 
     #VACODE_header .nav_menu {
         flex: none !important;
-        /* 플렉스 확장 제거로 모바일 정렬 통일 */
         gap: 15px !important;
         margin-right: 10px !important;
     }
 
     #VACODE_header .nav_menu a {
         font-size: 13px !important;
+    }
+
+    /* 메인과 서브 페이지 글자색 개별 유지 */
+    #VACODE_header.main_header .nav_menu a {
+        color: #FFFFFF !important;
+    }
+    #VACODE_header:not(.main_header) .nav_menu a {
         color: var(--vc-black) !important;
     }
 
@@ -778,8 +758,10 @@ img {
         height: 18px !important;
     }
 
+    /* 메인 비주얼 배너 텍스트 모바일 축소 */
     .visual_full_width h2 {
-        font-size: 24px !important;
+        font-size: 28px !important;
+        line-height: 1.4 !important;
         padding: 0 20px;
     }
 
@@ -798,8 +780,6 @@ img {
         text-align: center;
     }
 }
-
-/* ◀ 이전의 꼬였던 이중 중괄호 찌꺼기 완벽하게 제거됨 */
 
 /* 3. 초소형 미니 폰 구간 (화면 너비 420px 이하) */
 @media (max-width: 420px) {
@@ -823,6 +803,35 @@ img {
         display: flex !important;
         gap: 6px !important;
     }
+
+    /* 초소형 화면 텍스트 사이즈 */
+    .visual_full_width h2 {
+        font-size: 20px !important;
+    }
+}
+
+/* --- CONTACT Section Form Alignment (outdent 정렬선 일치 기법) --- */
+.contact_form_aligned .form_group {
+    position: relative;
+    padding-left: 20px !important; /* 정렬 기준선 생성 */
+    margin-bottom: 25px !important;
+}
+
+.contact_form_aligned .form_label {
+    position: relative;
+}
+
+/* + 기호를 본문 정렬선 밖으로 내보냄 */
+.contact_form_aligned .form_label::before {
+    content: "+";
+    position: absolute;
+    left: -20px;
+    font-weight: bold;
+    color: var(--vc-black);
+}
+
+.contact_form_aligned .form_input {
+    padding-left: 0 !important; /* input 시작점이 정렬선에 정확하게 일치하도록 설정 */
 }
 
 /* 스크롤 등장 애니메이션 효과 */

@@ -10,71 +10,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print"
         onload="this.media='all'">
 
-    <!-- 웹폰트 SUITE 로드 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sunnpoet/SUITE/fonts/static/woff2/SUITE.css">
+    <!-- 웹폰트 SUITE 로드 (Variable 패키지로 특수문자 로드 교정) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE@2/fonts/variable/woff2/SUITE-Variable.css">
 
     <style>
-        /* --- [헤더 레이아웃 최종 고정] --- */
-        #VACODE_header {
-            position: absolute !important;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            background-color: transparent !important;
-            border-bottom: none !important;
-            display: flex !important;
-            justify-content: space-between !important;
-            align-items: center !important;
-            padding: 0 50px !important;
-            z-index: 99999 !important;
-            box-sizing: border-box;
-        }
-
-        /* 로고와 메뉴 사이의 간격을 늘려 시안 특유의 세련된 좌측 정렬 여백 구현 */
-        #VACODE_header .logo {
-            margin-right: 254px !important;
-            flex-shrink: 0;
-        }
-
-        /* ★ [교정] 로고 글자색을 흰색으로 변경 */
-        #VACODE_header .logo a {
-            color: #FFFFFF !important;
-        }
-
-        #VACODE_header .nav_menu {
-            display: flex !important;
-            gap: 50px !important;
-            position: static !important;
-            transform: none !important;
-            flex: 1;
-        }
-
-        /* 기본 메뉴 글자색 (기존 코드 유지) */
-        #VACODE_header .nav_menu a {
-            font-size: 15px;
-            font-weight: bold;
-            color: #FFFFFF !important;
-
-            /* ★ [추가] 마우스를 올리거나 뗄 때 색상이 0.3초 동안 부드럽게 변하도록 애니메이션 효과 부여 */
-            transition: color 0.3s ease !important;
-        }
-
-        /* ★ [새로 추가] 마우스를 갖다 댔을 때(hover) 반응하는 스타일 */
-        #VACODE_header .nav_menu a:hover {
-            /* 은은하게 반투명해지는 흰색으로 변경 (취향에 따라 #CCCCCC 같은 연그레이로 바꾸셔도 됩니다) */
-            color: rgba(255, 255, 255, 0.6) !important;
-        }
-
-        /* ★ [새로 추가] 로고에도 마우스를 올렸을 때 흐려지는 호버 효과를 똑같이 주고 싶다면 함께 넣어주세요 */
-        #VACODE_header .logo a {
-            transition: opacity 0.3s ease !important;
-        }
-
-        #VACODE_header .logo a:hover {
-            opacity: 0.6 !important;
-        }
-
         /* --- [레이아웃 정돈] --- */
         .main_full_contents {
             margin-left: 0 !important;
@@ -250,16 +189,6 @@
 
         /* 태블릿 및 일반 노트북 해상도 (화면 폭 1199px 이하일 때 발동) */
         @media (max-width: 1199px) {
-            #VACODE_header .logo {
-                margin-right: 50px !important;
-                /* 가로 터짐의 주범이었던 180px 여백을 유연하게 압축 */
-            }
-
-            #VACODE_header .nav_menu {
-                gap: 30px !important;
-                /* 메뉴 사이 간격 좁힘 */
-            }
-
             /* 스와이퍼 화살표가 화면 밖으로 나가서 공백을 만드는 현상 방지 */
             .swiper-button-prev {
                 left: -20px !important;
@@ -272,36 +201,6 @@
 
         /* 스마트폰 구간 (화면 폭 768px 이하일 때 발동) */
         @media (max-width: 768px) {
-            #VACODE_header {
-                height: 60px !important;
-                padding: 0 15px !important;
-                background-color: transparent !important;
-                /* 모바일 메인 헤더 투명 유지 */
-                border-bottom: none !important;
-            }
-
-            #VACODE_header .logo {
-                margin-right: 25px !important;
-            }
-
-            #VACODE_header .nav_menu {
-                flex: none !important;
-                /* 플렉스 확장 제거로 모바일 정렬 통일 */
-                gap: 15px !important;
-                margin-right: 10px !important;
-            }
-
-            #VACODE_header .nav_menu a {
-                color: #FFFFFF !important;
-                /* 모바일 메인 텍스트 흰색 유지 */
-                font-size: 13px !important;
-            }
-
-            #VACODE_header .sns_links img {
-                width: 18px !important;
-                height: 18px !important;
-            }
-
             .main_content_inner {
                 padding: 0 20px 80px 20px !important;
                 /* 모바일 전용 내부 콘텐츠 여백 */
@@ -313,14 +212,6 @@
                 aspect-ratio: 16 / 9 !important;
                 min-height: unset !important;
                 margin-bottom: 70px !important;
-            }
-
-            .visual_full_width h2 {
-                font-size: 26px !important;
-                /* "시각적으로 기획..." 메인 문구 축소 */
-                line-height: 1.4 !important;
-                padding: 0 15px;
-                box-sizing: border-box;
             }
 
             /* 모바일에서는 스와이퍼 외부 화살표 숨기고 터치 슬라이드 위주로 동작 유도 */
@@ -339,29 +230,9 @@
 
         /* 초소형 미니 폰 구간 (화면 폭 420px 이하일 때 발동) */
         @media (max-width: 420px) {
-            #VACODE_header {
-                padding: 0 10px !important;
-            }
-
-            #VACODE_header .logo a {
-                font-size: 14px !important;
-            }
-
-            #VACODE_header .nav_menu {
-                gap: 10px !important;
-            }
-
-            #VACODE_header .nav_menu a {
-                font-size: 11px !important;
-            }
-
             #VACODE_header .sns_links {
                 display: flex;
                 gap: 6px;
-            }
-
-            .visual_full_width h2 {
-                font-size: 20px !important;
             }
         }
 
@@ -492,7 +363,7 @@
 
 <body>
 
-    <header id="VACODE_header">
+    <header id="VACODE_header" class="main_header">
         <div class="logo"><a href="./index.html"><img src="./img/logo_white.svg" alt="VACODE."
                     style="height:22px; display:block;"></a></div>
         <nav class="nav_menu">
@@ -524,8 +395,7 @@
                     </div>
                     <div class="visual_txt_animate"
                         style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #FFFFFF; width: 100%; z-index: 3;">
-                        <h2 style="font-size: 70px; font-weight: 700; line-height: 1.35; letter-spacing: -1px;">시각적으로 기획
-                            · 제작 · 설치하는<br>의료공간의 첫 인상</h2>
+                        <h2>시각적으로 기획 · 제작 · 설치하는<br>의료공간의 첫 인상</h2>
                     </div>
                 </section>
 

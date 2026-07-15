@@ -7,14 +7,14 @@
     <title>VACODE. - ABOUT</title>
     <link rel="stylesheet" href="../css/VACODE_style.css?v=2.1">
 
-    <!-- 웹폰트 SUITE 로드 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sunnpoet/SUITE/fonts/static/woff2/SUITE.css">
+    <!-- 웹폰트 SUITE 로드 (Variable 패키지로 특수문자 로드 교정) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE@2/fonts/variable/woff2/SUITE-Variable.css">
 
     <style>
         /* --- [ABOUT 페이지 개별 여백 및 디자인 조정] --- */
         .VACODE_contents.sub_contents {
-            padding-top: 0 !important;
-            /* 회색 박스가 상단 끝까지 닿도록 여백 제거 */
+            padding-top: 20px !important;
+            /* 다른 페이지들과 동일한 헤더 높이 수직 여백 부여 */
             padding-bottom: 160px !important;
             /* 바닥 여백 160px */
         }
@@ -96,30 +96,62 @@
 
         /* Work Process 가이드 수치 맞춤형 스타일 */
         .process_list {
-            border-top: 1px solid var(--vc-gray-light) !important; /* 시안에 맞는 중간 굵기/톤의 회색선 */
-            margin-top: 20px !important; /* 타이틀과 선 사이 여백 확보 */
+            border-top: 1px solid #000000 !important; /* 선들의 동일한 굵기 및 색상 통일 (1px 검은색) */
+            margin-top: 0 !important;
+            padding-top: 40px !important; /* 대타이틀 선과 01~03 타이틀 사이의 여백 */
+            margin-right: -50px !important; /* 부모 sub_contents의 padding-right(50px)를 상쇄하여 선 끝을 우측 화면 끝에 밀착 */
         }
 
         .process_row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px !important;
-            border-bottom: 1px solid var(--vc-gray-light) !important;
-            padding: 50px 0 !important;
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            column-gap: 40px !important; /* XD 스펙과 일치하는 40px 가로 갭 복원 (양쪽 여백 왜곡 원인 해결) */
+            row-gap: 0 !important;
+            border-bottom: none !important; /* row 바텀의 선 제거 */
+            padding: 0 !important;
+            margin: 0 !important;
+            position: relative; /* 자식 가상 가로선(::after)의 absolute 기준점 설정 */
+        }
+
+        /* 셀과 셀 사이의 gap(공간) 영역에 가로선이 끊어지지 않고 매끄럽게 연결되도록 1px 가상선 레이어 구성 */
+        .process_row::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 35px; /* 타이틀 높이 35px과 완벽하게 일치하여 겹쳐 흐르게 함 */
+            height: 1px;
+            background-color: #000000 !important; /* 동일한 선 굵기와 색상 통일 (1px 검은색) */
+            z-index: 1;
         }
 
         .process_item {
-            border: none !important; /* 외부 CSS에서 적용되는 개별 하단 선 제거 */
-            padding-bottom: 0 !important;
+            display: contents !important; /* 껍데기 제거하여 자식(title, desc)들을 row의 직접적인 그리드 아이템으로 변환 */
         }
+
+        /* 타이틀 강제 1행 정렬 */
+        .process_row .process_item:nth-child(1) .process_title { grid-row: 1; grid-column: 1; }
+        .process_row .process_item:nth-child(2) .process_title { grid-row: 1; grid-column: 2; }
+        .process_row .process_item:nth-child(3) .process_title { grid-row: 1; grid-column: 3; }
+
+        /* 설명 강제 2행 정렬 */
+        .process_row .process_item:nth-child(1) .process_desc { grid-row: 2; grid-column: 1; }
+        .process_row .process_item:nth-child(2) .process_desc { grid-row: 2; grid-column: 2; }
+        .process_row .process_item:nth-child(3) .process_desc { grid-row: 2; grid-column: 3; }
 
         .process_title {
             font-size: 20px !important;
             font-weight: 700 !important;
             color: var(--vc-black) !important;
-            margin-bottom: 12px !important; /* 본문과의 간격 좁힘 */
+            height: 35px !important; /* 높이를 35px로 완벽히 고정하여 가상 가로선(top:35px)과 포개어지도록 설정 */
+            line-height: 35px !important;
+            padding: 0 0 0 40px !important; /* 좌측 패딩 40px을 부여하여 선 시작점(420px)과 텍스트 시작점(460px)을 분리 */
+            border-bottom: none !important; /* 개별 타이틀 아래 보더는 완벽히 제거하여 3열 선 끊김 및 이중 굵기 방지 */
+            margin-bottom: 0 !important;
             display: flex;
             align-items: baseline;
+            position: relative;
+            z-index: 2;
         }
 
         .process_num {
@@ -134,9 +166,13 @@
 
         .process_desc {
             font-size: 16px !important;
-            line-height: 1.7 !important;
+            line-height: 1.8 !important;
             color: #000000 !important; /* 설명을 검은색으로 */
             font-family: var(--vc-font-suite) !important;
+            padding-top: 15px !important; /* 가로선과 본문 텍스트 사이 간격 */
+            padding-left: 40px !important; /* 좌측 패딩 40px을 부여하여 본문도 460px 정렬선에 완벽 매칭 */
+            padding-right: 0 !important; /* 비대칭 패딩을 리셋하여 정렬 유지 */
+            padding-bottom: 60px !important; /* 1행 본문과 2행 타이틀 사이의 세로 간격 확보 */
         }
 
         /* Partnership 아이콘 크기 및 레이아웃 조정 */
@@ -173,10 +209,55 @@
                 margin: 0 auto !important;
             }
 
-            /* 프로세스 그리드 1열 처리 */
-            .process_grid {
-                grid-template-columns: 1fr !important;
-                gap: 30px !important;
+            .process_list {
+                margin-right: 0 !important; /* 모바일에서는 우측 상쇄 마진 초기화 */
+            }
+
+            .about_section {
+                margin-right: 0 !important; /* 모바일에서는 우측 상쇄 마진 초기화 */
+            }
+
+            /* 프로세스 행 1열 처리 및 구분선 보강 */
+            .process_row {
+                display: block !important; /* 그리드 해제하여 수직으로 순차 정렬 */
+                margin-bottom: 0 !important;
+            }
+
+            /* 모바일 모드에서는 가상 가로선 제거 */
+            .process_row::after {
+                display: none !important;
+            }
+
+            .process_item {
+                display: block !important; /* display: contents 해제 */
+                margin-bottom: 30px !important; /* 모바일에서 항목 간 간격 */
+                border-bottom: 1px solid #000000 !important; /* 모바일에서는 개별 아이템 아래에 구분선 위치 (검은색 통일) */
+                padding-bottom: 25px !important;
+            }
+
+            /* 마지막 6번 준공보고의 하단 구분선은 모바일에서도 생략 */
+            .process_row:last-child .process_item:last-child {
+                border-bottom: none !important;
+                margin-bottom: 0 !important;
+                padding-bottom: 0 !important;
+            }
+
+            .process_title {
+                height: auto !important; /* 데스크탑 전용 높이 해제 */
+                line-height: normal !important;
+                padding-top: 10px !important;
+                padding-bottom: 10px !important;
+                border-bottom: none !important; /* 모바일에서는 개별 타이틀 바로 아래 보더는 불필요하므로 제거 */
+                padding-left: 0 !important; /* 모바일 들여쓰기 해제 */
+                padding-right: 0 !important;
+                margin-bottom: 8px !important;
+            }
+
+            .process_desc {
+                padding-top: 0 !important; /* 모바일에서는 title 마진으로 간격 제어하므로 desc의 top 패딩 제거 */
+                padding-left: 0 !important; /* 모바일 들여쓰기 해제 */
+                padding-right: 0 !important;
+                padding-bottom: 0 !important;
             }
 
             /* 파트너 카드 축소 */
@@ -280,7 +361,7 @@
                 </section>
 
                 <!-- 무한 롤링 텍스트 영역 (하드웨어 가속 최적화) -->
-                <section class="about_section" style="margin-bottom:80px; contain: layout paint;">
+                <section class="about_section" style="margin-bottom:80px; contain: layout paint; margin-right: -50px !important;">
                     <div class="text_marquee_wrap">
                         <div class="marquee_inner" style="will-change: transform;">
                             <span>정형외과</span><span>재활의학과</span><span>마취통증의학과</span><span>신경외과</span><span>신경과</span><span>내과</span><span>안과</span><span>피부과</span><span>성형외과</span><span>비뇨의학과</span><span>외과</span><span>항문외과</span><span>한의원</span><span>이비인후과</span><span>치과</span><span>영상의학과</span><span>소아청소년과</span><span>가정의학과</span>
@@ -292,7 +373,7 @@
                 </section>
 
                 <section class="about_section">
-                    <h3 class="vc-style-3" style="margin-bottom: 40px;">WORK PROCESS</h3>
+                    <h3 class="vc-style-3" style="margin-bottom: 15px !important; padding-left: 20px !important;">WORK PROCESS</h3>
                     <div class="process_list">
                         <div class="process_row">
                             <div class="process_item">
