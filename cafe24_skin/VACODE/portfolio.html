@@ -1,0 +1,89 @@
+<!--@layout(/layout/basic/sub_layout.html)-->
+
+<div class="VACODE_layout">
+    <aside class="VACODE_sidebar">
+        <div class="sidebar_filter_menu">
+            <a href="#" class="filter_btn active" data-filter="all">ALL</a>
+            <a href="#" class="filter_btn" data-filter="indoor">INDOOR</a>
+            <a href="#" class="filter_btn" data-filter="outdoor">OUTDOOR</a>
+        </div>
+        <div class="info_footer">
+            <p>vacode00@naver.com</p>
+            <p>F. 010-4738-8278</p>
+        </div>
+    </aside>
+
+    <main class="VACODE_contents sub_contents">
+        <div class="portfolio_grid">
+            
+            <!-- 카페24 갤러리 게시판 8번 목록 연동 패키지 -->
+            <div module="board_listpackage_8">
+                <!--
+                    $count = 30
+                    $subject_cut = 100
+                    $target = _self
+                -->
+                <div module="board_list_8" class="portfolio_item" data-category="{$category_name}" onclick="location.href='/VACODE/portfolio_detail.html?no={$no}&board_no=8'">
+                    <img src="{$img_src}" class="portfolio_thumb" alt="{$subject}">
+                    <div class="portfolio_info">
+                        <div class="pf_title">{$subject}</div>
+                        <div class="pf_link">VIEW MORE &gt;</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 게시글이 없을 때 예외 처리 -->
+            <div module="board_empty_8" style="grid-column: span 2; width: 100%;">
+                <div style="display: flex; align-items: center; justify-content: center; background: #F5F5F6; border-radius: 4px; padding: 100px 0; border: 1px solid #eaeaea; width: 100%;">
+                    <p style="color: #838383; font-size: 16px; font-weight: bold;">등록된 포트폴리오가 없습니다.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<style>
+    /* 카테고리 전환 시 부드러운 페이드인 애니메이션 */
+    @keyframes portfolioFadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .portfolio_item {
+        animation: portfolioFadeIn 0.4s ease forwards;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterButtons = document.querySelectorAll('.filter_btn');
+        const portfolioItems = document.querySelectorAll('.portfolio_item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // 활성화된 버튼 색상 및 클래스 토글
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                const filterValue = this.getAttribute('data-filter').toLowerCase();
+
+                portfolioItems.forEach(item => {
+                    const category = (item.getAttribute('data-category') || '').toLowerCase();
+                    if (filterValue === 'all' || category === filterValue) {
+                        item.style.display = 'block';
+                        // 브라우저 리플로우 강제 유발로 애니메이션 재실행
+                        item.style.animation = 'none';
+                        item.offsetHeight; // reflow
+                        item.style.animation = null;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>

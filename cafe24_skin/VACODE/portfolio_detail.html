@@ -1,0 +1,55 @@
+<!--@layout(/layout/basic/sub_layout.html)-->
+
+<div class="VACODE_layout">
+    <aside class="VACODE_sidebar">
+        <div>
+            <div class="sidebar_filter_menu">
+                <a href="/VACODE/portfolio.html">ALL</a>
+                <a href="/VACODE/portfolio.html">INDOOR</a>
+                <a href="/VACODE/portfolio.html">OUTDOOR</a>
+            </div>
+        </div>
+        <div class="info_footer">
+            <p>vacode00@naver.com</p>
+            <p>F. 010-4738-8278</p>
+        </div>
+    </aside>
+
+    <main class="VACODE_contents sub_contents">
+        
+        <!-- 카페24 갤러리 게시판 8번 읽기 연동 패키지 -->
+        <div module="board_Readpackage_8">
+            <div module="board_read_8">
+                
+                <!-- 상단 타이틀 영역 -->
+                <h2 class="vc-style-2" style="font-size: 26px; font-weight: bold; margin-bottom: 40px; color: #000000; letter-spacing: -0.2px;">
+                    {$subject}
+                </h2>
+                
+                <!-- 본문 이미지 핀터레스트(Masonry) 흐름 정렬 -->
+                <div class="masonry_grid">
+                    {$content}
+                </div>
+                
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<style>
+    /* 에디터 본문 내 이미지들의 Masonry 그리드 자동 대응 */
+    .masonry_grid p {
+        margin: 0 !important;
+        padding: 0 !important;
+        display: contents; /* 문단 태그의 블록 성질을 해제하여 이미지가 그리드 직계 자식처럼 동작하게 함 */
+    }
+    .masonry_grid img {
+        width: 100% !important;
+        height: auto !important;
+        border-radius: 4px;
+        break-inside: avoid;
+        margin-bottom: 25px;
+        display: block;
+    }
+</style>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VACODE. - MAIN</title>
+    
+    <!-- 카페24 스타일시트 로드 규격 -->
+    <!--@css(/css/VACODE_style.css)-->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
+    <!-- 웹폰트 SUITE 로드 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE@2/fonts/variable/woff2/SUITE-Variable.css">
+    
+    <!-- 메인페이지 인라인 스타일 유지 -->
+    <style>
+        .main_full_contents {
+            margin-left: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+        }
+
+        .visual_full_width {
+            width: 100% !important;
+            aspect-ratio: 16 / 9 !important;
+            height: auto !important;
+            min-height: unset !important;
+            margin-top: 0 !important;
+            margin-bottom: 120px !important;
+        }
+
+        .main_content_inner {
+            max-width: 1200px !important;
+            margin: 0 auto;
+            padding: 0 50px 120px 50px;
+            box-sizing: border-box;
+        }
+
+        .title_black_bar {
+            width: 50px;
+            height: 3px;
+            background-color: #000000;
+            margin-top: 15px;
+            margin-bottom: 50px;
+        }
+
+        #VACODE_wrap {
+            overflow-x: hidden;
+        }
+
+        .portfolio-container-wrapper {
+            position: relative;
+            width: auto !important;
+            margin-right: calc((100vw - 100%) / -2) !important;
+            overflow: hidden !important;
+        }
+
+        .swiper-portfolio {
+            width: 100% !important;
+            height: auto;
+            overflow: visible !important;
+        }
+
+        .swiper-portfolio .portfolio_item {
+            width: 640px !important;
+            height: 360px !important;
+        }
+
+        .swiper-portfolio .portfolio_thumb {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            border-radius: 4px;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #000000 !important;
+            width: 50px !important;
+            height: 50px !important;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 20px !important;
+            font-weight: 300 !important;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            opacity: 0.6;
+        }
+
+        .swiper-button-prev {
+            left: -60px !important;
+        }
+
+        .swiper-button-next {
+            right: -60px !important;
+        }
+
+        .client_marquee_wrap {
+            overflow: hidden;
+            width: 100vw !important;
+            position: relative !important;
+            left: 50% !important;
+            right: 50% !important;
+            margin-left: -50vw !important;
+            margin-right: -50vw !important;
+            background-color: transparent !important;
+            display: flex;
+            padding: 30px 0 !important;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            contain: layout paint;
+        }
+
+        .client_inner {
+            display: flex;
+            white-space: nowrap;
+            will-change: transform;
+            animation: client_rolling 30s linear infinite;
+        }
+
+        .client_box {
+            width: 380px !important;
+            height: 80px !important;
+            background-color: #FFFFFF !important;
+            border: 1px solid #eaeaea;
+            border-radius: 4px;
+            margin-right: 30px !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--vc-gray-dark);
+        }
+
+        @keyframes client_rolling {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(-50%, 0, 0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -30%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .visual_txt_animate {
+            animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @media (max-width: 1199px) {
+            .swiper-button-prev {
+                left: -20px !important;
+            }
+            .swiper-button-next {
+                right: -20px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main_content_inner {
+                padding: 0 20px 80px 20px !important;
+            }
+            .visual_full_width {
+                height: auto !important;
+                aspect-ratio: 16 / 9 !important;
+                min-height: unset !important;
+                margin-bottom: 70px !important;
+            }
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none !important;
+            }
+            .main_content_inner section style,
+            .main_content_inner div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
+        }
+
+        @media (max-width: 420px) {
+            #VACODE_header .sns_links {
+                display: flex;
+                gap: 6px;
+            }
+        }
+
+        .custom_contact_section {
+            margin-top: 160px;
+            margin-bottom: 120px;
+        }
+
+        .custom_contact_section .thick_line {
+            border-top: 2.5px solid #000000;
+            margin-bottom: 25px;
+            margin-left: -50px;
+            margin-right: -50px;
+        }
+
+        .custom_contact_section .contact_title {
+            font-family: var(--vc-font-suite);
+            font-size: 22px;
+            font-weight: bold;
+            color: #000000;
+            letter-spacing: -0.11px;
+            margin-bottom: 25px;
+            padding-left: 0;
+            text-transform: uppercase;
+        }
+
+        .custom_contact_section .thin_line {
+            border-top: 1px solid #aeaeae;
+            margin-left: -50px;
+            margin-right: -50px;
+        }
+
+        .custom_contact_section .thin_line_top {
+            margin-bottom: 45px;
+        }
+
+        .custom_contact_section .thin_line_bottom {
+            margin-top: 45px;
+        }
+
+        .custom_contact_grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .custom_contact_grid .col_title {
+            font-family: var(--vc-font-suite);
+            font-size: 20px;
+            font-weight: bold;
+            color: #000000;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .custom_contact_grid .col_content {
+            font-family: var(--vc-font-suite);
+            font-size: 16px;
+            color: #000000;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .custom_contact_grid .col_content a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .custom_contact_section .thick_line {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+            .custom_contact_section .thin_line {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+            .custom_contact_grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .custom_contact_section .contact_title {
+                padding-left: 0;
+            }
+            .custom_contact_section .thin_line_top {
+                margin-bottom: 30px;
+            }
+            .custom_contact_section .thin_line_bottom {
+                margin-top: 30px;
+            }
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+</head>
+
+<body>
+    <!-- 메인 페이지용 투명 헤더 -->
+    <header id="VACODE_header" class="main_header">
+        <div class="logo">
+            <a href="/index.html">
+                <img src="/img/logo_white.svg" alt="VACODE." style="height:22px; display:block;">
+            </a>
+        </div>
+        <nav class="nav_menu">
+            <a href="/VACODE/about.html">ABOUT</a>
+            <a href="/VACODE/portfolio.html">PORTFOLIO</a>
+            <a href="/VACODE/contact.html">CONTACT</a>
+        </nav>
+        <div class="sns_links">
+            <a href="https://blog.naver.com/vacode_sign" target="_blank" aria-label="Naver Blog">
+                <img src="/img/그룹 17.svg" alt="Naver Blog" style="width:22px; height:22px; vertical-align:middle;">
+            </a>
+            <a href="https://www.instagram.com/vacode00/" target="_blank" aria-label="Instagram">
+                <img src="/img/그룹 14.svg" alt="Instagram" style="width:22px; height:22px; vertical-align:middle;">
+            </a>
+        </div>
+    </header>
+
+    <div id="VACODE_wrap">
+        <div class="VACODE_layout" style="padding-top: 0;">
+            <!--@contents-->
+        </div>
+    </div>
+
+    <!-- 메인 페이지용 하단 푸터 -->
+    <footer id="VACODE_footer">
+        <div class="footer_inner">
+            <div class="footer_info_list vc-style-1">
+                <span class="info_item">사업자등록번호 : 384-86-0****</span>
+                <span class="info_item">바코드 유한회사 대표이사 : 성현호/김대현/김원중</span>
+                <span class="info_item">TEL : 010-4738-8278</span>
+            </div>
+            <div class="footer_copyright">
+                Copyright &copy; 2026 VACODE | Powered by VACODE
+            </div>
+        </div>
+    </footer>
+
+    <!-- 스크롤 등장 애니메이션 감지 스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

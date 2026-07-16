@@ -1,0 +1,152 @@
+<!--@layout(/layout/basic/layout.html)-->
+
+<main class="VACODE_contents main_full_contents">
+
+    <section id="main_visual" class="visual_full_width" style="position: relative; overflow: hidden;">
+        <video autoplay loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;">
+            <source src="/메인비주얼_영상.mp4" type="video/mp4">
+        </video>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.25); z-index: 2;"></div>
+        <div class="visual_txt_animate" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #FFFFFF; width: 100%; z-index: 3;">
+            <h2>시각적으로 기획 · 제작 · 설치하는<br>의료공간의 첫 인상</h2>
+        </div>
+    </section>
+
+    <div class="main_content_inner">
+
+        <section class="about_section" style="display: flex; flex-direction: column; gap: 80px; margin-bottom: 140px;">
+            <div class="scroll-animate" style="padding-bottom: 40px;">
+                <h3 class="vc-style-3" style="margin-bottom: 25px;">INDOOR</h3>
+                <p class="vc-style-1" style="color: var(--vc-gray-dark); font-size: 18px; line-height: 1.8; font-weight: 500;">
+                    사람 중심의 가장 편안하고 효율적인 동선<br>
+                    공간의 목적에 맞는 조도와 톤앤매너를 설정<br>
+                    공간의 가치를 올려주는 프리미엄 자재 선정
+                </p>
+            </div>
+            <div class="scroll-animate" style="padding-bottom: 20px;">
+                <h3 class="vc-style-3" style="margin-bottom: 25px;">OUTDOOR</h3>
+                <p class="vc-style-1" style="color: var(--vc-gray-dark); font-size: 18px; line-height: 1.8; font-weight: 500;">
+                    날씨와 세월의 흔적 앞에서도 변치 않는 내구성<br>
+                    주변 환경과 어울리면서도 독창적인 정체성<br>
+                    완벽한 안전 진단을 바탕으로 한 외관 디자인
+                </p>
+            </div>
+        </section>
+
+        <section class="about_section" style="margin-top: 120px; margin-bottom: 140px;">
+            <h3 class="vc-style-3">PORTFOLIO IMAGE</h3>
+            <div class="title_black_bar"></div>
+
+            <div class="portfolio-container-wrapper">
+                <div class="swiper swiper-portfolio">
+                    
+                    <!-- 카페24 갤러리 게시판 8번 연동 패키지 -->
+                    <div module="board_listpackage_8">
+                        <!--
+                            $count = 8
+                            $subject_cut = 100
+                            $target = _self
+                        -->
+                        <div module="board_list_8" class="swiper-wrapper">
+                            <!--
+                                $onclick = location.href='/VACODE/portfolio_detail.html?no={$no}&board_no=8'
+                            -->
+                            <div class="swiper-slide portfolio_item" onclick="{$onclick}">
+                                <img src="{$img_src}" class="portfolio_thumb" alt="{$subject}">
+                                <div class="portfolio_info">
+                                    <div class="pf_title">{$subject}</div>
+                                    <div class="pf_link">VIEW MORE &gt;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 게시글이 없을 때 예외 처리 -->
+                    <div module="board_empty_8">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide portfolio_item" style="display: flex; align-items: center; justify-content: center; background: #F5F5F6; border-radius: 4px; border: 1px solid #eaeaea;">
+                                <p style="color: #838383; font-size: 16px; font-weight: bold;">등록된 포트폴리오가 없습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="about_section" style="margin-top: 100px; margin-bottom: 140px;">
+            <h3 class="vc-style-3">OUR CLIENT</h3>
+            <div class="title_black_bar"></div>
+
+            <div class="client_marquee_wrap">
+                <div class="client_inner">
+                    <div class="client_box">산본플란트치과</div>
+                    <div class="client_box">다움치과의원</div>
+                    <div class="client_box">목동공감한의원</div>
+                    <div class="client_box">의정부웰의원</div>
+                    <div class="client_box">서울정형외과</div>
+                    <div class="client_box">삼성내과의원</div>
+                    <div class="client_box">산본플란트치과</div>
+                    <div class="client_box">다움치과의원</div>
+                    <div class="client_box">목동공감한의원</div>
+                    <div class="client_box">의정부웰의원</div>
+                    <div class="client_box">서울정형외과</div>
+                    <div class="client_box">삼성내과의원</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="custom_contact_section">
+            <div class="thick_line"></div>
+            <h3 class="contact_title">CONTACT</h3>
+            <div class="thin_line thin_line_top"></div>
+
+            <div class="custom_contact_grid">
+                <div>
+                    <h4 class="col_title">INQUIRIES</h4>
+                    <p class="col_content">
+                        vacode00@naver.com<br>
+                        010-4738-8278
+                    </p>
+                </div>
+                <div>
+                    <h4 class="col_title">LOCATION</h4>
+                    <p class="col_content">
+                        33-16, Deumbak-ro, Yangchon-eup,<br>
+                        Gimpo-si, Gyeonggi-do
+                    </p>
+                </div>
+                <div>
+                    <h4 class="col_title">FOLLOW</h4>
+                    <p class="col_content">
+                        <a href="https://blog.naver.com/vacode_sign" target="_blank">BLOG</a><br>
+                        <a href="https://www.instagram.com/vacode00/" target="_blank">INSTAGRAM</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="thin_line thin_line_bottom"></div>
+        </section>
+
+    </div>
+</main>
+
+<script>
+    // HTML 문서 로드가 완전히 끝난 직후 슬라이더를 구성하는 최적화 스크립트
+    document.addEventListener('DOMContentLoaded', function () {
+        const swiper = new Swiper('.swiper-portfolio', {
+            slidesPerView: 'auto',
+            spaceBetween: 25,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            grabCursor: true,
+            breakpoints: {
+                320: { slidesPerView: 1, spaceBetween: 15 },
+                768: { slidesPerView: 'auto', spaceBetween: 25 }
+            }
+        });
+    });
+</script>
