@@ -98,7 +98,7 @@
         .process_list {
             border-top: 1px solid #000000 !important; /* 선들의 동일한 굵기 및 색상 통일 (1px 검은색) */
             margin-top: 0 !important;
-            padding-top: 40px !important; /* 대타이틀 선과 01~03 타이틀 사이의 여백 */
+            padding-top: 120px !important; /* 대타이틀 선과 01~03 타이틀 사이의 여백 (120px로 조정) */
             margin-right: -50px !important; /* 부모 sub_contents의 padding-right(50px)를 상쇄하여 선 끝을 우측 화면 끝에 밀착 */
         }
 
@@ -107,10 +107,13 @@
             grid-template-columns: repeat(3, 1fr) !important;
             column-gap: 40px !important; /* XD 스펙과 일치하는 40px 가로 갭 복원 (양쪽 여백 왜곡 원인 해결) */
             row-gap: 0 !important;
-            border-bottom: none !important; /* row 바텀의 선 제거 */
             padding: 0 !important;
             margin: 0 !important;
             position: relative; /* 자식 가상 가로선(::after)의 absolute 기준점 설정 */
+        }
+
+        .process_row:not(:first-child) {
+            margin-top: 60px !important; /* 행과 행 사이의 간격을 60px로 설정 */
         }
 
         /* 셀과 셀 사이의 gap(공간) 영역에 가로선이 끊어지지 않고 매끄럽게 연결되도록 1px 가상선 레이어 구성 */
@@ -172,7 +175,7 @@
             padding-top: 15px !important; /* 가로선과 본문 텍스트 사이 간격 */
             padding-left: 40px !important; /* 좌측 패딩 40px을 부여하여 본문도 460px 정렬선에 완벽 매칭 */
             padding-right: 0 !important; /* 비대칭 패딩을 리셋하여 정렬 유지 */
-            padding-bottom: 60px !important; /* 1행 본문과 2행 타이틀 사이의 세로 간격 확보 */
+            padding-bottom: 0px !important; /* 하단 선과의 여백 없앰 */
         }
 
         /* Partnership 아이콘 크기 및 레이아웃 조정 */
@@ -220,7 +223,10 @@
             /* 프로세스 행 1열 처리 및 구분선 보강 */
             .process_row {
                 display: block !important; /* 그리드 해제하여 수직으로 순차 정렬 */
+                margin-top: 0 !important;
                 margin-bottom: 0 !important;
+                border-top: none !important;
+                border-bottom: none !important;
             }
 
             /* 모바일 모드에서는 가상 가로선 제거 */
