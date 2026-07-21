@@ -4,8 +4,8 @@
     <aside class="VACODE_sidebar">
         <div class="sidebar_filter_menu">
             <a href="#" class="filter_btn active" data-filter="all">ALL</a>
-            <a href="#" class="filter_btn" data-filter="indoor">INDOOR</a>
-            <a href="#" class="filter_btn" data-filter="outdoor">OUTDOOR</a>
+            <a href="#" class="filter_btn" data-filter="indoor" data-cate="42">INDOOR</a>
+            <a href="#" class="filter_btn" data-filter="outdoor" data-cate="43">OUTDOOR</a>
         </div>
         <div class="info_footer">
             <p>vacode00@naver.com</p>
@@ -22,8 +22,8 @@
                 $toast_result = /product/add_basket2.html
             -->
             <div class="portfolio_grid">
-                <div id="anchorBoxId_{$product_no}" class="portfolio_item" data-category="{$category_name}" onclick="location.href='/VACODE/portfolio_detail.html?product_no={$product_no}'" style="cursor: pointer;">
-                    <a href="/VACODE/portfolio_detail.html?product_no={$product_no}" style="display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; position: relative; overflow: hidden; border-radius: 0; line-height: 0;">
+                <div id="anchorBoxId_{$product_no}" class="portfolio_item" data-category="{$category_name}" onclick="location.href='/VACODE/portfolio_detail.html{$param}'" style="cursor: pointer;">
+                    <a href="/VACODE/portfolio_detail.html{$param}" style="display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; position: relative; overflow: hidden; border-radius: 0; line-height: 0;">
                         <img src="{$image_medium}" class="portfolio_thumb" alt="{$product_name}">
                         <div class="portfolio_info">
                             <div class="pf_title">{$product_name}</div>
@@ -31,8 +31,8 @@
                         </div>
                     </a>
                 </div>
-                <div id="anchorBoxId_{$product_no}" class="portfolio_item" data-category="{$category_name}" onclick="location.href='/VACODE/portfolio_detail.html?product_no={$product_no}'" style="cursor: pointer;">
-                    <a href="/VACODE/portfolio_detail.html?product_no={$product_no}" style="display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; position: relative; overflow: hidden; border-radius: 0; line-height: 0;">
+                <div id="anchorBoxId_{$product_no}" class="portfolio_item" data-category="{$category_name}" onclick="location.href='/VACODE/portfolio_detail.html{$param}'" style="cursor: pointer;">
+                    <a href="/VACODE/portfolio_detail.html{$param}" style="display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; position: relative; overflow: hidden; border-radius: 0; line-height: 0;">
                         <img src="{$image_medium}" class="portfolio_thumb" alt="{$product_name}">
                         <div class="portfolio_info">
                             <div class="pf_title">{$product_name}</div>
