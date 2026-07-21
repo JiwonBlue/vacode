@@ -149,7 +149,7 @@
                             <td style="text-align: center; color: #888888; font-size: 13px;">{$write_date}</td>
                             <td style="text-align: center;">
                                 <a href="/board/gallery/modify.html{$param_modify}" class="action_btn btn_edit">수정</a>
-                                <a href="#none" onclick="{$action_delete}" class="action_btn btn_delete">삭제</a>
+                                <a href="#none" onclick="if (!confirm('정말 이 포트폴리오 게시글을 삭제하시겠습니까?')) return false; {$action_delete}" class="action_btn btn_delete">삭제</a>
                             </td>
                         </tr>
 
