@@ -136,6 +136,18 @@
 <script>
     // HTML 문서 로드가 완전히 끝난 직후 슬라이더를 구성하는 최적화 스크립트
     document.addEventListener('DOMContentLoaded', function () {
+        const wrapper = document.querySelector('.swiper-portfolio .swiper-wrapper');
+        if (wrapper) {
+            const slides = wrapper.querySelectorAll('.portfolio_item');
+            if (slides.length > 0 && slides.length < 4) {
+                const requiredClones = 4 - slides.length;
+                for (let i = 0; i < requiredClones; i++) {
+                    const clone = slides[i % slides.length].cloneNode(true);
+                    wrapper.appendChild(clone);
+                }
+            }
+        }
+
         const swiper = new Swiper('.swiper-portfolio', {
             slidesPerView: 'auto',
             spaceBetween: 25,
