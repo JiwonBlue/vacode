@@ -74,47 +74,13 @@
     }
     .board_list_table .category_badge {
         display: inline-block;
-        padding: 3px 10px;
+        padding: 4px 12px;
         font-size: 12px;
         font-weight: 600;
         border-radius: 12px;
         background: #f1f5f9;
         color: #475569;
         border: 1px solid #cbd5e1;
-    }
-    .board_list_table .action_box {
-        display: flex;
-        gap: 8px;
-        justify-content: center;
-        align-items: center;
-    }
-    .board_list_table .action_btn {
-        display: inline-block;
-        padding: 6px 14px;
-        font-size: 13px;
-        font-weight: 600;
-        border-radius: 4px;
-        text-decoration: none;
-        white-space: nowrap;
-        transition: all 0.2s ease;
-    }
-    .board_list_table .btn_edit {
-        background: #ffffff;
-        color: #334155;
-        border: 1px solid #cbd5e1;
-    }
-    .board_list_table .btn_edit:hover {
-        background: #f1f5f9;
-        color: #0f172a;
-    }
-    .board_list_table .btn_delete {
-        background: #fef2f2;
-        color: #dc2626;
-        border: 1px solid #fecaca;
-    }
-    .board_list_table .btn_delete:hover {
-        background: #fee2e2;
-        color: #b91c1c;
     }
 
     .write_btn_main {
@@ -136,7 +102,14 @@
 
 <div class="board_manage_wrapper">
     <main class="VACODE_contents" style="margin-left: 0 !important; max-width: 100% !important; padding: 0 !important;">
-        <div class="section" module="Board_ListPackage_8">
+        <!-- 카페24 포트폴리오 갤러리 게시판 8번 패키지 모듈 -->
+        <div module="board_listpackage_8">
+            <!--
+                $count = 15
+                $subject_cut = 100
+                $target = _self
+            -->
+
             <div module="board_title_8">
                 <div class="titleArea" style="margin-bottom: 25px; border-bottom: 2px solid #0f172a; padding-bottom: 15px;">
                     <h2 style="font-size: 24px; font-weight: 800; color: #0f172a; margin: 0;">포트폴리오 갤러리 관리 목록</h2>
@@ -156,64 +129,46 @@
                 </div>
             </div>
 
-            <!-- 포트폴리오 갤러리 테이블 리스트 패키지 -->
-            <div module="board_listpackage_8">
-                <!--
-                    $count = 15
-                    $subject_cut = 100
-                    $target = _self
-                -->
-                <table class="board_list_table">
-                    <colgroup>
-                        <col style="width: 70px;" />
-                        <col style="width: 120px;" />
-                        <col style="width: 100px;" />
-                        <col style="width: auto;" />
-                        <col style="width: 150px;" />
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th scope="col">번호</th>
-                            <th scope="col">분류</th>
-                            <th scope="col">대표사진</th>
-                            <th scope="col">제목</th>
-                            <th scope="col">관리</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- 게시물 리스트 반복 (테이블 행 방식) -->
-                        <tr module="board_list_8">
-                            <td style="text-align: center; color: #64748b; font-weight: 500;">{$no}</td>
-                            <td style="text-align: center;">
-                                <span class="category_badge">{$category_name}</span>
-                            </td>
-                            <td style="text-align: center;">
-                                <a href="/board/gallery/read.html{$param_read}">
-                                    <span class="thumb_box">
-                                        <img src="{$img_src}" class="thumb_img" alt="{$subject}" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'64\' height=\'44\' viewBox=\'0 0 64 44\'><rect width=\'64\' height=\'44\' fill=\'%23f1f5f9\'/><text x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%2394a3b8\' font-size=\'10\'>No Image</text></svg>';">
-                                    </span>
-                                </a>
-                            </td>
-                            <td style="text-align: left;">
-                                <a href="/board/gallery/read.html{$param_read}" class="post_title">{$subject}</a>
-                            </td>
-                            <td style="text-align: center;">
-                                <div class="action_box">
-                                    <a href="/board/gallery/modify.html{$param_modify}" class="action_btn btn_edit">수정</a>
-                                    <a href="#none" onclick="if (!confirm('정말 이 포트폴리오 게시글을 삭제하시겠습니까?')) return false; {$action_delete}" class="action_btn btn_delete">삭제</a>
-                                </div>
-                            </td>
-                        </tr>
+            <!-- 목록 표 (분류, 대표사진, 제목 3개 열 구성) -->
+            <table class="board_list_table">
+                <colgroup>
+                    <col style="width: 150px;" />
+                    <col style="width: 100px;" />
+                    <col style="width: auto;" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th scope="col">분류</th>
+                        <th scope="col">대표사진</th>
+                        <th scope="col">제목</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 게시물 리스트 반복 -->
+                    <tr module="board_list_8">
+                        <td style="text-align: center;">
+                            <span class="category_badge">{$category_name}</span>
+                        </td>
+                        <td style="text-align: center;">
+                            <a href="/board/gallery/modify.html{$param_modify}">
+                                <span class="thumb_box">
+                                    <img src="{$img_src}" class="thumb_img" alt="{$subject}" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'64\' height=\'44\' viewBox=\'0 0 64 44\'><rect width=\'64\' height=\'44\' fill=\'%23f1f5f9\'/><text x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%2394a3b8\' font-size=\'10\'>No Image</text></svg>';">
+                                </span>
+                            </a>
+                        </td>
+                        <td style="text-align: left;">
+                            <a href="/board/gallery/modify.html{$param_modify}" class="post_title">{$subject}</a>
+                        </td>
+                    </tr>
 
-                        <!-- 게시글이 없을 때 예외 처리 -->
-                        <tr module="board_empty_8">
-                            <td colspan="5" style="text-align: center; padding: 80px 0; color: #94a3b8; font-size: 15px; font-weight: 700;">
-                                등록된 포트폴리오 게시글이 없습니다.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                    <!-- 게시글이 없을 때 예외 처리 -->
+                    <tr module="board_empty_8">
+                        <td colspan="3" style="text-align: center; padding: 80px 0; color: #94a3b8; font-size: 15px; font-weight: 700;">
+                            등록된 포트폴리오 게시글이 없습니다.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
             <!-- 페이지네이션 -->
             <div module="board_paging_8" class="ec-base-paginate" style="margin-top: 30px;">
