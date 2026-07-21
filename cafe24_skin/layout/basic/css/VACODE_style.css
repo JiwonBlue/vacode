@@ -914,8 +914,35 @@ a:hover {
     appearance: none !important;
 }
 
+/* --- [아베크 스타일 메인 스와이퍼 UI 우측 전폭 확산 뷰] --- */
+#VACODE_wrap {
+    overflow-x: hidden !important;
+}
+
+.portfolio-container-wrapper {
+    position: relative !important;
+    width: auto !important;
+    margin-right: calc((100vw - 100%) / -2) !important;
+    overflow: hidden !important;
+}
+
+.swiper-portfolio {
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.swiper-portfolio .portfolio_item,
 .swiper-portfolio .swiper-slide {
+    width: 640px !important;
+    height: 360px !important;
     margin-right: 25px !important;
+}
+
+.swiper-portfolio .portfolio_thumb {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
 }
 
 /* ==========================================================================
