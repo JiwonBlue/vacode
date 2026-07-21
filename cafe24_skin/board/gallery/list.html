@@ -9,70 +9,77 @@
         padding-top: 0 !important;
     }
 
-    .gallery_admin_card {
-        border: 1px solid #eaeaea;
-        background: #ffffff;
-        border-radius: 0 !important;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        transition: box-shadow 0.2s ease;
-    }
-    .gallery_admin_card:hover {
-        box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-    }
-    .gallery_admin_card .card_link {
-        display: block;
-        text-decoration: none;
-        color: inherit;
-    }
-    .gallery_admin_card .card_thumb {
+    .board_list_table {
         width: 100%;
-        aspect-ratio: 700 / 495;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+        border-top: 2px solid #111111;
+    }
+    .board_list_table th {
+        background: #f8f9fa;
+        padding: 14px 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #333333;
+        border-bottom: 1px solid #e1e1e1;
+        text-align: center;
+    }
+    .board_list_table td {
+        padding: 12px 10px;
+        font-size: 14px;
+        color: #444444;
+        border-bottom: 1px solid #eeeeee;
+        vertical-align: middle;
+    }
+    .board_list_table tr:hover td {
+        background: #fbfbfb;
+    }
+    .board_list_table .thumb_box {
+        width: 60px;
+        height: 40px;
+        overflow: hidden;
+        border-radius: 2px;
+        background: #eee;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .board_list_table .thumb_img {
+        width: 100%;
+        height: 100%;
         object-fit: cover;
         display: block;
-        background: #f4f4f4;
     }
-    .gallery_admin_card .card_body {
-        padding: 18px 20px 14px 20px;
-    }
-    .gallery_admin_card .card_title {
-        font-size: 16px;
-        font-weight: bold;
+    .board_list_table .post_title {
         color: #111111;
-        margin-bottom: 6px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .gallery_admin_card .card_meta {
-        font-size: 13px;
-        color: #888888;
-    }
-    .gallery_admin_card .card_actions {
-        display: flex;
-        border-top: 1px solid #f0f0f0;
-        background: #fafafa;
-    }
-    .gallery_admin_card .card_actions a {
-        flex: 1;
-        text-align: center;
-        padding: 12px 0;
-        font-size: 13px;
-        font-weight: bold;
         text-decoration: none;
-        color: #444444;
-        transition: background 0.2s ease;
+        font-weight: 500;
     }
-    .gallery_admin_card .card_actions a:first-child {
-        border-right: 1px solid #f0f0f0;
+    .board_list_table .post_title:hover {
+        text-decoration: underline;
     }
-    .gallery_admin_card .card_actions a.btn_delete {
-        color: #e53e3e;
+    .board_list_table .action_btn {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 3px;
+        text-decoration: none;
+        margin: 0 2px;
     }
-    .gallery_admin_card .card_actions a:hover {
+    .board_list_table .btn_edit {
         background: #f0f0f0;
+        color: #333;
+        border: 1px solid #ccc;
+    }
+    .board_list_table .btn_delete {
+        background: #fff0f0;
+        color: #d93838;
+        border: 1px solid #f5c2c2;
+    }
+    .board_list_table .btn_edit:hover {
+        background: #e2e2e2;
+    }
+    .board_list_table .btn_delete:hover {
+        background: #ffe2e2;
     }
 </style>
 
@@ -94,42 +101,66 @@
             </div>
 
             <!-- INDOOR / OUTDOOR 카테고리 필터 구분 -->
-            <div class="boardSort" style="margin-bottom: 25px; display: flex; align-items: center; justify-content: space-between;">
+            <div class="boardSort" style="margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between;">
                 <div style="font-size: 14px; font-weight: bold; color: #333;">카테고리 선택: <span module="board_category_8">{$form.board_category}</span></div>
             </div>
 
-            <!-- 포트폴리오 갤러리 그리드 리스트 패키지 -->
+            <!-- 포트폴리오 갤러리 테이블 리스트 패키지 -->
             <div module="board_listpackage_8">
                 <!--
-                    $count = 12
+                    $count = 15
                     $subject_cut = 100
                     $target = _self
                 -->
-                <div class="portfolio_grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-bottom: 40px;">
-                    <!-- 게시물 리스트 반복 (갤러리 자체 read.html 연결 및 각 카드별 수정/삭제 버튼 제공) -->
-                    <div module="board_list_8" class="gallery_admin_card" data-category="{$category_name}">
-                        <a href="/board/gallery/read.html{$param_read}" class="card_link">
-                            <img src="{$img_src}" class="card_thumb" alt="{$subject}">
-                            <div class="card_body">
-                                <div class="card_title">{$subject}</div>
-                                <div class="card_meta">분류: {$category_name} | 등록일: {$write_date}</div>
-                            </div>
-                        </a>
-                        
-                        <!-- 카드별 개별 수정 / 삭제 버튼 -->
-                        <div class="card_actions">
-                            <a href="/board/gallery/modify.html{$param_modify}" class="btn_edit">수정</a>
-                            <a href="#none" onclick="{$action_delete}" class="btn_delete">삭제</a>
-                        </div>
-                    </div>
+                <table class="board_list_table">
+                    <colgroup>
+                        <col style="width: 70px;" />
+                        <col style="width: 120px;" />
+                        <col style="width: 80px;" />
+                        <col style="width: auto;" />
+                        <col style="width: 120px;" />
+                        <col style="width: 130px;" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th scope="col">번호</th>
+                            <th scope="col">분류</th>
+                            <th scope="col">썸네일</th>
+                            <th scope="col">제목</th>
+                            <th scope="col">작성일</th>
+                            <th scope="col">관리</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 게시물 리스트 반복 (테이블 행 방식) -->
+                        <tr module="board_list_8">
+                            <td style="text-align: center; color: #777;">{$no}</td>
+                            <td style="text-align: center; font-weight: 500;">{$category_name}</td>
+                            <td style="text-align: center;">
+                                <a href="/board/gallery/read.html{$param_read}">
+                                    <span class="thumb_box">
+                                        <img src="{$img_src}" class="thumb_img" alt="{$subject}" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'40\' viewBox=\'0 0 60 40\'><rect width=\'60\' height=\'40\' fill=\'%23eeeeee\'/><text x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23aaaaaa\' font-size=\'10\'>No Image</text></svg>';">
+                                    </span>
+                                </a>
+                            </td>
+                            <td style="text-align: left;">
+                                <a href="/board/gallery/read.html{$param_read}" class="post_title">{$subject}</a>
+                            </td>
+                            <td style="text-align: center; color: #888888; font-size: 13px;">{$write_date}</td>
+                            <td style="text-align: center;">
+                                <a href="/board/gallery/modify.html{$param_modify}" class="action_btn btn_edit">수정</a>
+                                <a href="#none" onclick="{$action_delete}" class="action_btn btn_delete">삭제</a>
+                            </td>
+                        </tr>
 
-                    <!-- 게시글이 없을 때 예외 처리 -->
-                    <div module="board_empty_8" style="grid-column: span 2; width: 100%;">
-                        <div style="display: flex; align-items: center; justify-content: center; background: #F5F5F6; border-radius: 4px; padding: 80px 0; border: 1px solid #eaeaea; width: 100%;">
-                            <p style="color: #838383; font-size: 16px; font-weight: bold;">등록된 포트폴리오가 없습니다.</p>
-                        </div>
-                    </div>
-                </div>
+                        <!-- 게시글이 없을 때 예외 처리 -->
+                        <tr module="board_empty_8">
+                            <td colspan="6" style="text-align: center; padding: 80px 0; color: #888888; font-size: 15px; font-weight: bold;">
+                                등록된 포트폴리오 게시글이 없습니다.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <!-- 하단 컨트롤러 & 글쓰기 버튼 -->
