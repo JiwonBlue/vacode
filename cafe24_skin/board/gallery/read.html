@@ -7,10 +7,21 @@
     }
     body {
         padding-top: 0 !important;
+        background: #fbfbfb;
+    }
+
+    .board_manage_wrapper {
+        max-width: 960px;
+        margin: 40px auto 120px auto;
+        padding: 40px;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     }
 </style>
 
-<div class="board_manage_wrapper" style="max-width: 960px; margin: 40px auto 120px auto; padding: 0 20px;">
+<div class="board_manage_wrapper">
     <main class="VACODE_contents" style="margin-left: 0 !important; max-width: 100% !important; padding: 0 !important;">
         <div class="section" module="board_readpackage_8">
             <div module="board_read_8">
@@ -20,19 +31,27 @@
                     $deny_access_url = /board/gallery/list.html
                 -->
                 
+                <!-- 상세 제목 및 상단 컨트롤 -->
+                <div style="border-bottom: 2px solid #0f172a; padding-bottom: 20px; margin-bottom: 30px;">
+                    <div style="font-size: 13px; font-weight: 700; color: #64748b; margin-bottom: 8px;">
+                        분류: <span style="color: #0f172a;">{$category_name}</span> | 작성일: {$write_date}
+                    </div>
+                    <h2 style="font-size: 26px; font-weight: 800; color: #0f172a; margin: 0;">{$subject}</h2>
+                </div>
+
                 <!-- 본문 이미지 핀터레스트(Masonry) 흐름 정렬 -->
-                <div class="masonry_grid">
+                <div class="masonry_grid" style="margin-bottom: 40px;">
                     {$content}
                 </div>
 
                 <!-- 하단 컨트롤 버튼 영역 -->
-                <div class="ec-base-button gBottom" style="margin-top: 50px;">
+                <div class="ec-base-button gBottom" style="margin-top: 40px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #e2e8f0; padding-top: 25px;">
                     <span class="gLeft">
-                        <a href="#none" onclick="if (!confirm('정말 이 포트폴리오 게시글을 삭제하시겠습니까?')) return false; {$action_delete}" class="btnNormalFix sizeM {$delete_button_auth|display}">삭제</a>
-                        <a href="/board/gallery/modify.html{$param_modify}" class="btnNormalFix sizeM {$modify_button_auth|display}">수정</a>
+                        <a href="/board/gallery/modify.html{$param_modify}" class="btnSubmitFix sizeM {$modify_button_auth|display}" style="margin-right: 8px; background: #0f172a; color: #fff;">수정하기</a>
+                        <a href="#none" onclick="if (!confirm('정말 이 포트폴리오 게시글을 삭제하시겠습니까?')) return false; {$action_delete}" class="btnNormalFix sizeM {$delete_button_auth|display}" style="color: #dc2626; border-color: #fecaca; background: #fef2f2;">삭제하기</a>
                     </span>
                     <span class="gRight">
-                        <a href="{$link_board_list}" class="btnSubmitFix sizeM">목록</a>
+                        <a href="{$link_board_list}" class="btnNormalFix sizeM">목록으로</a>
                     </span>
                 </div>
             </div>

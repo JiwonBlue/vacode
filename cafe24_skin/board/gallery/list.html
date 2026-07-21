@@ -42,8 +42,8 @@
         border-bottom: 1px solid #f1f5f9;
         vertical-align: middle;
     }
-    .board_list_table tr:hover td {
-        background: #f8fafc;
+    .board_list_table tr.clickable_row:hover td {
+        background: #f1f5f9;
     }
     .board_list_table .thumb_box {
         width: 64px;
@@ -63,12 +63,11 @@
     }
     .board_list_table .post_title {
         color: #0f172a;
-        text-decoration: none;
         font-weight: 600;
         font-size: 15px;
         transition: color 0.2s ease;
     }
-    .board_list_table .post_title:hover {
+    .board_list_table tr.clickable_row:hover .post_title {
         color: #2563eb;
         text-decoration: underline;
     }
@@ -129,11 +128,11 @@
                 </div>
             </div>
 
-            <!-- 목록 표 (분류, 대표사진, 제목 3개 열 구성) -->
+            <!-- 목록 표 (분류, 대표사진, 제목 3개 열 구성 & 행 전체 클릭 연결) -->
             <table class="board_list_table">
                 <colgroup>
-                    <col style="width: 150px;" />
-                    <col style="width: 100px;" />
+                    <col style="width: 160px;" />
+                    <col style="width: 110px;" />
                     <col style="width: auto;" />
                 </colgroup>
                 <thead>
@@ -144,20 +143,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- 게시물 리스트 반복 -->
-                    <tr module="board_list_8">
+                    <!-- 게시물 리스트 반복 (행 전체 클릭 시 게시글로 이동) -->
+                    <tr module="board_list_8" class="clickable_row" onclick="location.href='/board/gallery/read.html{$param_read}'" style="cursor: pointer;">
                         <td style="text-align: center;">
                             <span class="category_badge">{$category_name}</span>
                         </td>
                         <td style="text-align: center;">
-                            <a href="/board/gallery/modify.html{$param_modify}">
-                                <span class="thumb_box">
-                                    <img src="{$img_src}" class="thumb_img" alt="{$subject}" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'64\' height=\'44\' viewBox=\'0 0 64 44\'><rect width=\'64\' height=\'44\' fill=\'%23f1f5f9\'/><text x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%2394a3b8\' font-size=\'10\'>No Image</text></svg>';">
-                                </span>
-                            </a>
+                            <span class="thumb_box">
+                                <img src="{$img_src}" class="thumb_img" alt="{$subject}" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'64\' height=\'44\' viewBox=\'0 0 64 44\'><rect width=\'64\' height=\'44\' fill=\'%23f1f5f9\'/><text x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%2394a3b8\' font-size=\'10\'>No Image</text></svg>';">
+                            </span>
                         </td>
                         <td style="text-align: left;">
-                            <a href="/board/gallery/modify.html{$param_modify}" class="post_title">{$subject}</a>
+                            <span class="post_title">{$subject}</span>
                         </td>
                     </tr>
 
