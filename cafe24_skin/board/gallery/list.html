@@ -7,41 +7,53 @@
     }
     body {
         padding-top: 0 !important;
+        background: #fbfbfb;
+    }
+
+    .board_manage_wrapper {
+        max-width: 1040px;
+        margin: 40px auto 120px auto;
+        padding: 40px;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     }
 
     .board_list_table {
         width: 100%;
         border-collapse: collapse;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
         border-top: 2px solid #111111;
     }
     .board_list_table th {
-        background: #f8f9fa;
-        padding: 14px 10px;
+        background: #f8fafc;
+        padding: 15px 12px;
         font-size: 14px;
-        font-weight: 600;
-        color: #333333;
-        border-bottom: 1px solid #e1e1e1;
+        font-weight: 700;
+        color: #1e293b;
+        border-bottom: 1px solid #cbd5e1;
         text-align: center;
     }
     .board_list_table td {
-        padding: 12px 10px;
+        padding: 14px 12px;
         font-size: 14px;
-        color: #444444;
-        border-bottom: 1px solid #eeeeee;
+        color: #334155;
+        border-bottom: 1px solid #f1f5f9;
         vertical-align: middle;
     }
     .board_list_table tr:hover td {
-        background: #fbfbfb;
+        background: #f8fafc;
     }
     .board_list_table .thumb_box {
-        width: 60px;
-        height: 40px;
+        width: 64px;
+        height: 44px;
         overflow: hidden;
-        border-radius: 2px;
-        background: #eee;
+        border-radius: 4px;
+        background: #f1f5f9;
         display: inline-block;
         vertical-align: middle;
+        border: 1px solid #e2e8f0;
     }
     .board_list_table .thumb_img {
         width: 100%;
@@ -50,59 +62,92 @@
         display: block;
     }
     .board_list_table .post_title {
-        color: #111111;
+        color: #0f172a;
         text-decoration: none;
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 15px;
+        transition: color 0.2s ease;
     }
     .board_list_table .post_title:hover {
+        color: #2563eb;
         text-decoration: underline;
+    }
+    .board_list_table .category_badge {
+        display: inline-block;
+        padding: 3px 10px;
+        font-size: 12px;
+        font-weight: 600;
+        border-radius: 12px;
+        background: #f1f5f9;
+        color: #475569;
+        border: 1px solid #cbd5e1;
     }
     .board_list_table .action_btn {
         display: inline-block;
-        padding: 5px 10px;
-        font-size: 12px;
-        border-radius: 3px;
+        padding: 6px 12px;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 4px;
         text-decoration: none;
         margin: 0 2px;
+        transition: all 0.2s ease;
     }
     .board_list_table .btn_edit {
-        background: #f0f0f0;
-        color: #333;
-        border: 1px solid #ccc;
-    }
-    .board_list_table .btn_delete {
-        background: #fff0f0;
-        color: #d93838;
-        border: 1px solid #f5c2c2;
+        background: #ffffff;
+        color: #334155;
+        border: 1px solid #cbd5e1;
     }
     .board_list_table .btn_edit:hover {
-        background: #e2e2e2;
+        background: #f1f5f9;
+        color: #0f172a;
+    }
+    .board_list_table .btn_delete {
+        background: #fef2f2;
+        color: #dc2626;
+        border: 1px solid #fecaca;
     }
     .board_list_table .btn_delete:hover {
-        background: #ffe2e2;
+        background: #fee2e2;
+        color: #b91c1c;
+    }
+
+    .write_btn_main {
+        display: inline-block;
+        padding: 10px 24px;
+        font-size: 14px;
+        font-weight: 700;
+        background: #0f172a;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        border-radius: 4px;
+        transition: background 0.2s ease;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .write_btn_main:hover {
+        background: #334155;
     }
 </style>
 
-<div class="board_manage_wrapper" style="max-width: 960px; margin: 40px auto 120px auto; padding: 0 20px;">
+<div class="board_manage_wrapper">
     <main class="VACODE_contents" style="margin-left: 0 !important; max-width: 100% !important; padding: 0 !important;">
         <div class="section" module="Board_ListPackage_8">
             <div module="board_title_8">
-                <div class="path">
-                    <ol>
-                        <li><a href="/">홈</a></li>
-                        <li><a href="#">게시판</a></li>
-                        <li title="현재 위치"><strong>{$board_name}</strong></li>
-                    </ol>
-                </div>
-
-                <div class="titleArea" style="margin-bottom: 25px;">
-                    <h2>{$board_title} 관리 목록</h2>
+                <div class="titleArea" style="margin-bottom: 25px; border-bottom: 2px solid #0f172a; padding-bottom: 15px;">
+                    <h2 style="font-size: 24px; font-weight: 800; color: #0f172a; margin: 0;">포트폴리오 갤러리 관리 목록</h2>
                 </div>
             </div>
 
-            <!-- INDOOR / OUTDOOR 카테고리 필터 구분 -->
-            <div class="boardSort" style="margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between;">
-                <div style="font-size: 14px; font-weight: bold; color: #333;">카테고리 선택: <span module="board_category_8">{$form.board_category}</span></div>
+            <!-- INDOOR / OUTDOOR 카테고리 필터 구분 및 상단 우측 [글쓰기] 버튼 -->
+            <div class="boardSort" style="margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                <div style="font-size: 15px; font-weight: 700; color: #334155; display: flex; align-items: center; gap: 8px;">
+                    <span>카테고리 구분:</span>
+                    <span module="board_category_8">{$form.board_category}</span>
+                </div>
+
+                <!-- 상단 우측 글쓰기 버튼 -->
+                <div style="text-align: right;">
+                    <a href="/board/gallery/write.html?board_no=8" class="write_btn_main">+ 새 포트폴리오 글쓰기</a>
+                </div>
             </div>
 
             <!-- 포트폴리오 갤러리 테이블 리스트 패키지 -->
@@ -116,10 +161,10 @@
                     <colgroup>
                         <col style="width: 70px;" />
                         <col style="width: 120px;" />
-                        <col style="width: 80px;" />
+                        <col style="width: 90px;" />
                         <col style="width: auto;" />
                         <col style="width: 120px;" />
-                        <col style="width: 130px;" />
+                        <col style="width: 150px;" />
                     </colgroup>
                     <thead>
                         <tr>
@@ -134,19 +179,21 @@
                     <tbody>
                         <!-- 게시물 리스트 반복 (테이블 행 방식) -->
                         <tr module="board_list_8">
-                            <td style="text-align: center; color: #777;">{$no}</td>
-                            <td style="text-align: center; font-weight: 500;">{$category_name}</td>
+                            <td style="text-align: center; color: #64748b; font-weight: 500;">{$no}</td>
+                            <td style="text-align: center;">
+                                <span class="category_badge">{$category_name}</span>
+                            </td>
                             <td style="text-align: center;">
                                 <a href="/board/gallery/read.html{$param_read}">
                                     <span class="thumb_box">
-                                        <img src="{$img_src}" class="thumb_img" alt="{$subject}" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'40\' viewBox=\'0 0 60 40\'><rect width=\'60\' height=\'40\' fill=\'%23eeeeee\'/><text x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23aaaaaa\' font-size=\'10\'>No Image</text></svg>';">
+                                        <img src="{$img_src}" class="thumb_img" alt="{$subject}" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'64\' height=\'44\' viewBox=\'0 0 64 44\'><rect width=\'64\' height=\'44\' fill=\'%23f1f5f9\'/><text x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%2394a3b8\' font-size=\'10\'>No Image</text></svg>';">
                                     </span>
                                 </a>
                             </td>
                             <td style="text-align: left;">
                                 <a href="/board/gallery/read.html{$param_read}" class="post_title">{$subject}</a>
                             </td>
-                            <td style="text-align: center; color: #888888; font-size: 13px;">{$write_date}</td>
+                            <td style="text-align: center; color: #64748b; font-size: 13px;">{$write_date}</td>
                             <td style="text-align: center;">
                                 <a href="/board/gallery/modify.html{$param_modify}" class="action_btn btn_edit">수정</a>
                                 <a href="#none" onclick="if (!confirm('정말 이 포트폴리오 게시글을 삭제하시겠습니까?')) return false; {$action_delete}" class="action_btn btn_delete">삭제</a>
@@ -155,7 +202,7 @@
 
                         <!-- 게시글이 없을 때 예외 처리 -->
                         <tr module="board_empty_8">
-                            <td colspan="6" style="text-align: center; padding: 80px 0; color: #888888; font-size: 15px; font-weight: bold;">
+                            <td colspan="6" style="text-align: center; padding: 80px 0; color: #94a3b8; font-size: 15px; font-weight: 700;">
                                 등록된 포트폴리오 게시글이 없습니다.
                             </td>
                         </tr>
@@ -163,13 +210,13 @@
                 </table>
             </div>
 
-            <!-- 하단 컨트롤러 & 글쓰기 버튼 -->
-            <div class="ec-base-button gBottom" style="margin-bottom: 30px; display: flex; justify-content: flex-end;">
-                <a href="/board/gallery/write.html?board_no=8" class="btnSubmitFix sizeM">글쓰기</a>
+            <!-- 하단 우측 글쓰기 버튼 -->
+            <div style="display: flex; justify-content: flex-end; margin-top: 15px; margin-bottom: 25px;">
+                <a href="/board/gallery/write.html?board_no=8" class="write_btn_main">+ 새 포트폴리오 글쓰기</a>
             </div>
 
             <!-- 페이지네이션 -->
-            <div module="board_paging_8" class="ec-base-paginate">
+            <div module="board_paging_8" class="ec-base-paginate" style="margin-top: 20px;">
                 <a href="{$param_prev}">이전 페이지</a>
                 <ol>
                     <li><a href="{$param_num}" class="{$param_class}">{$page_num}</a></li>

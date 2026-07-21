@@ -10,6 +10,24 @@
     }
 </style>
 
+<script>
+    // 카페24 임시저장(Draft) 자동 불러오기 팝업 및 캐시 원천 차단
+    (function() {
+        try {
+            for (let key in localStorage) {
+                if (key.toLowerCase().indexOf('draft') !== -1 || key.toLowerCase().indexOf('board') !== -1) {
+                    localStorage.removeItem(key);
+                }
+            }
+            for (let key in sessionStorage) {
+                if (key.toLowerCase().indexOf('draft') !== -1 || key.toLowerCase().indexOf('board') !== -1) {
+                    sessionStorage.removeItem(key);
+                }
+            }
+        } catch (e) {}
+    })();
+</script>
+
 <div class="board_manage_wrapper" style="max-width: 960px; margin: 40px auto 120px auto; padding: 0 20px;">
     <main class="VACODE_contents" style="margin-left: 0 !important; max-width: 100% !important; padding: 0 !important;">
         <div class="section" module="board_ModifyPackage_8">
