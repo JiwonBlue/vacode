@@ -1,17 +1,7 @@
 <!--@layout(/layout/basic/sub_layout.html)-->
 
-<div class="VACODE_layout">
-    <aside class="VACODE_sidebar">
-        <div>
-            <h1 class="slogan_title">기획부터 시공까지<br />공간의 완성도를<br />기준으로.</h1>
-        </div>
-        <div class="info_footer">
-            <p>vacode00@naver.com</p>
-            <p>F. 010-4738-8278</p>
-        </div>
-    </aside>
-
-    <main class="VACODE_contents sub_contents">
+<div class="board_manage_wrapper" style="max-width: 960px; margin: 60px auto 120px auto; padding: 0 20px;">
+    <main class="VACODE_contents" style="margin-left: 0 !important; max-width: 100% !important; padding: 0 !important;">
         <div class="section" module="board_ModifyPackage_8">
             <div module="board_title_8">
                 <div class="path">
@@ -22,7 +12,7 @@
                     </ol>
                 </div>
 
-                <div class="titleArea">
+                <div class="titleArea" style="margin-bottom: 30px;">
                     <h2>{$board_title} 글수정</h2>
                 </div>
             </div>
@@ -54,7 +44,7 @@
                                 <td>{$form.email}</td>
                             </tr>
                             <tr>
-                                <th scope="row">본문 내용</th>
+                                <th scope="row">본문 내용 (세부 이미지)</th>
                                 <td>
                                     {$form.content}
                                 </td>
@@ -89,7 +79,7 @@
                     </table>
                 </div>
 
-                <div class="ec-base-button gBottom">
+                <div class="ec-base-button gBottom" style="margin-top: 40px;">
                     <span class="gLeft">
                         <a href="{$link_board_list}" class="btnNormalFix sizeM">목록</a>
                     </span>
