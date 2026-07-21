@@ -921,20 +921,244 @@ a:hover {
     display: block;
 }
 
-@media (max-width: 1024px) {
-    .masonry_grid {
-        column-count: 2;
-        column-gap: 15px;
-    }
+/* ==========================================================================
+   [추가] 카페24 게시판 / 갤러리 / 글쓰기 / 글수정 / 글읽기 전용 VACODE UI 디자인
+   ========================================================================== */
+
+/* 상단 위치 경로 (.path) 수징 리셋 */
+.path {
+    margin-bottom: 20px;
+}
+.path ol {
+    display: flex !important;
+    align-items: center !important;
+    list-style: none !important;
+    gap: 8px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 13px !important;
+    color: #838383 !important;
+}
+.path ol li::after {
+    content: ">";
+    margin-left: 8px;
+    color: #b3b3b3;
+}
+.path ol li:last-child::after {
+    display: none;
+}
+.path ol li strong {
+    color: var(--vc-black);
+    font-weight: 700;
 }
 
-@media (max-width: 768px) {
-    .masonry_grid {
-        column-count: 1;
-        column-gap: 0;
-    }
-    .masonry_grid img,
-    .masonry_grid div {
-        margin-bottom: 15px !important;
-    }
+/* 게시판 타이틀 영역 */
+.titleArea {
+    margin-bottom: 40px;
+}
+.titleArea h2 {
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    color: var(--vc-black) !important;
+    letter-spacing: -0.5px !important;
+    margin-bottom: 8px !important;
+}
+.titleArea p {
+    font-size: 14px !important;
+    color: #838383 !important;
+}
+
+/* 필드셋 (검색 상자 브라우저 기본 보더 제거) */
+fieldset {
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 게시판 검색 영역 (.boardSearch) */
+.boardSearch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--vc-bg-light);
+    border-radius: 4px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.boardSearch .form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.boardSearch select,
+.boardSearch input[type="text"] {
+    font-family: var(--vc-font-suite) !important;
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+    border: 1px solid var(--vc-gray-light) !important;
+    border-radius: 4px !important;
+    background-color: #FFFFFF !important;
+}
+.boardSearch .btnNormal {
+    padding: 8px 18px !important;
+    background-color: var(--vc-black) !important;
+    color: #FFFFFF !important;
+    border-radius: 4px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+    display: inline-block;
+}
+
+/* 페이지네이션 (.ec-base-paginate) */
+.ec-base-paginate {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+}
+.ec-base-paginate a,
+.ec-base-paginate ol li a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 36px !important;
+    height: 36px !important;
+    padding: 0 10px !important;
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 4px !important;
+    font-size: 14px !important;
+    color: var(--vc-black) !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+}
+.ec-base-paginate ol {
+    display: flex !important;
+    gap: 6px !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.ec-base-paginate ol li a.this,
+.ec-base-paginate ol li a:hover {
+    background-color: var(--vc-black) !important;
+    color: #FFFFFF !important;
+    border-color: var(--vc-black) !important;
+}
+
+/* 카페24 테이블 (.ec-base-table) VACODE 스타일화 */
+.ec-base-table {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.ec-base-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-top: 2px solid var(--vc-black) !important;
+    border-bottom: 1px solid #eaeaea !important;
+}
+
+.ec-base-table th {
+    background-color: var(--vc-bg-light) !important;
+    color: var(--vc-black) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    padding: 18px 20px !important;
+    border-bottom: 1px solid #eaeaea !important;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.ec-base-table td {
+    padding: 16px 20px !important;
+    border-bottom: 1px solid #eaeaea !important;
+    font-size: 15px !important;
+    color: var(--vc-black) !important;
+    vertical-align: middle;
+}
+
+/* 폼 입력 요소 스타일 */
+.ec-base-table input[type="text"],
+.ec-base-table input[type="password"],
+.ec-base-table input[type="file"],
+.ec-base-table select,
+.ec-base-table textarea {
+    font-family: var(--vc-font-suite) !important;
+    font-size: 15px !important;
+    padding: 10px 14px !important;
+    border: 1px solid var(--vc-gray-light) !important;
+    border-radius: 4px !important;
+    background-color: #FFFFFF !important;
+    outline: none !important;
+    box-sizing: border-box;
+}
+
+.ec-base-table input[type="text"]:focus,
+.ec-base-table input[type="password"]:focus,
+.ec-base-table select:focus,
+.ec-base-table textarea:focus {
+    border-color: var(--vc-black) !important;
+}
+
+.ec-base-table textarea {
+    width: 100% !important;
+    min-height: 250px !important;
+    resize: vertical;
+}
+
+/* 버튼 영역 (.ec-base-button) VACODE 스타일화 */
+.ec-base-button {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-top: 40px !important;
+    gap: 15px;
+}
+
+.ec-base-button .btnSubmitFix,
+.ec-base-button .btnNormalFix,
+.ec-base-button a.btnSubmit,
+.ec-base-button a.btnNormal {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 14px 36px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    font-family: var(--vc-font-suite) !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.ec-base-button .btnSubmitFix,
+.ec-base-button a.btnSubmit {
+    background-color: var(--vc-black) !important;
+    color: #FFFFFF !important;
+    border: 1px solid var(--vc-black) !important;
+}
+
+.ec-base-button .btnSubmitFix:hover,
+.ec-base-button a.btnSubmit:hover {
+    background-color: var(--vc-primary) !important;
+    border-color: var(--vc-primary) !important;
+}
+
+.ec-base-button .btnNormalFix,
+.ec-base-button a.btnNormal {
+    background-color: #FFFFFF !important;
+    color: var(--vc-black) !important;
+    border: 1px solid #d0d0d0 !important;
+}
+
+.ec-base-button .btnNormalFix:hover,
+.ec-base-button a.btnNormal:hover {
+    border-color: var(--vc-black) !important;
+    background-color: var(--vc-bg-light) !important;
 }

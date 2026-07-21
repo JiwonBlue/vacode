@@ -1,0 +1,104 @@
+<!--@layout(/layout/basic/sub_layout.html)-->
+
+<div class="VACODE_layout">
+    <aside class="VACODE_sidebar">
+        <div>
+            <h1 class="slogan_title">기획부터 시공까지<br />공간의 완성도를<br />기준으로.</h1>
+        </div>
+        <div class="info_footer">
+            <p>vacode00@naver.com</p>
+            <p>F. 010-4738-8278</p>
+        </div>
+    </aside>
+
+    <main class="VACODE_contents sub_contents">
+        <div class="section" module="board_ModifyPackage_8">
+            <div module="board_title_8">
+                <div class="path">
+                    <ol>
+                        <li><a href="/">홈</a></li>
+                        <li><a href="#">게시판</a></li>
+                        <li title="현재 위치"><strong>{$board_name}</strong></li>
+                    </ol>
+                </div>
+
+                <div class="titleArea">
+                    <h2>{$board_title} 글수정</h2>
+                </div>
+            </div>
+
+            <div module="board_modify_8">
+                <div class="ec-base-table typeWrite">
+                    <table border="1">
+                        <caption>글수정 폼</caption>
+                        <colgroup>
+                            <col style="width:180px;" />
+                            <col style="width:auto;" />
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th scope="row">제목</th>
+                                <td>
+                                    {$form.board_category}
+                                    {$form.subject}
+                                    <span class="ec-base-label">{$form.notice}</span>
+                                    <span class="ec-base-label">{$form.is_post}</span>
+                                </td>
+                            </tr>
+                            <tr class="{$config.is_login|display}">
+                                <th scope="row">작성자</th>
+                                <td>{$form.writer}</td>
+                            </tr>
+                            <tr class="{$config.use_write_email|display}">
+                                <th scope="row">이메일</th>
+                                <td>{$form.email}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">본문 내용</th>
+                                <td>
+                                    {$form.content}
+                                </td>
+                            </tr>
+                        </tbody>
+
+                        <tbody class="{$config.use_attach|display}">
+                            <tr class="file">
+                                <th scope="row">대표/시공 썸네일</th>
+                                <td>{$form.attach_file} {$attached_file1}</td>
+                            </tr>
+                            <tr class="file">
+                                <th scope="row">추가 첨부파일 2</th>
+                                <td>{$form.attach_file} {$attached_file2}</td>
+                            </tr>
+                            <tr class="file">
+                                <th scope="row">추가 첨부파일 3</th>
+                                <td>{$form.attach_file} {$attached_file3}</td>
+                            </tr>
+                        </tbody>
+
+                        <tbody>
+                            <tr class="{$config.use_password|display}">
+                                <th scope="row">비밀번호</th>
+                                <td>{$form.password}</td>
+                            </tr>
+                            <tr class="{$config.use_secret|display}">
+                                <th scope="row">비밀글 설정</th>
+                                <td>{$form.secure}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="ec-base-button gBottom">
+                    <span class="gLeft">
+                        <a href="{$link_board_list}" class="btnNormalFix sizeM">목록</a>
+                    </span>
+                    <span class="gRight">
+                        <a href="{$link_board_list}" class="btnNormalFix sizeM">취소</a>
+                        <a href="#none" class="btnSubmitFix sizeM" onclick="{$action_modify}">수정</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

@@ -1,0 +1,41 @@
+<!--@layout(/layout/basic/sub_layout.html)-->
+
+<div class="VACODE_layout">
+    <aside class="VACODE_sidebar">
+        <div>
+            <h1 class="slogan_title">기획부터 시공까지<br />공간의 완성도를<br />기준으로.</h1>
+        </div>
+        <div class="info_footer">
+            <p>vacode00@naver.com</p>
+            <p>F. 010-4738-8278</p>
+        </div>
+    </aside>
+
+    <main class="VACODE_contents sub_contents">
+        <div class="section" module="board_readpackage_8">
+            <div module="board_read_8">
+                <!--
+                    $delete_success_url = /board/gallery/list.html
+                    $login_page_url = /member/login.html
+                    $deny_access_url = /board/gallery/list.html
+                -->
+                
+                <!-- 본문 이미지 핀터레스트(Masonry) 흐름 정렬 -->
+                <div class="masonry_grid">
+                    {$content}
+                </div>
+
+                <!-- 하단 컨트롤 버튼 영역 -->
+                <div class="ec-base-button gBottom" style="margin-top: 50px;">
+                    <span class="gLeft">
+                        <a href="#none" onclick="{$action_delete}" class="btnNormalFix sizeM {$delete_button_auth|display}">삭제</a>
+                        <a href="/board/gallery/modify.html{$param_modify}" class="btnNormalFix sizeM {$modify_button_auth|display}">수정</a>
+                    </span>
+                    <span class="gRight">
+                        <a href="{$link_board_list}" class="btnSubmitFix sizeM">목록</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
