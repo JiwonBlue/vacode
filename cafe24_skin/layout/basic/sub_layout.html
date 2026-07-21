@@ -6,7 +6,50 @@
     <title>VACODE.</title>
     
     <!-- 카페24 스타일시트 로드 규격 -->
+    
+    <!-- 카페24 스타일시트 로드 규격 (이중 안전장치) -->
     <!--@css(/css/VACODE_style.css)-->
+    <!--@css(/layout/basic/css/VACODE_style.css)-->
+    <link rel="stylesheet" href="/css/VACODE_style.css">
+    <link rel="stylesheet" href="/layout/basic/css/VACODE_style.css">
+
+    <style>
+        #VACODE_header .logo {
+            position: static !important;
+            float: none !important;
+            top: auto !important;
+            left: auto !important;
+            margin: 0 254px 0 0 !important;
+            padding: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            height: auto !important;
+        }
+        #VACODE_header .logo a {
+            padding: 0 !important;
+            margin: 0 !important;
+            height: 22px !important;
+            display: block !important;
+        }
+        #VACODE_header .logo a img {
+            margin: 0 !important;
+            padding: 0 !important;
+            height: 22px !important;
+            display: block !important;
+        }
+        #VACODE_header .sns_links a {
+            padding: 0 !important;
+            margin: 0 !important;
+            height: 22px !important;
+        }
+        #VACODE_header .sns_links a img {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 22px !important;
+            height: 22px !important;
+        }
+    </style>
+
 
     <!-- 웹폰트 SUITE 로드 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE@2/fonts/variable/woff2/SUITE-Variable.css">
@@ -39,5 +82,22 @@
         <!-- 개별 본문 내용 주입 영역 -->
         <!--@contents-->
     </div>
+
+    <!-- 스크롤 등장 애니메이션 감지 스크립트 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            document.querySelectorAll('.scroll-animate').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
 </body>
 </html>

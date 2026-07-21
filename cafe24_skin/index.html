@@ -47,11 +47,11 @@
                             $subject_cut = 100
                             $target = _self
                         -->
-                        <div module="board_list_8" class="swiper-wrapper">
+                        <div class="swiper-wrapper">
                             <!--
-                                $onclick = location.href='/VACODE/portfolio_detail.html?no={$no}&board_no=8'
+                                $onclick = location.href='/VACODE/portfolio_detail.html{$param_read}'
                             -->
-                            <div class="swiper-slide portfolio_item" onclick="{$onclick}">
+                            <div module="board_list_8" class="swiper-slide portfolio_item" onclick="{$onclick}">
                                 <img src="{$img_src}" class="portfolio_thumb" alt="{$subject}">
                                 <div class="portfolio_info">
                                     <div class="pf_title">{$subject}</div>
@@ -59,13 +59,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- 게시글이 없을 때 예외 처리 -->
-                    <div module="board_empty_8">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide portfolio_item" style="display: flex; align-items: center; justify-content: center; background: #F5F5F6; border-radius: 4px; border: 1px solid #eaeaea;">
-                                <p style="color: #838383; font-size: 16px; font-weight: bold;">등록된 포트폴리오가 없습니다.</p>
+                        <!-- 게시글이 없을 때 예외 처리 -->
+                        <div module="board_empty_8">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide portfolio_item" style="display: flex; align-items: center; justify-content: center; background: #F5F5F6; border-radius: 4px; border: 1px solid #eaeaea; width: 100%; height: 360px;">
+                                    <p style="color: #838383; font-size: 16px; font-weight: bold;">등록된 포트폴리오가 없습니다.</p>
+                                </div>
                             </div>
                         </div>
                     </div>

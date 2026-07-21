@@ -1,4 +1,5 @@
 @charset "utf-8";
+@import url('https://cdn.jsdelivr.net/gh/sun-typeface/SUITE@2/fonts/variable/woff2/SUITE-Variable.css');
 
 :root {
     /* 디자인 시스템 컬러 가이드 적용 */
@@ -21,8 +22,11 @@
     box-sizing: border-box;
 }
 
+body, h1, h2, h3, h4, h5, h6, p, a, div, span, input, textarea, button, label, select, li, ul, dt, dd {
+    font-family: var(--vc-font-suite) !important;
+}
+
 body {
-    font-family: var(--vc-font-suite);
     background-color: var(--vc-white);
     color: var(--vc-black);
     -webkit-font-smoothing: antialiased;
@@ -103,9 +107,17 @@ img {
     background-color: transparent !important;
 }
 
-/* 로고 영역 */
+/* 로고 영역 (카페24 기본 CSS의 position/float/margin 간섭 완벽 방어) */
 #VACODE_header .logo {
-    margin-right: 254px !important;
+    position: static !important;
+    float: none !important;
+    top: auto !important;
+    left: auto !important;
+    margin: 0 254px 0 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    height: auto !important;
     flex-shrink: 0;
 }
 
@@ -114,9 +126,20 @@ img {
     font-weight: 800;
     font-size: 22px;
     letter-spacing: -0.44px;
-    display: block;
+    display: block !important;
+    height: 22px !important;
+    margin: 0 !important;
+    padding: 0 !important;
     color: var(--vc-dark) !important; /* 서브 헤더 기본: 검정 톤 */
     transition: opacity 0.3s ease !important;
+}
+
+#VACODE_header .logo a img {
+    display: block !important;
+    height: 22px !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 #VACODE_header.main_header .logo a {
@@ -844,4 +867,74 @@ img {
 .scroll-animate.animate-in {
     opacity: 1;
     transform: translateY(0);
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+/* 카페24 포트폴리오 연동용: 게시글이 하나라도 등록되어 있으면 '등록된 포트폴리오가 없습니다' 영역을 강제로 숨김 */
+[module*="board_listpackage"]:has(.portfolio_item) [module*="board_empty"],
+.xans-board-listpackage:has(.portfolio_item) .xans-board-empty,
+.xans-board-listpackage-8:has(.portfolio_item) .xans-board-empty-8,
+.xans-board-list-8 ~ .xans-board-empty-8,
+.xans-board-list ~ .xans-board-empty {
+    display: none !important;
+}
+
+/* Contact 폼 입력창: 카페24 기본 CSS로 인해 생긴 테두리 상자 제거 및 하단 실선 스타일 유지 */
+.contact_form_aligned input[type="text"],
+.contact_form_aligned input[type="tel"],
+.contact_form_aligned input[type="email"],
+.contact_form_aligned textarea,
+.form_input {
+    border: none !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+}
+
+/* ==========================================================================
+   [추가] 포트폴리오 상세 및 갤러리 읽기 Masonry (핀터레스트) 그리드 공통 정의
+   ========================================================================== */
+.masonry_grid {
+    column-count: 3;
+    column-gap: 25px;
+    width: 100%;
+}
+
+.masonry_grid p {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: contents; /* 에디터 p 태그의 블록 성질을 해제하여 이미지가 그리드 자식으로 직결되게 함 */
+}
+
+.masonry_grid img {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 4px;
+    break-inside: avoid;
+    margin-bottom: 25px;
+    display: block;
+}
+
+@media (max-width: 1024px) {
+    .masonry_grid {
+        column-count: 2;
+        column-gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .masonry_grid {
+        column-count: 1;
+        column-gap: 0;
+    }
+    .masonry_grid img,
+    .masonry_grid div {
+        margin-bottom: 15px !important;
+    }
 }

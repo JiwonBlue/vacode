@@ -18,7 +18,7 @@
     <main class="VACODE_contents sub_contents">
         
         <!-- 카페24 갤러리 게시판 8번 읽기 연동 패키지 -->
-        <div module="board_Readpackage_8">
+        <div module="board_readpackage_8">
             <div module="board_read_8">
                 
                 <!-- 상단 타이틀 영역 -->
@@ -38,6 +38,35 @@
 </div>
 
 <style>
+    /* 서브 콘텐츠 상단 여백 보정 */
+    .VACODE_contents.sub_contents {
+        padding-top: 20px !important;
+    }
+
+    /* 반응형 메이슨리(Masonry) 그리드 기본 구조 */
+    .masonry_grid {
+        column-count: 3;
+        column-gap: 25px;
+        width: 100%;
+    }
+
+    @media (max-width: 1024px) {
+        .masonry_grid {
+            column-count: 2;
+            column-gap: 15px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .masonry_grid {
+            column-count: 1;
+            column-gap: 0;
+        }
+        .masonry_grid div {
+            margin-bottom: 15px !important;
+        }
+    }
+
     /* 에디터 본문 내 이미지들의 Masonry 그리드 자동 대응 */
     .masonry_grid p {
         margin: 0 !important;

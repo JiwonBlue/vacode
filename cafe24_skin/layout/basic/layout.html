@@ -6,7 +6,50 @@
     <title>VACODE. - MAIN</title>
     
     <!-- 카페24 스타일시트 로드 규격 -->
+    
+    <!-- 카페24 스타일시트 로드 규격 (이중 안전장치) -->
     <!--@css(/css/VACODE_style.css)-->
+    <!--@css(/layout/basic/css/VACODE_style.css)-->
+    <link rel="stylesheet" href="/css/VACODE_style.css">
+    <link rel="stylesheet" href="/layout/basic/css/VACODE_style.css">
+
+    <style>
+        #VACODE_header .logo {
+            position: static !important;
+            float: none !important;
+            top: auto !important;
+            left: auto !important;
+            margin: 0 254px 0 0 !important;
+            padding: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            height: auto !important;
+        }
+        #VACODE_header .logo a {
+            padding: 0 !important;
+            margin: 0 !important;
+            height: 22px !important;
+            display: block !important;
+        }
+        #VACODE_header .logo a img {
+            margin: 0 !important;
+            padding: 0 !important;
+            height: 22px !important;
+            display: block !important;
+        }
+        #VACODE_header .sns_links a {
+            padding: 0 !important;
+            margin: 0 !important;
+            height: 22px !important;
+        }
+        #VACODE_header .sns_links a img {
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 22px !important;
+            height: 22px !important;
+        }
+    </style>
+
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
     <!-- 웹폰트 SUITE 로드 -->

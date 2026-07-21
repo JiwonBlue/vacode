@@ -1,60 +1,41 @@
-# 카페24 변환 완료 및 배포 가이드
+# 카페24 변환 및 버그 수정 완료 배포 가이드
 
-기존의 정적 포트폴리오 웹사이트를 **카페24 스마트디자인 템플릿(갤러리 게시판 ID 8번)** 연동 구조에 맞추어 완벽하게 가공 및 분리 완료했습니다. 모든 파일은 새로운 **[cafe24_skin](file:///c:/Users/softchain/Desktop/카페24%20(2)/cafe24_skin)** 폴더 안에 독립적으로 안전하게 생성되었습니다.
-
----
-
-## 1. 생성된 스킨 폴더 구조
-* **`cafe24_skin/index.html`**: 메인 페이지 (슬라이더 영역이 게시판 8번 목록과 연동됨)
-* **`cafe24_skin/layout/basic/layout.html`**: 메인 전용 공통 레이아웃 (헤더, 푸터, head 태그 탑재)
-* **`cafe24_skin/layout/basic/sub_layout.html`**: 서브 전용 공통 레이아웃 (서브 헤더 탑재, 사이드바는 개별 주입형태로 유연하게 처리)
-* **`cafe24_skin/css/VACODE_style.css`**: 공통 디자인 스타일시트
-* **`cafe24_skin/img/`**: 공통 로고, SNS 아이콘, 일러스트 등 에셋 일체
-* **`cafe24_skin/메인비주얼_영상.mp4`**: 메인 비디오 비주얼 파일
-* **`cafe24_skin/VACODE/`**:
-  * **`about.html`**: 소개 페이지
-  * **`contact.html`**: 문의 사항 페이지
-  * **`portfolio.html`**: 포트폴리오 목록 페이지 (게시판 8번 목록 연동 및 카테고리 필터 탑재)
-  * **`portfolio_detail.html`**: 포트폴리오 상세 페이지 (게시판 8번 읽기 모듈 연동 및 핀터레스트 스타일 Masonry 그리드 탑재)
+기존 정적 웹사이트를 **카페24 스마트디자인 템플릿(갤러리 게시판 ID 8번)** 연동 구조로 변환한 후, 카페24 시스템 CSS 간섭 및 누락된 개별 페이지 스타일 규격을 전수 복원하여 완벽하게 보완한 버전입니다. 모든 수정사항은 **[cafe24_skin](file:///c:/Users/softchain/Desktop/카페24%20(2)/cafe24_skin)** 폴더 안에 적용되었습니다.
 
 ---
 
-## 2. 카페24 서버에 업로드하는 방법 (배포 단계)
+## 1. 최근 주요 원인 파악 및 수정 내역
 
-로컬에서 변환이 완료된 이 `cafe24_skin` 폴더의 내용물들을 카페24 FTP 서버에 올리면 실시간 배포가 끝납니다.
+1. **ABOUT / CONTACT 페이지 개별 스타일 규격 복원 (원형 대형 박스/폰트 복구)**:
+   * **원인**: 원본 `about.html`의 730px 회색 메인 박스(`about_visual_box`), 700px 대형 sign 이미지(`visual_img`), 30px 제목 폰트(`visual_txt h2`), `process_list` 3열 및 `partner_card` 480px 규격과 `contact.html` 60px 입력창 등의 개별 `<style>` 규격이 Cafe24 변환 과정에서 누락되어 서브 화면이 작게 나오고 깨지던 문제 원천 해결.
+   * **수정**: [about.html](file:///c:/Users/softchain/Desktop/카페24%20(2)/cafe24_skin/VACODE/about.html#L3-L228) 및 [contact.html](file:///c:/Users/softchain/Desktop/카페24%20(2)/cafe24_skin/VACODE/contact.html#L3-L62) 상단에 원본 고유 `<style>` 블록을 완전 복원.
+2. **SUITE 웹폰트 및 카페24 기본 폰트(돋움/굴림) 강제 덮어쓰기 방어**:
+   * CSS 최상단에 SUITE 폰트 `@import` 및 `body, h1~h6, p, a, div, span, input, textarea, button { font-family: var(--vc-font-suite) !important; }`를 추가하여 카페24 어드민/기본 CSS 폰트 강제 덮어쓰기 방어.
+3. **헤더 로고 치우침 방지**:
+   * 카페24 기본 CSS의 `position: absolute; float: left;` 간섭을 완벽히 방어(`position: static !important; float: none !important; margin-right: 254px !important;`)하여 헤더 수직 정중앙 위치 보정.
+4. **포트폴리오 예외 문구 오류 해결**:
+   * `module="board_empty_8"`를 `module="board_listpackage_8"` 내부에 올바르게 배치하여 게시글이 1개 이상 존재할 때 '등록된 포트폴리오가 없습니다'가 정상적으로 자동 숨김 처리됨.
+5. **메인 Swiper 모듈 구조 교정**:
+   * `index.html`에서 `module="board_list_8"`을 `.swiper-slide` 슬라이드 단위로 지정하고 Swiper 슬라이더 동작과 `board_empty_8` 모듈이 충돌하지 않도록 정돈.
+6. **포트폴리오 상세 Masonry 그리드 복원**:
+   * `portfolio_detail.html` 및 `VACODE_style.css`에 핀터레스트 스타일 다단 그리드(`column-count: 3; column-gap: 25px;` 및 반응형 미디어쿼리)를 탑재하여 본문 시공 이미지 자동 3열/2열/1열 배치 완성.
+7. **미사용 `board` 폴더 제거**:
+   * `board/gallery/list.html` 및 `read.html` 폴더 삭제 완료.
 
-### 1단계: FTP 프로그램 접속
-1. **FileZilla** 또는 사용하시는 FTP 프로그램을 켭니다.
-2. 아래 정보를 입력하여 접속합니다.
-   * **호스트**: `sftp://본인아이디.cafe24.com` (또는 프로토콜을 SFTP로 설정)
-   * **사용자명(ID)**: 본인의 카페24 가입 아이디
-   * **비밀번호**: 관리자 페이지에서 설정한 FTP 비밀번호
-   * **포트**: `22` (SFTP 기본 포트)
+---
 
-### 2단계: 파일 업로드 경로 매칭
-접속 후 서버 우측 화면에서 현재 적용된 쇼핑몰 스킨 폴더(일반적으로 **`/sde_design/skin1`** 또는 기본 폴더)로 들어갑니다.
+## 2. 카페24 FTP 업로드 방법
 
-로컬의 `cafe24_skin` 폴더 내부의 파일들과 서버 스킨 폴더를 다음과 같이 1:1로 매칭하여 드래그 앤 드롭으로 업로드(덮어쓰기)합니다.
+FTP 프로그램(FileZilla 등)을 통해 `cafe24_skin` 폴더의 파일들을 카페24 스킨 목적지 폴더(예: `/sde_design/skin1/`)로 덮어쓰기하여 업로드하시면 적용됩니다.
 
 | 로컬 파일 (`cafe24_skin/` 기준) | 서버 목적지 폴더 (`/sde_design/skin1/` 기준) |
 | :--- | :--- |
-| `index.html` | `/index.html` (루트에 바로 업로드) |
-| `메인비주얼_영상.mp4` | `/메인비주얼_영상.mp4` (루트에 바로 업로드) |
+| `index.html` | `/index.html` |
 | `layout/basic/layout.html` | `/layout/basic/layout.html` |
 | `layout/basic/sub_layout.html` | `/layout/basic/sub_layout.html` |
 | `css/VACODE_style.css` | `/css/VACODE_style.css` |
-| `img/` (폴더 전체) | `/img/` (폴더째 업로드) |
-| `VACODE/` (폴더 전체) | `/VACODE/` (폴더째 업로드) |
-
----
-
-## 3. 업로드 후 관리자 페이지 테스트 방법
-1. 파일 업로드가 완료되면, 카페24 임시 주소(`http://아이디.cafe24shop.com`)로 접속하여 메인 페이지와 서브 페이지들이 깨짐 없이 원래 디자인대로 잘 떴는지 확인합니다.
-2. **관리자 어드민 페이지(admin.cafe24.com)** ➔ `게시판 관리` ➔ `포트폴리오 게시판(ID 8)`으로 이동합니다.
-3. **[글쓰기]** 버튼을 누르고 아래와 같이 글을 작성해 봅니다.
-   * **제목**: `365산본플란트치과의원` (병원명 입력)
-   * **분류(카테고리)**: `INDOOR` 또는 `OUTDOOR` 선택 (필터링 테스트용)
-   * **대표 이미지(썸네일)**: 포트폴리오 목록에 노출할 썸네일 이미지 파일 첨부
-   * **본문(에디터)**: 상세 페이지에 노출할 여러 장의 시공 사진들을 에디터 안에 삽입
-4. 저장 후 메인 페이지와 포트폴리오 목록 페이지로 가서 **방금 올린 글이 썸네일과 함께 연동되어 슬라이더 및 리스트에 잘 나오는지 확인**합니다.
-5. 포트폴리오 카드를 클릭하여 상세 페이지로 이동한 뒤, **본문에 넣은 시공 사진들이 Masonry(핀터레스트) 그리드로 예쁘게 자동 배치되는지** 최종 검수합니다.
+| `layout/basic/css/VACODE_style.css` | `/layout/basic/css/VACODE_style.css` |
+| `VACODE/about.html` | `/VACODE/about.html` |
+| `VACODE/portfolio.html` | `/VACODE/portfolio.html` |
+| `VACODE/portfolio_detail.html` | `/VACODE/portfolio_detail.html` |
+| `VACODE/contact.html` | `/VACODE/contact.html` |

@@ -1,0 +1,417 @@
+<!--@layout(/layout/basic/sub_layout.html)-->
+
+<style>
+    /* --- [ABOUT 페이지 개별 여백 및 디자인 조정] --- */
+    .VACODE_contents.sub_contents {
+        padding-top: 20px !important;
+        /* 다른 페이지들과 동일한 헤더 높이 수직 여백 부여 */
+        padding-bottom: 160px !important;
+        /* 바닥 여백 160px */
+    }
+
+    /* Intro 섹션 상단 흰색 여백 제거 및 회색 박스 확장 */
+    .about_section:first-of-type {
+        margin-top: 0 !important;
+    }
+
+    .about_visual_box {
+        width: auto !important;
+        /* 가로 가변 처리 */
+        height: 730px !important;
+        /* 헤더 70px을 제외한 회색 공간 높이 730px 설정 */
+        min-height: 730px !important;
+        max-width: none !important;
+        margin-right: -50px !important;
+        /* 부모 sub_contents의 padding-right(50px)을 상쇄하여 우측 끝까지 꽉 채움 */
+        background-color: var(--vc-bg-light) !important;
+        padding: 0 50px 0 80px !important;
+        /* 좌측 패딩 80px, 우측 50px */
+        display: flex !important;
+        justify-content: flex-start !important;
+        /* 좌측부터 순서대로 정렬 */
+        gap: 80px !important;
+        /* 텍스트와 이미지 간 고정 간격 */
+        align-items: center !important;
+        box-sizing: border-box !important;
+        margin-bottom: 60px !important;
+    }
+
+    .visual_txt {
+        width: 480px !important;
+        /* 가로폭 약간 축소 */
+        flex-shrink: 0;
+        font-family: var(--vc-font-suite) !important;
+    }
+
+    .visual_txt h2 {
+        font-size: 30px !important;
+        font-weight: 700 !important;
+        line-height: 1.45 !important;
+        color: var(--vc-black) !important;
+        margin-bottom: 30px !important;
+        letter-spacing: -0.5px !important;
+    }
+
+    .visual_txt p {
+        font-size: 16px !important;
+        line-height: 1.8 !important;
+        color: var(--vc-black) !important;
+        margin: 0 !important;
+    }
+
+    .visual_img {
+        flex-grow: 1;
+        /* 남은 우측 회색 공간을 모두 차지 */
+        max-width: 700px !important;
+        /* 이미지 가로폭 700px로 축소 */
+        height: 560px !important;
+        /* 이미지 세로폭 560px 설정 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* 우측 빈 공간(정사각형 구역)의 정중앙에 배치 */
+    }
+
+    .visual_img img {
+        width: 80% !important;
+        height: auto !important;
+        object-fit: contain !important;
+    }
+
+    /* 중간 섹션 여백 삭제 */
+    .about_section {
+        margin-bottom: 80px !important;
+        /* 섹션 간격 간소화 */
+    }
+
+    /* Work Process 가이드 수치 맞춤형 스타일 */
+    .process_list {
+        border-top: 1px solid #000000 !important; /* 선들의 동일한 굵기 및 색상 통일 (1px 검은색) */
+        margin-top: 0 !important;
+        padding-top: 120px !important; /* 대타이틀 선과 01~03 타이틀 사이의 여백 (120px로 조정) */
+        margin-right: -50px !important; /* 부모 sub_contents의 padding-right(50px)를 상쇄하여 선 끝을 우측 화면 끝에 밀착 */
+    }
+
+    .process_row {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        column-gap: 40px !important; /* XD 스펙과 일치하는 40px 가로 갭 복원 (양쪽 여백 왜곡 원인 해결) */
+        row-gap: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: relative; /* 자식 가상 가로선(::after)의 absolute 기준점 설정 */
+    }
+
+    .process_row:not(:first-child) {
+        margin-top: 60px !important; /* 행과 행 사이의 간격을 60px로 설정 */
+    }
+
+    /* 셀과 셀 사이의 gap(공간) 영역에 가로선이 끊어지지 않고 매끄럽게 연결되도록 1px 가상선 레이어 구성 */
+    .process_row::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 35px; /* 타이틀 높이 35px과 완벽하게 일치하여 겹쳐 흐르게 함 */
+        height: 1px;
+        background-color: #000000 !important; /* 동일한 선 굵기와 색상 통일 (1px 검은색) */
+        z-index: 1;
+    }
+
+    .process_item {
+        display: contents !important; /* 껍데기 제거하여 자식(title, desc)들을 row의 직접적인 그리드 아이템으로 변환 */
+    }
+
+    /* 타이틀 강제 1행 정렬 */
+    .process_row .process_item:nth-child(1) .process_title { grid-row: 1; grid-column: 1; }
+    .process_row .process_item:nth-child(2) .process_title { grid-row: 1; grid-column: 2; }
+    .process_row .process_item:nth-child(3) .process_title { grid-row: 1; grid-column: 3; }
+
+    /* 설명 강제 2행 정렬 */
+    .process_row .process_item:nth-child(1) .process_desc { grid-row: 2; grid-column: 1; }
+    .process_row .process_item:nth-child(2) .process_desc { grid-row: 2; grid-column: 2; }
+    .process_row .process_item:nth-child(3) .process_desc { grid-row: 2; grid-column: 3; }
+
+    .process_title {
+        font-size: 20px !important;
+        font-weight: 700 !important;
+        color: var(--vc-black) !important;
+        height: 35px !important; /* 높이를 35px로 완벽히 고정하여 가상 가로선(top:35px)과 포개어지도록 설정 */
+        line-height: 35px !important;
+        padding: 0 0 0 40px !important; /* 좌측 패딩 40px을 부여하여 선 시작점(420px)과 텍스트 시작점(460px)을 분리 */
+        border-bottom: none !important; /* 개별 타이틀 아래 보더는 완벽히 제거하여 3열 선 끊김 및 이중 굵기 방지 */
+        margin-bottom: 0 !important;
+        display: flex;
+        align-items: baseline;
+        position: relative;
+        z-index: 2;
+    }
+
+    .process_num {
+        display: inline-block;
+        color: #000000 !important; /* 숫자를 검은색으로 */
+        margin-right: 12px !important;
+        margin-bottom: 0 !important;
+        font-size: inherit !important; /* 타이틀과 크기 동일하게 상속 */
+        font-weight: inherit !important; /* 타이틀과 굵기 동일하게 상속 */
+        font-family: var(--vc-font-suite) !important;
+    }
+
+    .process_desc {
+        font-size: 16px !important;
+        line-height: 1.8 !important;
+        color: #000000 !important; /* 설명을 검은색으로 */
+        font-family: var(--vc-font-suite) !important;
+        padding-top: 15px !important; /* 가로선과 본문 텍스트 사이 간격 */
+        padding-left: 40px !important; /* 좌측 패딩 40px을 부여하여 본문도 460px 정렬선에 완벽 매칭 */
+        padding-right: 0 !important; /* 비대칭 패딩을 리셋하여 정렬 유지 */
+        padding-bottom: 0px !important; /* 하단 선과의 여백 없앰 */
+    }
+
+    /* Partnership 아이콘 크기 및 레이아웃 조정 */
+    .partner_card {
+        min-height: 480px !important;
+        padding: 40px 30px !important;
+    }
+
+    .partner_icon img {
+        width: 140px !important;
+        /* 아이콘 크기 140x140으로 확대 */
+        height: 140px !important;
+    }
+
+    /* 반응형 모바일/태블릿 최적화 대응 */
+    @media (max-width: 1024px) {
+
+        /* 회색 비주얼 박스 세로 배치 및 패딩/높이 축소 */
+        .about_visual_box {
+            width: 100% !important;
+            height: auto !important;
+            padding: 40px 20px !important;
+            flex-direction: column-reverse !important;
+            gap: 30px !important;
+        }
+
+        .about_visual_box .visual_txt {
+            text-align: center !important;
+        }
+
+        .about_visual_box .visual_img {
+            width: 80% !important;
+            max-width: 320px !important;
+            margin: 0 auto !important;
+        }
+
+        .process_list {
+            margin-right: 0 !important; /* 모바일에서는 우측 상쇄 마진 초기화 */
+        }
+
+        .about_section {
+            margin-right: 0 !important; /* 모바일에서는 우측 상쇄 마진 초기화 */
+        }
+
+        /* 프로세스 행 1열 처리 및 구분선 보강 */
+        .process_row {
+            display: block !important; /* 그리드 해제하여 수직으로 순차 정렬 */
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            border-top: none !important;
+            border-bottom: none !important;
+        }
+
+        /* 모바일 모드에서는 가상 가로선 제거 */
+        .process_row::after {
+            display: none !important;
+        }
+
+        .process_item {
+            display: block !important; /* display: contents 해제 */
+            margin-bottom: 30px !important; /* 모바일에서 항목 간 간격 */
+            border-bottom: 1px solid #000000 !important; /* 모바일에서는 개별 아이템 아래에 구분선 위치 (검은색 통일) */
+            padding-bottom: 25px !important;
+        }
+
+        /* 마지막 6번 준공보고의 하단 구분선은 모바일에서도 생략 */
+        .process_row:last-child .process_item:last-child {
+            border-bottom: none !important;
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        .process_title {
+            height: auto !important; /* 데스크탑 전용 높이 해제 */
+            line-height: normal !important;
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+            border-bottom: none !important; /* 모바일에서는 개별 타이틀 바로 아래 보더는 불필요하므로 제거 */
+            padding-left: 0 !important; /* 모바일 들여쓰기 해제 */
+            padding-right: 0 !important;
+            margin-bottom: 8px !important;
+        }
+
+        .process_desc {
+            padding-top: 0 !important; /* 모바일에서는 title 마진으로 간격 제어하므로 desc의 top 패딩 제거 */
+            padding-left: 0 !important; /* 모바일 들여쓰기 해제 */
+            padding-right: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* 파트너 카드 축소 */
+        .partner_card {
+            min-height: auto !important;
+            padding: 30px 20px !important;
+        }
+    }
+
+    /* 모바일 쇼케이스 이미지 가로 터짐 방지 및 세로 배치 */
+    @media (max-width: 768px) {
+        .about_showcase_images {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 20px !important;
+        }
+
+        .about_showcase_images div {
+            margin-top: 0 !important;
+            width: 100% !important;
+        }
+
+        .about_showcase_images img {
+            width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 1 / 1 !important;
+        }
+    }
+</style>
+
+<div class="VACODE_layout">
+    <aside class="VACODE_sidebar">
+        <div>
+            <h1 class="slogan_title">기획부터 시공까지<br />공간의 완성도를<br />기준으로.</h1>
+        </div>
+        <div class="info_footer">
+            <p>vacode00@naver.com</p>
+            <p>F. 010-4738-8278</p>
+        </div>
+    </aside>
+
+    <main class="VACODE_contents sub_contents">
+        <section class="about_section">
+            <div class="about_visual_box">
+                <div class="visual_txt">
+                    <h2>병의원 외부·내부 사인 전체를<br>기획부터 제작, 시공까지</h2>
+                    <p>건물 규정 & 허가 기준에 맞춘 실측 기반 설계가 강점이며,<br>디자인·제작·시공을 모두 직접 컨트롤하여<br>일정 차질을 최소화합니다.</p>
+                </div>
+                <div class="visual_img">
+                    <img src="/img/visual_sign.png" alt="VACODE" style="width:80%; height:auto; object-fit:contain;">
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 150px; margin-bottom: 100px;">
+                <p style="font-size: 30px; color: #000000; line-height: 1.6; margin-bottom: 30px; font-weight: 300; font-family: var(--vc-font-suite);">
+                    우리는 간판을 단순한 표시가 아닌<br>
+                    브랜드의 첫인상으로 봅니다.
+                </p>
+                <p style="font-size: 30px; color: var(--vc-black); line-height: 1.6; font-weight: 700; font-family: var(--vc-font-suite);">
+                    진료의 가치와 공간의 분위기를<br>
+                    시각 언어로 번역하겠습니다.
+                </p>
+            </div>
+            
+            <div class="about_showcase_images" style="display: flex; gap: 40px; margin-top: 50px; margin-bottom: 30px; justify-content: center; align-items: flex-start;">
+                <div>
+                    <img src="/img/portfolio_01.png" alt="365산본플란트치과의원" style="width: 440px; height: 440px; border-radius: 4px; object-fit: cover; display: block;">
+                </div>
+                <div style="margin-top: 80px;">
+                    <img src="/img/portfolio_02.png" alt="다움치과의원" style="width: 440px; height: 440px; border-radius: 4px; object-fit: cover; display: block;">
+                </div>
+            </div>
+        </section>
+
+        <!-- 무한 롤링 텍스트 영역 (하드웨어 가속 최적화) -->
+        <section class="about_section" style="margin-bottom:80px; contain: layout paint; margin-right: -50px !important;">
+            <div class="text_marquee_wrap">
+                <div class="marquee_inner" style="will-change: transform;">
+                    <span>정형외과</span><span>재활의학과</span><span>마취통증의학과</span><span>신경외과</span><span>신경과</span><span>내과</span><span>안과</span><span>피부과</span><span>성형외과</span><span>비뇨의학과</span><span>외과</span><span>항문외과</span><span>한의원</span><span>이비인후과</span><span>치과</span><span>영상의학과</span><span>소아청소년과</span><span>가정의학과</span>
+                </div>
+                <div class="marquee_inner" aria-hidden="true" style="will-change: transform;">
+                    <span>정형외과</span><span>재활의학과</span><span>마취통증의학과</span><span>신경외과</span><span>신경과</span><span>내과</span><span>안과</span><span>피부과</span><span>성형외과</span><span>비뇨의학과</span><span>외과</span><span>항문외과</span><span>한의원</span><span>이비인후과</span><span>치과</span><span>영상의학과</span><span>소아청소년과</span><span>가정의학과</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="about_section">
+            <h3 class="vc-style-3" style="margin-bottom: 15px !important; padding-left: 20px !important;">WORK PROCESS</h3>
+            <div class="process_list">
+                <div class="process_row">
+                    <div class="process_item">
+                        <div class="process_title"><span class="process_num">01</span> 기획 미팅</div>
+                        <div class="process_desc">건물 환경, 브랜드 성향 등 특성 파악<br>건물 허가 및 규제 범위 확인<br>파트너사(컨설팅/인테리어)와 방향성 조율</div>
+                    </div>
+                    <div class="process_item">
+                        <div class="process_title"><span class="process_num">02</span> 현장 실측</div>
+                        <div class="process_desc">정밀 실측 및 사진, 도면 확보<br>안전, 전기, 설치 가능 여부 검토<br>건물주 / 관리실 협조사항 체크</div>
+                    </div>
+                    <div class="process_item">
+                        <div class="process_title"><span class="process_num">03</span> 디자인 컨셉 제안</div>
+                        <div class="process_desc">외부 사인 1~2안 제안<br>내부 사인(로비, 복도, 진료실) 컨셉 제안<br>가독성, 브랜딩, 조명, 안전 기준 종합 반영<br>파트너사 의견 반영하여 디렉팅</div>
+                    </div>
+                </div>
+                <div class="process_row">
+                    <div class="process_item">
+                        <div class="process_title"><span class="process_num">04</span> 제작 진행</div>
+                        <div class="process_desc">채널, 포맥스, 갈바, 라이트판넬 제작<br>시트, 출력, 용접, 전기 공정 관리<br>제작 검수 후 시공팀 전달<br>파트너사 일정에 맞춘 제작 스케줄 조율</div>
+                    </div>
+                    <div class="process_item">
+                        <div class="process_title"><span class="process_num">05</span> 설치 시공</div>
+                        <div class="process_desc">숙련된 전문 시공팀 배정<br>건물 내 안전 준수 / 야간, 주말 작업<br>배선, 전기, 철거, 교체 포함<br>시공 완료 후 간판 점등, 기능 테스트</div>
+                    </div>
+                    <div class="process_item">
+                        <div class="process_title"><span class="process_num">06</span> 준공 보고</div>
+                        <div class="process_desc">전체 시공 사진 및 영상 보고<br>간판 위치, 스펙, 자재 안내<br>A/S 지원 (설치일 기준 일정 기간)<br>향후 브랜딩 확장 컨설팅 가능</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about_section" style="margin-bottom: 0;">
+            <h3 class="vc-style-3" style="margin-bottom: 40px;">PARTNERSHIP</h3>
+            <div class="partnership_grid">
+                <div class="partner_card">
+                    <div>
+                        <h4>빠른 대응 시스템</h4>
+                        <ul>
+                            <li>시안 회신 : 24시간 이내 1차 제안</li>
+                            <li>견적 회신 : 당일 ~ 24시간 이내 제공</li>
+                            <li>현장 미팅 : 사전 조율 후 바로 진행</li>
+                            <li>야간/주말 시공 : 가능 (사전 일정 필요)</li>
+                        </ul>
+                    </div>
+                    <div class="partner_icon"><img src="/img/icon_target.svg" alt="Target"></div>
+                </div>
+                <div class="partner_card">
+                    <div>
+                        <h4>시공 네트워크</h4>
+                        <ul>
+                            <li>본사 : 서울/경기권</li>
+                            <li>제작 협력 : 수도권 3개 제작 공장</li>
+                            <li>시공팀 : 전문 시공팀 2~3팀 운영</li>
+                        </ul>
+                    </div>
+                    <div class="partner_icon"><img src="/img/icon_gears.svg" alt="Gears"></div>
+                </div>
+                <div class="partner_card">
+                    <div>
+                        <h4>파트너사 혜택</h4>
+                        <ul>
+                            <li>파트너사 우선 일정 배정 및 시안, 견적 빠른 대응</li>
+                            <li>동일 건물 복수 브랜드 진행 시 할인 적용</li>
+                            <li>병의원 관련 소재, 조명, 허가 노하우 공유</li>
+                        </ul>
+                    </div>
+                    <div class="partner_icon"><img src="/img/icon_people.svg" alt="People"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
