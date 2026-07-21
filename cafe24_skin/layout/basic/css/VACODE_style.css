@@ -914,28 +914,39 @@ a:hover {
     appearance: none !important;
 }
 
+.swiper-portfolio .swiper-slide {
+    margin-right: 25px !important;
+}
+
 /* ==========================================================================
    [추가] 포트폴리오 상세 및 갤러리 읽기 Masonry (핀터레스트) 그리드 공통 정의
    ========================================================================== */
 .masonry_grid {
-    column-count: 3;
-    column-gap: 25px;
-    width: 100%;
+    column-count: 3 !important;
+    column-gap: 25px !important;
+    width: 100% !important;
 }
 
-.masonry_grid p {
+.masonry_grid p,
+.masonry_grid div,
+.masonry_grid span,
+.masonry_grid figure {
     margin: 0 !important;
     padding: 0 !important;
-    display: contents; /* 에디터 p 태그의 블록 성질을 해제하여 이미지가 그리드 자식으로 직결되게 함 */
+    display: contents !important; /* 에디터 감싸기 태그 블록 해제 */
 }
 
-.masonry_grid img {
+.masonry_grid img,
+.masonry_grid p img,
+.masonry_grid div img,
+.masonry_grid span img,
+.masonry_grid figure img {
     width: 100% !important;
     height: auto !important;
     border-radius: 0 !important;
-    break-inside: avoid;
-    margin-bottom: 25px;
-    display: block;
+    break-inside: avoid !important;
+    margin-bottom: 25px !important;
+    display: block !important;
 }
 
 /* ==========================================================================

@@ -63,17 +63,24 @@
     }
 
     /* 에디터 본문 내 이미지들의 Masonry 그리드 자동 대응 */
-    .masonry_grid p {
+    .masonry_grid p,
+    .masonry_grid div,
+    .masonry_grid span,
+    .masonry_grid figure {
         margin: 0 !important;
         padding: 0 !important;
-        display: contents; /* 문단 태그의 블록 성질을 해제하여 이미지가 그리드 직계 자식처럼 동작하게 함 */
+        display: contents !important;
     }
-    .masonry_grid img {
+    .masonry_grid img,
+    .masonry_grid p img,
+    .masonry_grid div img,
+    .masonry_grid span img,
+    .masonry_grid figure img {
         width: 100% !important;
         height: auto !important;
         border-radius: 0 !important;
-        break-inside: avoid;
-        margin-bottom: 25px;
-        display: block;
+        break-inside: avoid !important;
+        margin-bottom: 25px !important;
+        display: block !important;
     }
 </style>
