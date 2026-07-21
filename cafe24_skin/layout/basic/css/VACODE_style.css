@@ -422,14 +422,31 @@ img {
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    border-radius: 4px;
+    line-height: 0;
+    font-size: 0;
+}
+
+.portfolio_item a {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 4px !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
 }
 
 .portfolio_thumb {
+    display: block !important;
+    vertical-align: top !important;
     width: 100%;
     aspect-ratio: 700 / 495;
     object-fit: cover;
     filter: brightness(0.85);
     transition: transform 0.4s ease;
+    border-radius: 4px;
 }
 
 .portfolio_item:hover .portfolio_thumb {
