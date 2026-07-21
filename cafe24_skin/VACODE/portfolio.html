@@ -22,7 +22,16 @@
                 $toast_result = /product/add_basket2.html
             -->
             <div class="portfolio_grid">
-                <div module="product_listitem" class="portfolio_item" data-category="{$category_name}" onclick="location.href='/VACODE/portfolio_detail.html?product_no={$product_no}'" style="cursor: pointer;">
+                <div id="anchorBoxId_{$product_no}" class="portfolio_item" data-category="{$category_name}" onclick="location.href='/VACODE/portfolio_detail.html?product_no={$product_no}'" style="cursor: pointer;">
+                    <a href="/VACODE/portfolio_detail.html?product_no={$product_no}" style="display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; position: relative; overflow: hidden; border-radius: 0; line-height: 0;">
+                        <img src="{$image_medium}" class="portfolio_thumb" alt="{$product_name}">
+                        <div class="portfolio_info">
+                            <div class="pf_title">{$product_name}</div>
+                            <div class="pf_link">VIEW MORE &gt;</div>
+                        </div>
+                    </a>
+                </div>
+                <div id="anchorBoxId_{$product_no}" class="portfolio_item" data-category="{$category_name}" onclick="location.href='/VACODE/portfolio_detail.html?product_no={$product_no}'" style="cursor: pointer;">
                     <a href="/VACODE/portfolio_detail.html?product_no={$product_no}" style="display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; position: relative; overflow: hidden; border-radius: 0; line-height: 0;">
                         <img src="{$image_medium}" class="portfolio_thumb" alt="{$product_name}">
                         <div class="portfolio_info">
