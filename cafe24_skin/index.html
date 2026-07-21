@@ -37,37 +37,24 @@
             <h3 class="vc-style-3">PORTFOLIO IMAGE</h3>
             <div class="title_black_bar"></div>
 
-            <!-- 카페24 갤러리 게시판 8번 연동 패키지 -->
-            <div module="board_listpackage_8">
+            <!-- 카페24 메인 진열 상품 1번 연동 패키지 (포트폴리오 전용) -->
+            <div module="product_listmain_1">
                 <!--
                     $count = 8
-                    $subject_cut = 100
-                    $target = _self
+                    $basket_result = /product/add_basket.html
+                    $toast_result = /product/add_basket2.html
                 -->
                 <div class="portfolio-container-wrapper">
                     <div class="swiper swiper-portfolio">
                         <div class="swiper-wrapper">
-                            <div module="board_list_8" class="swiper-slide portfolio_item" onclick="location.href='/VACODE/portfolio_detail.html{$param_read}'" style="cursor: pointer;">
-                                <a href="/VACODE/portfolio_detail.html{$param_read}" style="display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; position: relative; overflow: hidden; border-radius: 0; line-height: 0;">
-                                    <img src="{$img_src}" class="portfolio_thumb" alt="{$subject}">
+                            <div module="product_listitem" class="swiper-slide portfolio_item" onclick="location.href='/VACODE/portfolio_detail.html?product_no={$product_no}'" style="cursor: pointer;">
+                                <a href="/VACODE/portfolio_detail.html?product_no={$product_no}" style="display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; position: relative; overflow: hidden; border-radius: 0; line-height: 0;">
+                                    <img src="{$image_medium}" class="portfolio_thumb" alt="{$product_name}">
                                     <div class="portfolio_info">
-                                        <div class="pf_title">{$subject}</div>
+                                        <div class="pf_title">{$product_name}</div>
                                         <div class="pf_link">VIEW MORE &gt;</div>
                                     </div>
                                 </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 게시글이 없을 때 예외 처리 -->
-                <div module="board_empty_8">
-                    <div class="portfolio-container-wrapper">
-                        <div class="swiper swiper-portfolio">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide portfolio_item" style="display: flex; align-items: center; justify-content: center; background: #F5F5F6; border-radius: 4px; border: 1px solid #eaeaea; width: 100%; height: 360px;">
-                                    <p style="color: #838383; font-size: 16px; font-weight: bold;">등록된 포트폴리오가 없습니다.</p>
-                                </div>
                             </div>
                         </div>
                     </div>

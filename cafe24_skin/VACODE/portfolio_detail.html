@@ -17,16 +17,19 @@
 
     <main class="VACODE_contents sub_contents">
         
-        <!-- 카페24 갤러리 게시판 8번 읽기 연동 패키지 -->
-        <div module="board_readpackage_8">
-            <div module="board_read_8">
-                
-                <!-- 본문 이미지 핀터레스트(Masonry) 흐름 정렬 -->
-                <div class="masonry_grid">
-                    {$content}
-                </div>
-                
+        <!-- 카페24 상품 상세 연동 패키지 (포트폴리오 전용) -->
+        <div module="product_detail">
+            <!--
+                $coupon_download_page = /coupon/coupon_product.html
+            -->
+            
+            <!-- 본문 이미지 핀터레스트(Masonry) 흐름 정렬 -->
+            <div class="masonry_grid">
+                <!-- 대표 이미지 및 상세설명(추가이미지들) 동시 렌더링 -->
+                <img src="{$image_big}" alt="{$product_name}" class="main_detail_thumb" onerror="this.style.display='none';" />
+                {$description}
             </div>
+            
         </div>
 
     </main>
@@ -82,5 +85,13 @@
         break-inside: avoid !important;
         margin-bottom: 25px !important;
         display: block !important;
+    }
+
+    /* 쇼핑몰 구매/가격 컨트롤 관련 요소 차단 */
+    .product_detail_price,
+    .product_detail_buy,
+    .ec-base-button,
+    .xans-product-action {
+        display: none !important;
     }
 </style>
