@@ -11,8 +11,15 @@
 </style>
 
 <script>
-    // 카페24 임시저장(Draft) 자동 불러오기 팝업 및 캐시 원천 차단
+    // 카페24 임시저장(Draft) alert/confirm 차단 훅
     (function() {
+        var _origConfirm = window.confirm;
+        window.confirm = function(msg) {
+            if (msg && (msg.indexOf('작성') !== -1 || msg.indexOf('임시') !== -1 || msg.indexOf('불러') !== -1 || msg.indexOf('저장') !== -1)) {
+                return false;
+            }
+            return _origConfirm.apply(this, arguments);
+        };
         try {
             for (let key in localStorage) {
                 if (key.toLowerCase().indexOf('draft') !== -1 || key.toLowerCase().indexOf('board') !== -1) {

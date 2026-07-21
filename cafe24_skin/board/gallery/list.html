@@ -82,14 +82,20 @@
         color: #475569;
         border: 1px solid #cbd5e1;
     }
+    .board_list_table .action_box {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
+    }
     .board_list_table .action_btn {
         display: inline-block;
-        padding: 6px 12px;
+        padding: 6px 14px;
         font-size: 13px;
         font-weight: 600;
         border-radius: 4px;
         text-decoration: none;
-        margin: 0 2px;
+        white-space: nowrap;
         transition: all 0.2s ease;
     }
     .board_list_table .btn_edit {
@@ -161,18 +167,16 @@
                     <colgroup>
                         <col style="width: 70px;" />
                         <col style="width: 120px;" />
-                        <col style="width: 90px;" />
+                        <col style="width: 100px;" />
                         <col style="width: auto;" />
-                        <col style="width: 120px;" />
                         <col style="width: 150px;" />
                     </colgroup>
                     <thead>
                         <tr>
                             <th scope="col">번호</th>
                             <th scope="col">분류</th>
-                            <th scope="col">썸네일</th>
+                            <th scope="col">대표사진</th>
                             <th scope="col">제목</th>
-                            <th scope="col">작성일</th>
                             <th scope="col">관리</th>
                         </tr>
                     </thead>
@@ -193,16 +197,17 @@
                             <td style="text-align: left;">
                                 <a href="/board/gallery/read.html{$param_read}" class="post_title">{$subject}</a>
                             </td>
-                            <td style="text-align: center; color: #64748b; font-size: 13px;">{$write_date}</td>
                             <td style="text-align: center;">
-                                <a href="/board/gallery/modify.html{$param_modify}" class="action_btn btn_edit">수정</a>
-                                <a href="#none" onclick="if (!confirm('정말 이 포트폴리오 게시글을 삭제하시겠습니까?')) return false; {$action_delete}" class="action_btn btn_delete">삭제</a>
+                                <div class="action_box">
+                                    <a href="/board/gallery/modify.html{$param_modify}" class="action_btn btn_edit">수정</a>
+                                    <a href="#none" onclick="if (!confirm('정말 이 포트폴리오 게시글을 삭제하시겠습니까?')) return false; {$action_delete}" class="action_btn btn_delete">삭제</a>
+                                </div>
                             </td>
                         </tr>
 
                         <!-- 게시글이 없을 때 예외 처리 -->
                         <tr module="board_empty_8">
-                            <td colspan="6" style="text-align: center; padding: 80px 0; color: #94a3b8; font-size: 15px; font-weight: 700;">
+                            <td colspan="5" style="text-align: center; padding: 80px 0; color: #94a3b8; font-size: 15px; font-weight: 700;">
                                 등록된 포트폴리오 게시글이 없습니다.
                             </td>
                         </tr>
@@ -210,13 +215,8 @@
                 </table>
             </div>
 
-            <!-- 하단 우측 글쓰기 버튼 -->
-            <div style="display: flex; justify-content: flex-end; margin-top: 15px; margin-bottom: 25px;">
-                <a href="/board/gallery/write.html?board_no=8" class="write_btn_main">+ 새 포트폴리오 글쓰기</a>
-            </div>
-
             <!-- 페이지네이션 -->
-            <div module="board_paging_8" class="ec-base-paginate" style="margin-top: 20px;">
+            <div module="board_paging_8" class="ec-base-paginate" style="margin-top: 30px;">
                 <a href="{$param_prev}">이전 페이지</a>
                 <ol>
                     <li><a href="{$param_num}" class="{$param_class}">{$page_num}</a></li>
