@@ -56,32 +56,18 @@
             overflow-x: hidden;
         }
 
-        /* 1. 슬라이더 래퍼 크기 왜곡 100% 제거 (정박 위치 버그 완벽 차단) */
+        /* --- [원본 롤백: 꼼수 전면 폐기 및 100% 원복] --- */
         .portfolio-container-wrapper {
             position: relative;
-            width: 100% !important; /* 부모 컨텐츠 영역에 1px 오차 없이 고정 */
+            width: 100% !important;
             margin: 0 !important;
             padding: 0 !important;
-            overflow: visible !important; /* 우측으로 시원하게 무한 슬라이딩 허용 */
-        }
-
-        /* 2. 가상요소(가림막) 트릭: 래퍼 왼쪽부터 브라우저 끝까지 하얀색 벽으로 덮어서 삐져나오는 슬라이드를 가림 */
-        .portfolio-container-wrapper::before {
-            content: "";
-            position: absolute;
-            top: -50px;
-            bottom: -50px;
-            right: 100%; /* 래퍼의 왼쪽 끝(0)에서 시작 */
-            width: 100vw; /* 왼쪽 브라우저 화면 끝까지 덮음 */
-            background-color: #ffffff; /* 바디 배경색(흰색)으로 덮어서 안 보이게 함 */
-            z-index: 50; /* 슬라이더 카드보다 위로 덮어 씌움 */
         }
 
         .swiper-portfolio {
             width: 100% !important;
             height: auto;
-            overflow: visible !important;
-            /* 부모의 overflow:hidden 영역 내에서 우측으로 자연스럽게 오버플로우되도록 설정 */
+            overflow: hidden !important; /* 원본대로 1200px 박스 내에서 칼같이 잘리도록 복구 */
         }
 
         .swiper-portfolio .portfolio_item {
