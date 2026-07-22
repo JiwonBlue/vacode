@@ -1222,3 +1222,21 @@ fieldset {
     border-color: var(--vc-black) !important;
     background-color: var(--vc-bg-light) !important;
 }
+
+/* 카페24 에디터 본문 내 이미지 절대크기 속성 강제 무력화 및 반응형 처리 */
+.masonry_grid img,
+.masonry_grid p img,
+.masonry_grid div img,
+.masonry_grid span img,
+.masonry_grid figure img,
+.masonry_grid table img,
+.masonry_grid td img,
+.masonry_grid .add_img_box img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    border-radius: 0 !important;
+    break-inside: avoid !important;
+    margin-bottom: 25px !important;
+    display: block !important;
+}

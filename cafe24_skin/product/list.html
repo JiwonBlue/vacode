@@ -57,10 +57,24 @@
     }
 
     /* ul 태그 기본 여백 리셋 및 그리드 유지 */
+    /* ul 태그 기본 여백 리셋 및 그리드 유지 */
     ul.portfolio_grid.prdList {
         list-style: none !important;
         margin: 0 !important;
         padding: 0 !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 30px !important;
+    }
+
+    /* 카페24 기본 스킨이 prdList 내 자식 li에 강제 부여하는 스타일 및 너비 완전 초기화 */
+    ul.portfolio_grid.prdList > li {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        float: none !important;
+        display: block !important;
+        box-sizing: border-box !important;
     }
 
     /* 카테고리 전환 시 부드러운 페이드인 애니메이션 */
