@@ -154,13 +154,19 @@
         color: #FFFFFF !important;
     }
 
-    /* 카테고리 전환 시 부드러운 페이드인 애니메이션 */
+    /* 카테고리 전환 시 옆(우측)에서 미끄러져 들어오며 자연스럽게 아래로 채워지는 페이드인 애니메이션 */
     @keyframes portfolioFadeIn {
-        from { opacity: 0; transform: translateY(15px); }
-        to { opacity: 1; transform: translateY(0); }
+        from { 
+            opacity: 0; 
+            transform: translateX(30px); 
+        }
+        to { 
+            opacity: 1; 
+            transform: translateX(0); 
+        }
     }
     .portfolio_item {
-        animation: portfolioFadeIn 0.4s ease forwards;
+        animation: portfolioFadeIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
 </style>
 
