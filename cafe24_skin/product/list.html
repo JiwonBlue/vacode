@@ -54,22 +54,22 @@
         padding-top: 20px !important;
     }
 
-    /* ul 태그 기본 여백 리셋 및 강제 Flex 그리드 (스킨의 float/clear 간섭을 완벽 무력화) */
+    /* ul 태그 기본 여백 리셋 및 강제 Flex 양끝정렬 그리드 (스킨의 float/clear 간섭을 완벽 무력화) */
     ul.portfolio_grid.prdList {
         list-style: none !important;
         margin: 0 !important;
         padding: 0 !important;
         display: flex !important;
         flex-wrap: wrap !important;
-        gap: 30px !important;
+        justify-content: space-between !important;
         box-sizing: border-box !important;
     }
 
     /* 카페24 기본 스킨이 prdList 내 자식 li에 강제 부여하는 스타일 완전 무력화 및 가로/세로 30px 간격 강제 적용 */
     ul.portfolio_grid.prdList > li {
-        width: calc((100% - 30px) / 2) !important;
+        width: calc(50% - 15px) !important; /* 양끝정렬 시 중앙 30px 여백 공간을 정확히 확보하기 위한 너비 계산 */
         padding: 0 !important;
-        margin: 0 !important; /* 상하 간격은 flex wrap + gap 30px이 자동으로 만들어줌 */
+        margin: 0 0 30px 0 !important; /* 하단 30px 간격은 명시적 마진으로 할당 */
         display: block !important;
         box-sizing: border-box !important;
         float: none !important; /* float 간섭 제거 */

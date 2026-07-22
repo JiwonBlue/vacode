@@ -926,10 +926,10 @@ a:hover {
 
 .portfolio-container-wrapper {
     position: relative !important;
-    width: 150vw !important;
-    max-width: none !important;
+    width: 100% !important;
+    box-sizing: content-box !important;
+    padding-right: calc((100vw - 100%) / 2) !important;
     margin: 0 !important;
-    padding: 0 !important;
     overflow: hidden !important;
 }
 
