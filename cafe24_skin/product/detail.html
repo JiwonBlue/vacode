@@ -74,7 +74,20 @@
         }
     }
 
-    /* 추가 이미지 박스 및 에디터 본문 내 이미지들의 Masonry 그리드 자동 대응 */
+    /* 에디터 내부의 모든 가로 테이블 및 레이아웃 상자를 수직 Masonry 흐름으로 강제 리셋 */
+    .masonry_grid table,
+    .masonry_grid tbody,
+    .masonry_grid tr,
+    .masonry_grid td {
+        display: block !important;
+        width: 100% !important;
+        float: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 추가 이미지 박스 및 에디터 본문 내 이미지 가로 레이아웃 상자 무력화 */
     .masonry_grid p,
     .masonry_grid div,
     .masonry_grid span,
@@ -82,7 +95,10 @@
     .masonry_grid a {
         margin: 0 !important;
         padding: 0 !important;
-        display: contents !important;
+        display: block !important;
+        float: none !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .masonry_grid .add_img_box {
@@ -94,6 +110,7 @@
         box-sizing: border-box !important;
     }
 
+    /* 에디터 이미지 및 추가 이미지 상하 간격 25px 및 엇갈림 3열 배열 강제 적용 */
     .masonry_grid img,
     .masonry_grid p img,
     .masonry_grid div img,
@@ -102,10 +119,12 @@
     .add_img_box img {
         width: 100% !important;
         height: auto !important;
+        max-width: 100% !important;
         border-radius: 0 !important;
         display: block !important;
+        float: none !important;
         break-inside: avoid !important;
-        margin-bottom: 25px !important;
+        margin-bottom: 25px !important; /* 상하 사진 간격 25px 완성 */
     }
 
     /* 쇼핑몰 구매/가격 컨트롤 관련 요소 차단 */
