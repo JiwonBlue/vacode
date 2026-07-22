@@ -3,9 +3,9 @@
 <div class="VACODE_layout">
     <aside class="VACODE_sidebar">
         <div class="sidebar_filter_menu">
-            <a href="#" class="filter_btn active" data-filter="all">ALL</a>
-            <a href="#" class="filter_btn" data-filter="indoor">INDOOR</a>
-            <a href="#" class="filter_btn" data-filter="outdoor">OUTDOOR</a>
+            <a href="/product/list.html" class="filter_btn active">ALL</a>
+            <a href="/product/list.html?cate_no=42" class="filter_btn" data-filter="indoor">INDOOR</a>
+            <a href="/product/list.html?cate_no=43" class="filter_btn" data-filter="outdoor">OUTDOOR</a>
         </div>
         <div class="info_footer">
             <p>vacode00@naver.com</p>
@@ -75,33 +75,19 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const cateNo = urlParams.get('cate_no');
         const filterButtons = document.querySelectorAll('.filter_btn');
-        const portfolioItems = document.querySelectorAll('.portfolio_item');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                // 활성화 클래스 토글
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-
-                const filterValue = this.getAttribute('data-filter').toLowerCase();
-
-                portfolioItems.forEach(item => {
-                    const category = (item.getAttribute('data-category') || '').trim().toLowerCase();
-                    // ALL 이거나 카테고리 명이 일치할 때
-                    if (filterValue === 'all' || category === filterValue || category.includes(filterValue)) {
-                        item.style.display = 'block';
-                        // 브라우저 리플로우 강제 유발로 애니메이션 재실행
-                        item.style.animation = 'none';
-                        item.offsetHeight; // reflow
-                        item.style.animation = null;
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
+        
+        filterButtons.forEach(btn => {
+            btn.classList.remove('active');
+            const href = btn.getAttribute('href');
+            
+            if (!cateNo && href === '/product/list.html') {
+                btn.classList.add('active');
+            } else if (cateNo && href.includes('cate_no=' + cateNo)) {
+                btn.classList.add('active');
+            }
         });
     });
 </script>
