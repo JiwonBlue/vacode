@@ -57,7 +57,7 @@
     }
 
     /* 포트폴리오 리스트 그리드 강제 재정의 (ul, li 대응) */
-    ul.portfolio_grid {
+    .ec-base-product ul.portfolio_grid.prdList {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 30px !important;
@@ -66,13 +66,18 @@
         margin: 0 !important;
     }
     
-    li.portfolio_item {
+    .ec-base-product ul.portfolio_grid.prdList > li.portfolio_item {
         position: relative !important;
         overflow: hidden !important;
         border: none !important;
         padding: 0 !important;
         margin: 0 !important;
         background: none !important;
+        float: none !important;
+        width: 100% !important;
+        height: auto !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
     }
     
     .portfolio_item_link {
