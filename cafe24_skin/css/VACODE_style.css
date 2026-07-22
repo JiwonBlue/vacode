@@ -467,7 +467,7 @@ img {
     justify-content: space-between;
     opacity: 0;
     transition: opacity 0.3s ease;
-    border-radius: 0 !important;
+    border-radius: 0; /* 시안대로 직각 수정 */
 }
 
 .portfolio_item:hover .portfolio_info {

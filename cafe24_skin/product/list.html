@@ -54,26 +54,27 @@
         padding-top: 20px !important;
     }
 
-    /* ul 태그 기본 여백 리셋 및 강제 Flex 양끝정렬 그리드 (스킨의 float/clear 간섭을 완벽 무력화) */
+    /* ul 태그 기본 여백 리셋 및 카페24 엔진 찌꺼기를 무시하는 강력한 Grid 2열 강제 배포 */
     ul.portfolio_grid.prdList {
         list-style: none !important;
         margin: 0 !important;
         padding: 0 !important;
-        display: flex !important;
-        flex-wrap: wrap !important;
-        justify-content: space-between !important;
+        display: grid !important; /* flex 대신 강력한 grid 사용 */
+        grid-template-columns: repeat(2, 1fr) !important; /* 무조건 1:1 비율로 2열 렌더링 */
+        gap: 30px !important; /* 상하좌우 간격을 grid gap으로 일괄 통일 */
         box-sizing: border-box !important;
     }
 
-    /* 카페24 기본 스킨이 prdList 내 자식 li에 강제 부여하는 스타일 완전 무력화 및 가로/세로 30px 간격 강제 적용 */
+    /* 카페24 기본 스킨이 prdList 내 자식 li에 강제 부여하는 스타일 완전 무력화 */
     ul.portfolio_grid.prdList > li {
-        width: calc(50% - 15px) !important; /* 양끝정렬 시 중앙 30px 여백 공간을 정확히 확보하기 위한 너비 계산 */
+        width: 100% !important; /* grid 셀 내에서 100% 채움 */
         padding: 0 !important;
-        margin: 0 0 30px 0 !important; /* 하단 30px 간격은 명시적 마진으로 할당 */
+        margin: 0 !important; /* gap을 사용하므로 개별 마진 제거 */
         display: block !important;
         box-sizing: border-box !important;
         float: none !important; /* float 간섭 제거 */
         clear: none !important; /* 스킨의 강제 clear:left 속성 무력화! */
+        border-radius: 0 !important; /* 부모 둥근 모서리 강제 직각화 */
     }
     /* li 내부의 실제 앵커 카드를 딤드 오버레이의 absolute 부모로 설정 (마스크 어긋남 100% 방지) */
     .portfolio_item_link {
@@ -85,6 +86,7 @@
         text-decoration: none !important;
         color: inherit !important;
         line-height: 0 !important;
+        border-radius: 0 !important; /* 앵커 둥근 모서리 강제 직각화 */
     }
 
     /* 호버 시 줌 애니메이션 속도 제어 */
@@ -92,7 +94,7 @@
         width: 100% !important;
         aspect-ratio: 700 / 495 !important;
         object-fit: cover !important;
-        border-radius: 0 !important;
+        border-radius: 0 !important; /* 이미지 둥근 모서리 강제 직각화 */
         filter: brightness(0.85);
         transition: transform 0.4s ease !important;
     }
