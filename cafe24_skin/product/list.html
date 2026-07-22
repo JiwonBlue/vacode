@@ -112,5 +112,19 @@
                 box.remove();
             });
         }
+
+        // 방어 코드 2: 동일한 상품 ID(anchorBoxId_XX)를 가진 중복 카드가 있을 경우 첫 번째만 남기고 즉각 제거
+        const seenIds = {};
+        const portfolioItems = document.querySelectorAll('.portfolio_grid .portfolio_item');
+        portfolioItems.forEach(item => {
+            const itemId = item.getAttribute('id');
+            if (itemId) {
+                if (seenIds[itemId]) {
+                    item.remove();
+                } else {
+                    seenIds[itemId] = true;
+                }
+            }
+        });
     });
 </script>
