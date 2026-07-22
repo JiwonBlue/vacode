@@ -54,30 +54,25 @@
         padding-top: 20px !important;
     }
 
-    /* ul 태그 기본 여백 리셋 및 클래식 그리드 (간격 30px 확보를 위한 음수 마진 적용) */
+    /* ul 태그 기본 여백 리셋 및 강제 Flex 그리드 (스킨의 float/clear 간섭을 완벽 무력화) */
     ul.portfolio_grid.prdList {
         list-style: none !important;
         margin: 0 -15px !important;
         padding: 0 !important;
-        display: block !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
         box-sizing: border-box !important;
-    }
-
-    /* float 정렬 영역 해제 클리어픽스 */
-    ul.portfolio_grid.prdList::after {
-        content: "" !important;
-        display: block !important;
-        clear: both !important;
     }
 
     /* 카페24 기본 스킨이 prdList 내 자식 li에 강제 부여하는 스타일 완전 무력화 및 가로/세로 30px 간격 강제 적용 */
     ul.portfolio_grid.prdList > li {
         width: 50% !important;
-        float: left !important;
         padding: 0 15px !important; /* 좌우 여백 15px + 15px = 30px 간격 완성 */
         margin: 0 0 30px 0 !important; /* 상하 간격 30px 완성 */
         display: block !important;
         box-sizing: border-box !important;
+        float: none !important; /* float 간섭 제거 */
+        clear: none !important; /* 스킨의 강제 clear:left 속성 무력화! */
     }
     /* li 내부의 실제 앵커 카드를 딤드 오버레이의 absolute 부모로 설정 (마스크 어긋남 100% 방지) */
     .portfolio_item_link {
@@ -154,19 +149,13 @@
         color: #FFFFFF !important;
     }
 
-    /* 카테고리 전환 시 옆(우측)에서 미끄러져 들어오며 자연스럽게 아래로 채워지는 페이드인 애니메이션 */
+    /* 카테고리 전환 시 부드러운 페이드인 애니메이션 */
     @keyframes portfolioFadeIn {
-        from { 
-            opacity: 0; 
-            transform: translateX(30px); 
-        }
-        to { 
-            opacity: 1; 
-            transform: translateX(0); 
-        }
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
     }
     .portfolio_item {
-        animation: portfolioFadeIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        animation: portfolioFadeIn 0.4s ease forwards;
     }
 </style>
 
