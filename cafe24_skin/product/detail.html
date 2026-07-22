@@ -79,28 +79,33 @@
     .masonry_grid div,
     .masonry_grid span,
     .masonry_grid figure,
-    .masonry_grid a,
-    .masonry_grid table,
-    .masonry_grid tbody,
-    .masonry_grid tr,
-    .masonry_grid td,
-    .masonry_grid .add_img_box {
+    .masonry_grid a {
         margin: 0 !important;
         padding: 0 !important;
         display: contents !important;
     }
+
+    .masonry_grid .add_img_box {
+        display: inline-block !important;
+        width: 100% !important;
+        margin: 0 0 25px 0 !important;
+        padding: 0 !important;
+        break-inside: avoid !important;
+        box-sizing: border-box !important;
+    }
+
     .masonry_grid img,
     .masonry_grid p img,
     .masonry_grid div img,
     .masonry_grid span img,
     .masonry_grid figure img,
-    .masonry_grid .add_img_box img {
+    .add_img_box img {
         width: 100% !important;
         height: auto !important;
         border-radius: 0 !important;
+        display: block !important;
         break-inside: avoid !important;
         margin-bottom: 25px !important;
-        display: block !important;
     }
 
     /* 쇼핑몰 구매/가격 컨트롤 관련 요소 차단 */
