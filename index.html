@@ -56,18 +56,19 @@
             overflow-x: hidden;
         }
 
-        /* --- [원본 롤백: 꼼수 전면 폐기 및 100% 원복] --- */
+        /* --- [정상 디자인 복구: 우측으로만 화면 끝까지 흘러나가는 레이아웃] --- */
         .portfolio-container-wrapper {
             position: relative;
-            width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
+            width: auto !important;
+            margin-right: calc((100vw - 100%) / -2) !important; /* 오른쪽 끝 화면 너머까지 슬라이드 궤적 확장 */
+            margin-left: 0 !important; /* 좌측은 부모 패딩 라인에 완벽 고정 */
+            overflow: hidden !important; /* 왼쪽 정렬선 밖으로 넘어가는 이전/루프 슬라이드는 완벽히 클립(숨김) */
         }
 
         .swiper-portfolio {
             width: 100% !important;
             height: auto;
-            overflow: hidden !important; /* 원본대로 1200px 박스 내에서 칼같이 잘리도록 복구 */
+            overflow: visible !important; /* 자식(스와이퍼)은 부모의 우측으로 자연스럽게 오버플로우 허용 */
         }
 
         .swiper-portfolio .portfolio_item {
@@ -341,6 +342,7 @@
                 slidesPerView: 'auto', // 고정 폭 640px를 보장하기 위해 auto로 변경
                 spaceBetween: 25,
                 loop: true,
+                roundLengths: true, // [버그 완벽 차단] 루프 시 서브픽셀 오차를 정수로 강제 반올림하여 밀림 현상 원천 차단
                 autoplay: {
                     delay: 3000,
                     disableOnInteraction: false,
