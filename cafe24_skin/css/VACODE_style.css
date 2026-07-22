@@ -919,17 +919,31 @@ a:hover {
     overflow-x: hidden !important;
 }
 
+/* --- [최종 완벽 정렬: 100% 고정 너비 + 좌측 가림막 + 우측 뚫림] --- */
 .portfolio-container-wrapper {
     position: relative !important;
-    width: auto !important;
-    margin-right: calc((100vw - 100%) / -2) !important;
-    overflow: hidden !important;
+    width: 100% !important; /* 부모(1200px)에 정확히 맞춤. 크기 변형 금지 (왼쪽 정렬 완벽 유지) */
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important; /* 우측으로 시원하게 무한 슬라이딩 허용 */
+}
+
+/* 래퍼 왼쪽부터 브라우저 끝까지 하얀색 벽으로 덮어서 루프되어 돌아가는 슬라이드를 가림 */
+.portfolio-container-wrapper::before {
+    content: "";
+    position: absolute !important;
+    top: -50px !important;
+    bottom: -50px !important;
+    right: 100% !important; /* 래퍼의 왼쪽 끝(0)에서 시작 */
+    width: 100vw !important; /* 왼쪽 브라우저 화면 끝까지 덮음 */
+    background-color: #ffffff !important; /* 바디 배경색(흰색) */
+    z-index: 50 !important; /* 슬라이더 카드 위로 덮음 */
 }
 
 .swiper-portfolio {
     width: 100% !important;
     height: auto !important;
-    overflow: visible !important;
+    overflow: visible !important; /* 자식(스와이퍼)은 부모의 우측으로 자연스럽게 오버플로우 허용 */
 }
 
 .swiper-portfolio .portfolio_item,
