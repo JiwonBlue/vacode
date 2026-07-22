@@ -127,7 +127,7 @@
                 portfolioItems.forEach(item => {
                     const category = item.getAttribute('data-category');
                     if (filterValue === 'all' || category === filterValue) {
-                        item.style.display = ''; // grid 아이템의 기본 동작에 맡김 (block 강제 주입 금지)
+                        item.style.display = 'block';
                         // 브라우저 리플로우 강제 유발로 애니메이션 재실행
                         item.style.animation = 'none';
                         item.offsetHeight; // reflow
