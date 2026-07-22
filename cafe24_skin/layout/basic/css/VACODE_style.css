@@ -418,6 +418,11 @@ img {
     gap: 30px;
 }
 
+/* 카페24 엔진에서 강제 주입하는 상품 목록 항목(li)의 인라인 너비 무력화 */
+.portfolio_grid.prdList > li {
+    width: 100% !important;
+}
+
 .portfolio_item {
     position: relative;
     overflow: hidden;

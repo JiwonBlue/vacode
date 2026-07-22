@@ -1,0 +1,74 @@
+<!--@layout(/layout/basic/sub_layout.html)-->
+
+<div class="VACODE_layout">
+    <aside class="VACODE_sidebar">
+        <div class="sidebar_filter_menu">
+            <a href="/product/list.html" class="filter_btn active">ALL</a>
+            <a href="/product/list.html?cate_no=42" class="filter_btn" data-cate="42">INDOOR</a>
+            <a href="/product/list.html?cate_no=43" class="filter_btn" data-cate="43">OUTDOOR</a>
+        </div>
+        <div class="info_footer">
+            <p>vacode00@naver.com</p>
+            <p>F. 010-4738-8278</p>
+        </div>
+    </aside>
+
+    <main class="VACODE_contents sub_contents">
+        <!-- 카페24 상품 분류 목록 정규 패키지 -->
+        <div module="product_listcategory" class="ec-base-product">
+            <!--
+                $count = 30
+                $basket_result = /product/add_basket.html
+                $toast_result = /product/add_basket2.html
+            -->
+            
+            <!-- 일반상품 영역 포트폴리오 노출 서브모듈 -->
+            <div module="product_listnormal">
+                <!--
+                    $count = 30
+                -->
+                <ul class="portfolio_grid prdList">
+                    <li id="anchorBoxId_{$product_no}" class="portfolio_item" data-category="{$category_name}" onclick="location.href='/product/detail.html{$param}'" style="cursor: pointer;">
+                        <a href="/product/detail.html{$param}" style="display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; position: relative; overflow: hidden; border-radius: 0; line-height: 0;">
+                            <img src="{$image_medium}" class="portfolio_thumb" alt="{$product_name}">
+                            <div class="portfolio_info">
+                                <div class="pf_title">{$product_name}</div>
+                                <div class="pf_link">VIEW MORE &gt;</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 등록된 상품(포트폴리오)이 없을 때 예외 처리 -->
+            <div module="product_empty" style="grid-column: span 2; width: 100%;">
+                <div style="display: flex; align-items: center; justify-content: center; background: #F5F5F6; border-radius: 4px; padding: 100px 0; border: 1px solid #eaeaea; width: 100%;">
+                    <p style="color: #838383; font-size: 16px; font-weight: bold;">등록된 포트폴리오가 없습니다.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<style>
+    /* 서브 콘텐츠 상단 여백 보정 (포트폴리오 상세와 1:1 일치) */
+    .VACODE_contents.sub_contents {
+        padding-top: 20px !important;
+    }
+
+    /* ul 태그 기본 여백 리셋 및 그리드 유지 */
+    ul.portfolio_grid.prdList {
+        list-style: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 카테고리 전환 시 부드러운 페이드인 애니메이션 */
+    @keyframes portfolioFadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .portfolio_item {
+        animation: portfolioFadeIn 0.4s ease forwards;
+    }
+</style>

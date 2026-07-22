@@ -1,0 +1,111 @@
+<!--@layout(/layout/basic/sub_layout.html)-->
+
+<div class="VACODE_layout">
+    <aside class="VACODE_sidebar">
+        <div>
+            <div class="sidebar_filter_menu">
+                <a href="/product/list.html">ALL</a>
+                <a href="/product/list.html?cate_no=42">INDOOR</a>
+                <a href="/product/list.html?cate_no=43">OUTDOOR</a>
+            </div>
+        </div>
+        <div class="info_footer">
+            <p>vacode00@naver.com</p>
+            <p>F. 010-4738-8278</p>
+        </div>
+    </aside>
+
+    <main class="VACODE_contents sub_contents">
+        
+        <!-- 카페24 상품 상세 정규 연동 패키지 -->
+        <div module="product_detail">
+            <!--
+                $coupon_download_page = /coupon/coupon_product.html
+            -->
+            
+            <!-- 본문 이미지 핀터레스트(Masonry) 흐름 정렬 -->
+            <div class="masonry_grid">
+                <!-- 1. 대표 이미지 (상세이미지 500x500 바인딩) -->
+                <img src="{$big_img}" alt="{$name}" class="main_detail_thumb" />
+
+                <!-- 2. 추가 이미지들 (어드민 [추가이미지등록] 탭 4장 바인딩 전용 모듈 및 공식변수 $add_img) -->
+                <div module="product_addimage">
+                    <!--
+                        $count = 30
+                    -->
+                    <div class="add_img_box">
+                        <img src="{$add_img}" alt="{$name}" />
+                    </div>
+                </div>
+
+                <!-- 3. 상세 설명 에디터 작성 내용 -->
+                {$detail_area}
+            </div>
+            
+        </div>
+
+    </main>
+</div>
+
+<style>
+    /* 서브 콘텐츠 상단 여백 보정 */
+    .VACODE_contents.sub_contents {
+        padding-top: 20px !important;
+    }
+
+    /* 반응형 메이슨리(Masonry) 그리드 기본 구조 */
+    .masonry_grid {
+        column-count: 3;
+        column-gap: 25px;
+        width: 100%;
+    }
+
+    @media (max-width: 1024px) {
+        .masonry_grid {
+            column-count: 2;
+            column-gap: 15px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .masonry_grid {
+            column-count: 1;
+            column-gap: 0;
+        }
+        .masonry_grid div {
+            margin-bottom: 15px !important;
+        }
+    }
+
+    /* 추가 이미지 박스 및 에디터 본문 내 이미지들의 Masonry 그리드 자동 대응 */
+    .masonry_grid p,
+    .masonry_grid div,
+    .masonry_grid span,
+    .masonry_grid figure,
+    .masonry_grid .add_img_box {
+        margin: 0 !important;
+        padding: 0 !important;
+        display: contents !important;
+    }
+    .masonry_grid img,
+    .masonry_grid p img,
+    .masonry_grid div img,
+    .masonry_grid span img,
+    .masonry_grid figure img,
+    .masonry_grid .add_img_box img {
+        width: 100% !important;
+        height: auto !important;
+        border-radius: 0 !important;
+        break-inside: avoid !important;
+        margin-bottom: 25px !important;
+        display: block !important;
+    }
+
+    /* 쇼핑몰 구매/가격 컨트롤 관련 요소 차단 */
+    .product_detail_price,
+    .product_detail_buy,
+    .ec-base-button,
+    .xans-product-action {
+        display: none !important;
+    }
+</style>
