@@ -50,19 +50,19 @@
 
             <!-- 화면에 절대 보이지 않는 카페24 표준 메인 진열 소스 (데이터 소스용) -->
             <div style="display: none !important;">
-                <div module="product_listmain_1">
+                <ul module="product_listmain_1">
                     <!--
                         $count = 12
                         $basket_result = /product/add_basket.html
                         $toast_result = /product/add_basket2.html
                     -->
-                    <div class="raw_portfolio_source" 
-                         data-no="{$product_no}" 
-                         data-name="{$product_name}" 
-                         data-img="{$image_medium}" 
-                         data-link="/product/detail.html{$param}">
-                    </div>
-                </div>
+                    <li class="raw_portfolio_source">
+                        <a href="/product/detail.html{$param}" class="raw_link">
+                            <img src="{$image_medium}" class="raw_img" alt="{$product_name}" />
+                            <span class="raw_title">{$product_name}</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </section>
 
@@ -136,29 +136,33 @@
             
             // 데이터 소스에서 카드를 동적으로 생성하여 Swiper 트랙 안에 주입
             rawSources.forEach(source => {
-                const pNo = source.getAttribute('data-no');
-                const pName = source.getAttribute('data-name');
-                const pImg = source.getAttribute('data-img');
-                const pLink = source.getAttribute('data-link');
+                const rawLinkEl = source.querySelector('.raw_link');
+                const rawImgEl = source.querySelector('.raw_img');
+                const rawTitleEl = source.querySelector('.raw_title');
                 
-                const slide = document.createElement('div');
-                slide.className = 'swiper-slide portfolio_item';
-                slide.setAttribute('id', 'anchorBoxId_' + pNo);
-                slide.style.cursor = 'pointer';
-                slide.onclick = function() {
-                    location.href = pLink;
-                };
-                
-                slide.innerHTML = `
-                    <a href="${pLink}" style="display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; position: relative; overflow: hidden; border-radius: 0; line-height: 0;">
-                        <img src="${pImg}" class="portfolio_thumb" alt="${pName}">
-                        <div class="portfolio_info">
-                            <div class="pf_title">${pName}</div>
-                            <div class="pf_link">VIEW MORE &gt;</div>
-                        </div>
-                    </a>
-                `;
-                targetWrapper.appendChild(slide);
+                if (rawLinkEl && rawImgEl) {
+                    const pLink = rawLinkEl.getAttribute('href');
+                    const pImg = rawImgEl.getAttribute('src');
+                    const pName = rawTitleEl ? rawTitleEl.innerText : '';
+                    
+                    const slide = document.createElement('div');
+                    slide.className = 'swiper-slide portfolio_item';
+                    slide.style.cursor = 'pointer';
+                    slide.onclick = function() {
+                        location.href = pLink;
+                    };
+                    
+                    slide.innerHTML = `
+                        <a href="${pLink}" style="display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; position: relative; overflow: hidden; border-radius: 0; line-height: 0;">
+                            <img src="${pImg}" class="portfolio_thumb" alt="${pName}">
+                            <div class="portfolio_info">
+                                <div class="pf_title">${pName}</div>
+                                <div class="pf_link">VIEW MORE &gt;</div>
+                            </div>
+                        </a>
+                    `;
+                    targetWrapper.appendChild(slide);
+                }
             });
             
             // 4개 미만일 때 무한 루프 슬라이딩을 위한 데이터 복제 보강 (순차 복제)
