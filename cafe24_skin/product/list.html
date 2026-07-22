@@ -22,21 +22,23 @@
                 $toast_result = /product/add_basket2.html
             -->
             
-            <!-- 일반상품 영역 포트폴리오 노출 서브모듈 (ul 태그로 모듈 스코프 축소 이동) -->
-            <ul class="portfolio_grid prdList" module="product_listnormal">
-                <!--
-                    $count = 30
-                -->
-                <li id="anchorBoxId_{$product_no}" class="portfolio_item" data-category="{$category_name}">
-                    <a href="/product/detail.html{$param}" class="portfolio_item_link">
-                        <img src="{$image_medium}" class="portfolio_thumb" alt="{$product_name}">
-                        <div class="portfolio_info">
-                            <div class="pf_title">{$product_name}</div>
-                            <div class="pf_link">VIEW MORE &gt;</div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
+            <!-- 일반상품 영역 포트폴리오 노출 서브모듈 -->
+            <div module="product_listnormal">
+                <ul class="portfolio_grid prdList">
+                    <!--
+                        $count = 30
+                    -->
+                    <li id="anchorBoxId_{$product_no}" class="portfolio_item" data-category="{$category_name}">
+                        <a href="/product/detail.html{$param}" class="portfolio_item_link">
+                            <img src="{$image_medium}" class="portfolio_thumb" alt="{$product_name}">
+                            <div class="portfolio_info">
+                                <div class="pf_title">{$product_name}</div>
+                                <div class="pf_link">VIEW MORE &gt;</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
             <!-- 등록된 상품(포트폴리오)이 없을 때 예외 처리 -->
             <div module="product_empty" style="grid-column: span 2; width: 100%;">
@@ -54,57 +56,47 @@
         padding-top: 20px !important;
     }
 
-    /* ul 태그 기본 여백 리셋 및 카페24 엔진 찌꺼기를 무시하는 강력한 Grid 2열 강제 배포 */
-    ul.portfolio_grid.prdList {
+    /* 포트폴리오 리스트 그리드 강제 재정의 (ul, li 대응) */
+    ul.portfolio_grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 30px !important;
         list-style: none !important;
+        padding: 0 !important;
         margin: 0 !important;
-        padding: 0 !important;
-        display: grid !important; /* flex 대신 강력한 grid 사용 */
-        grid-template-columns: repeat(2, 1fr) !important; /* 무조건 1:1 비율로 2열 렌더링 */
-        gap: 30px !important; /* 상하좌우 간격을 grid gap으로 일괄 통일 */
-        box-sizing: border-box !important;
     }
-
-    /* 카페24 기본 스킨이 prdList 내 자식 li에 강제 부여하는 스타일 완전 무력화 */
-    ul.portfolio_grid.prdList > li {
-        width: 100% !important; /* grid 셀 내에서 100% 채움 */
+    
+    li.portfolio_item {
+        position: relative !important;
+        overflow: hidden !important;
+        border: none !important;
         padding: 0 !important;
-        margin: 0 !important; /* gap을 사용하므로 개별 마진 제거 */
-        display: block !important;
-        box-sizing: border-box !important;
-        float: none !important; /* float 간섭 제거 */
-        clear: none !important; /* 스킨의 강제 clear:left 속성 무력화! */
-        border-radius: 0 !important; /* 부모 둥근 모서리 강제 직각화 */
+        margin: 0 !important;
+        background: none !important;
     }
-    /* li 내부의 실제 앵커 카드를 딤드 오버레이의 absolute 부모로 설정 (마스크 어긋남 100% 방지) */
+    
     .portfolio_item_link {
         display: block !important;
         width: 100% !important;
         height: 100% !important;
         position: relative !important;
-        overflow: hidden !important;
-        text-decoration: none !important;
         color: inherit !important;
-        line-height: 0 !important;
-        border-radius: 0 !important; /* 앵커 둥근 모서리 강제 직각화 */
+        text-decoration: none !important;
     }
-
-    /* 호버 시 줌 애니메이션 속도 제어 */
-    .portfolio_thumb {
+    
+    .portfolio_item_link .portfolio_thumb {
         width: 100% !important;
         aspect-ratio: 700 / 495 !important;
         object-fit: cover !important;
-        border-radius: 0 !important; /* 이미지 둥근 모서리 강제 직각화 */
-        filter: brightness(0.85);
         transition: transform 0.4s ease !important;
+        filter: brightness(0.85); /* 원본과 동일하게 기본 밝기 낮춤 */
     }
-
+    
     .portfolio_item_link:hover .portfolio_thumb {
         transform: scale(1.03) !important;
     }
-
-    /* 호버 레이어 딤드 처리 및 불투명도 복원 (앵커 relative에 밀착되므로 width/height 100%로 어긋남 없이 밀착 겹침!) */
-    .portfolio_info {
+    
+    .portfolio_item_link .portfolio_info {
         position: absolute !important;
         top: 0 !important;
         left: 0 !important;
@@ -118,39 +110,19 @@
         justify-content: space-between !important;
         opacity: 0 !important;
         transition: opacity 0.3s ease !important;
-        border-radius: 0 !important;
+        border-radius: 4px !important;
         box-sizing: border-box !important;
+        pointer-events: none; /* 클릭 방해 방지 */
     }
-
+    
     .portfolio_item_link:hover .portfolio_info {
         opacity: 1 !important;
     }
-
-    .pf_title {
-        font-size: 22px !important;
-        font-weight: bold !important;
-        color: #FFFFFF !important;
-    }
-
-    /* 카페24 엔진에 의해 주입된 상품명 내부 인라인 span 태그를 강제 무력화하여 크고 굵은 흰색 폰트 복원 */
-    .pf_title span,
-    .pf_title span * {
-        font-size: 22px !important;
-        font-weight: bold !important;
-        color: #FFFFFF !important;
-        font-family: var(--vc-font-suite) !important;
-        background: none !important;
-    }
-
-    .pf_link {
-        font-size: 13px !important;
-        text-transform: uppercase !important;
-        letter-spacing: 1px !important;
-        display: flex !important;
-        align-items: center !important;
-        gap: 5px !important;
-        opacity: 0.8 !important;
-        color: #FFFFFF !important;
+    
+    @media (max-width: 1024px) {
+        ul.portfolio_grid {
+            grid-template-columns: 1fr !important;
+        }
     }
 
     /* 카테고리 전환 시 부드러운 페이드인 애니메이션 */

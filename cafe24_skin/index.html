@@ -1,4 +1,325 @@
-<!--@layout(/layout/basic/layout.html)-->
+﻿<!--@layout(/layout/basic/layout.html)-->
+    <style>
+        /* --- [?덉씠?꾩썐 ?뺣룉] --- */
+        .main_full_contents {
+            margin-left: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+        }
+
+        .visual_full_width {
+            width: 100% !important;
+            aspect-ratio: 16 / 9 !important;
+            height: auto !important;
+            min-height: unset !important;
+
+            /* ???듭떖 ?ъ씤?? 
+                ?곗깋 ?ㅻ뜑 ?곸뿭 ?뚮Ц??諛곕꼫瑜??꾨옒濡?諛?대궡??留덉쭊(margin-top: 90px)??'0'?쇰줈 吏?곷땲??
+                ?대젃寃??댁빞 ?섎Т 洹몃┝ 諛곕꼫媛 紐⑤땲??留???泥쒖옣 ?앷퉴吏 諛붿쭩 ?щ씪遺숈뼱 ?ㅻ뜑 ?룸같寃쎌쓣 梨꾩슦寃??⑸땲??
+            */
+            margin-top: 0 !important;
+            margin-bottom: 120px !important;
+        }
+
+        .main_content_inner {
+            max-width: 1200px !important;
+            /* 湲곗〈 1200px ?붿옄?몄쑝濡?醫뚯륫 ?뺣젹 蹂듭썝 */
+            margin: 0 auto;
+            padding: 0 50px 120px 50px;
+            box-sizing: border-box;
+        }
+
+        .title_black_bar {
+            width: 50px;
+            height: 3px;
+            background-color: #000000;
+            margin-top: 15px;
+            margin-bottom: 50px;
+        }
+
+        /* --- [?꾨쿋???ㅽ????ㅼ??댄띁 UI] --- */
+        #VACODE_wrap {
+            overflow-x: hidden;
+        }
+
+        .portfolio-container-wrapper {
+            position: relative;
+            width: auto !important;
+            margin-right: calc((100vw - 100%) / -2) !important;
+            /* ?ㅻⅨ履????붾㈃ ?덈㉧源뚯? ?щ씪?대뱶 沅ㅼ쟻 ?뺤옣 */
+            overflow: hidden !important;
+            /* ?쇱そ ?뺣젹??諛뽰쑝濡??섏뼱媛???댁쟾/猷⑦봽 ?щ씪?대뱶???꾨꼍???대┰(?④?) */
+        }
+
+        .swiper-portfolio {
+            width: 100% !important;
+            height: auto;
+            overflow: visible !important;
+            /* 遺紐⑥쓽 overflow:hidden ?곸뿭 ?댁뿉???곗륫?쇰줈 ?먯뿰?ㅻ읇寃??ㅻ쾭?뚮줈?곕릺?꾨줉 ?ㅼ젙 */
+        }
+
+        .swiper-portfolio .portfolio_item {
+            width: 640px !important;
+            /* ?쒖븞 怨좎젙 媛濡쒗룺 ?곸슜 */
+            height: 360px !important;
+            /* ?쒖븞 怨좎젙 ?몃줈???곸슜 */
+        }
+
+        .swiper-portfolio .portfolio_thumb {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            border-radius: 4px;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #000000 !important;
+            width: 50px !important;
+            height: 50px !important;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 20px !important;
+            font-weight: 300 !important;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            opacity: 0.6;
+        }
+
+        .swiper-button-prev {
+            left: -60px !important;
+        }
+
+        .swiper-button-next {
+            right: -60px !important;
+        }
+
+        /* --- ??[?띾룄 理쒖쟻??2] CLIENT 濡ㅻ쭅 ?섎뱶?⑥뼱 媛???곸슜 --- */
+        .client_marquee_wrap {
+            overflow: hidden;
+            width: 100vw !important;
+            position: relative !important;
+            left: 50% !important;
+            right: 50% !important;
+            margin-left: -50vw !important;
+            margin-right: -50vw !important;
+            background-color: transparent !important;
+            /* 諛곌꼍 ?쒓굅 */
+            display: flex;
+            padding: 30px 0 !important;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            contain: layout paint;
+        }
+
+        .client_inner {
+            display: flex;
+            white-space: nowrap;
+            /* transform ?곗궛 ??洹몃옒?쎌뭅??GPU)瑜??곕룄濡??섏뿬 CPU 踰꾨쾮???꾩긽???먯쿇 ?쒓굅 */
+            will-change: transform;
+            animation: client_rolling 30s linear infinite;
+        }
+
+        .client_box {
+            width: 380px !important;
+            height: 80px !important;
+            background-color: #FFFFFF !important;
+            /* 諛깃렇?쇱슫???곗깋 移대뱶 蹂듭썝 */
+            border: 1px solid #eaeaea;
+            /* ?뚮몢由?蹂듭썝 */
+            border-radius: 4px;
+            margin-right: 30px !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--vc-gray-dark);
+        }
+
+        @keyframes client_rolling {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            100% {
+                transform: translate3d(-50%, 0, 0);
+            }
+        }
+
+        /* 硫붿씤 鍮꾩＜??諛곕꼫 ?띿뒪???깆옣 ?좊땲硫붿씠??*/
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -30%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .visual_txt_animate {
+            animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        /* ==========================================================================
+           [異붽?] 硫붿씤?붾㈃ 媛濡??곗쭚 諛⑹? 諛??ㅻ쭏?명룿/?쒕툝由?理쒖쟻??諛섏쓳??誘뱀뒪??
+           ========================================================================== */
+
+        /* ?쒕툝由?諛??쇰컲 ?명듃遺??댁긽??(?붾㈃ ??1199px ?댄븯????諛쒕룞) */
+        @media (max-width: 1199px) {
+            /* ?ㅼ??댄띁 ?붿궡?쒓? ?붾㈃ 諛뽰쑝濡??섍???怨듬갚??留뚮뱶???꾩긽 諛⑹? */
+            .swiper-button-prev {
+                left: -20px !important;
+            }
+
+            .swiper-button-next {
+                right: -20px !important;
+            }
+        }
+
+        /* ?ㅻ쭏?명룿 援ш컙 (?붾㈃ ??768px ?댄븯????諛쒕룞) */
+        @media (max-width: 768px) {
+            .main_content_inner {
+                padding: 0 20px 80px 20px !important;
+                /* 紐⑤컮???꾩슜 ?대? 肄섑뀗痢??щ갚 */
+            }
+
+            /* 硫붿씤 鍮꾩＜??諛곕꼫 ???붾㈃ 留욎땄 異뺤냼 */
+            .visual_full_width {
+                height: auto !important;
+                aspect-ratio: 16 / 9 !important;
+                min-height: unset !important;
+                margin-bottom: 70px !important;
+            }
+
+            /* 紐⑤컮?쇱뿉?쒕뒗 ?ㅼ??댄띁 ?몃? ?붿궡???④린怨??곗튂 ?щ씪?대뱶 ?꾩＜濡??숈옉 ?좊룄 */
+            .swiper-button-next,
+            .swiper-button-prev {
+                display: none !important;
+            }
+
+            /* ?섎떒 臾몄쓽?ы빆 ?덉씠?꾩썐??3?댁뿉??1???몃줈 ?뺣젹濡?蹂寃?*/
+            .main_content_inner section style,
+            .main_content_inner div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
+        }
+
+        /* 珥덉냼??誘몃땲 ??援ш컙 (?붾㈃ ??420px ?댄븯????諛쒕룞) */
+        @media (max-width: 420px) {
+            #VACODE_header .sns_links {
+                display: flex;
+                gap: 6px;
+            }
+        }
+
+        /* --- CONTACT Section Custom Styling (to match design exactly) --- */
+        .custom_contact_section {
+            margin-top: 160px;
+            margin-bottom: 120px;
+        }
+
+        .custom_contact_section .thick_line {
+            border-top: 2.5px solid #000000;
+            margin-bottom: 25px;
+            margin-left: -50px;
+            margin-right: -50px;
+        }
+
+        .custom_contact_section .contact_title {
+            font-family: var(--vc-font-suite);
+            font-size: 22px;
+            font-weight: bold;
+            color: #000000;
+            letter-spacing: -0.11px;
+            margin-bottom: 25px;
+            padding-left: 0;
+            text-transform: uppercase;
+        }
+
+        .custom_contact_section .thin_line {
+            border-top: 1px solid #aeaeae;
+            margin-left: -50px;
+            margin-right: -50px;
+        }
+
+        .custom_contact_section .thin_line_top {
+            margin-bottom: 45px;
+        }
+
+        .custom_contact_section .thin_line_bottom {
+            margin-top: 45px;
+        }
+
+        .custom_contact_grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .custom_contact_grid .col_title {
+            font-family: var(--vc-font-suite);
+            font-size: 20px;
+            font-weight: bold;
+            color: #000000;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .custom_contact_grid .col_content {
+            font-family: var(--vc-font-suite);
+            font-size: 16px;
+            color: #000000;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        .custom_contact_grid .col_content a {
+            color: #000000;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .custom_contact_section .thick_line {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+
+            .custom_contact_section .thin_line {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+
+            .custom_contact_grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .custom_contact_section .contact_title {
+                padding-left: 0;
+            }
+
+            .custom_contact_section .thin_line_top {
+                margin-bottom: 30px;
+            }
+
+            .custom_contact_section .thin_line_bottom {
+                margin-top: 30px;
+            }
+        }
+    </style>
 
 <main class="VACODE_contents main_full_contents">
 
@@ -50,19 +371,21 @@
 
             <!-- 화면에 절대 보이지 않는 카페24 표준 메인 진열 소스 (데이터 소스용) -->
             <div style="display: none !important;">
-                <ul module="product_listmain_1">
-                    <!--
-                        $count = 12
-                        $basket_result = /product/add_basket.html
-                        $toast_result = /product/add_basket2.html
-                    -->
-                    <li class="raw_portfolio_source">
-                        <a href="/product/detail.html{$param}" class="raw_link">
-                            <img src="{$image_medium}" class="raw_img" alt="{$product_name}" />
-                            <span class="raw_title">{$product_name}</span>
-                        </a>
-                    </li>
-                </ul>
+                <div module="product_listmain_1">
+                    <ul>
+                        <!--
+                            $count = 12
+                            $basket_result = /product/add_basket.html
+                            $toast_result = /product/add_basket2.html
+                        -->
+                        <li class="raw_portfolio_source">
+                            <a href="/product/detail.html{$param}" class="raw_link">
+                                <img src="{$image_medium}" class="raw_img" alt="{$product_name}" />
+                                <span class="raw_title">{$product_name}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -153,7 +476,7 @@
                     };
                     
                     slide.innerHTML = `
-                        <a href="${pLink}" style="display: block; width: 100%; height: 100%; color: inherit; text-decoration: none; position: relative; overflow: hidden; border-radius: 0; line-height: 0;">
+                        
                             <img src="${pImg}" class="portfolio_thumb" alt="${pName}">
                             <div class="portfolio_info">
                                 <div class="pf_title">${pName}</div>

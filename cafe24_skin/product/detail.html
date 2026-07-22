@@ -50,63 +50,61 @@
         padding-top: 20px !important;
     }
 
-    /* 반응형 메이슨리(Masonry) 그리드 기본 구조 */
+    /* 반응형 메이슨리 그리드 설정 */
     .masonry_grid {
-        width: 100% !important;
-        display: block !important;
+        column-count: 3;
+        column-gap: 25px;
+        width: 100%;
     }
 
-    /* 에디터 내부의 모든 가로 테이블 및 레이아웃 상자를 수직 Masonry 흐름으로 강제 리셋 */
-    .masonry_grid table,
-    .masonry_grid tbody,
-    .masonry_grid tr,
-    .masonry_grid td {
+    /* 에디터 내부 테이블/문단/레이아웃 강제 초기화 */
+    .masonry_grid table, .masonry_grid tbody, .masonry_grid tr, .masonry_grid td,
+    .masonry_grid p, .masonry_grid div, .masonry_grid span, .masonry_grid figure, .masonry_grid a {
         display: block !important;
         width: 100% !important;
         float: none !important;
         margin: 0 !important;
         padding: 0 !important;
-        box-sizing: border-box !important;
-    }
-
-    /* 추가 이미지 박스 및 에디터 본문 내 이미지 가로 레이아웃 상자 무력화 */
-    .masonry_grid p,
-    .masonry_grid div,
-    .masonry_grid span,
-    .masonry_grid figure,
-    .masonry_grid a {
-        margin: 0 !important;
-        padding: 0 !important;
-        display: block !important;
-        float: none !important;
-        width: 100% !important;
         box-sizing: border-box !important;
     }
 
     .masonry_grid .add_img_box {
-        display: inline-block !important;
+        display: block !important;
         width: 100% !important;
-        margin: 0 0 25px 0 !important;
+        margin: 0 !important;
         padding: 0 !important;
-        break-inside: avoid !important;
         box-sizing: border-box !important;
     }
 
-    /* 에디터 이미지 및 추가 이미지 상하 간격 25px 및 엇갈림 3열 배열 강제 적용 */
+    /* 이미지 스타일 및 간격 설정 */
     .masonry_grid img,
     .masonry_grid p img,
-    .masonry_grid div img,
-    .masonry_grid span img,
-    .masonry_grid figure img,
     .add_img_box img {
         width: 100% !important;
         height: auto !important;
         max-width: 100% !important;
-        border-radius: 0 !important;
+        border-radius: 4px !important; /* 원본의 라운드 처리 */
         display: block !important;
-        float: none !important;
         break-inside: avoid !important;
-        margin-bottom: 25px !important; /* 상하 사진 간격 25px 완성 */
+        margin-bottom: 25px !important; 
+    }
+
+    @media (max-width: 1024px) {
+        .masonry_grid {
+            column-count: 2;
+            column-gap: 15px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .masonry_grid {
+            column-count: 1;
+            column-gap: 0;
+        }
+        .masonry_grid img,
+        .add_img_box img {
+            margin-bottom: 15px !important;
+        }
     }
 
     /* 쇼핑몰 구매/가격 컨트롤 관련 요소 차단 */
@@ -117,60 +115,3 @@
         display: none !important;
     }
 </style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const grid = document.querySelector('.masonry_grid');
-        if (grid) {
-            // 기존 렌더링된 모든 직계 이미지 및 추가이미지 박스 수집
-            const items = Array.from(grid.querySelectorAll('.add_img_box, img:not(.add_img_box img)'));
-            
-            if (items.length > 0) {
-                // 기존 레이아웃 비우기
-                grid.innerHTML = '';
-                grid.style.display = 'grid';
-                grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-                grid.style.gap = '25px';
-                grid.style.alignItems = 'start';
-                grid.style.width = '100%';
-                
-                // 3개의 열(Column) 디바이스 환경 대응 (태블릿 2열, 모바일 1열 반응형 대응)
-                const screenWidth = window.innerWidth;
-                let colCount = 3;
-                if (screenWidth <= 768) {
-                    colCount = 1;
-                    grid.style.gridTemplateColumns = '1fr';
-                } else if (screenWidth <= 1024) {
-                    colCount = 2;
-                    grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-                }
-                
-                const cols = [];
-                for (let i = 0; i < colCount; i++) {
-                    const col = document.createElement('div');
-                    col.style.display = 'flex';
-                    col.style.flexDirection = 'column';
-                    col.style.gap = '25px';
-                    col.style.width = '100%';
-                    grid.appendChild(col);
-                    cols.push(col);
-                }
-                
-                // 수평 가로(옆) 순서로 먼저 채워지도록 인덱스 분배
-                let validIdx = 0;
-                items.forEach((item) => {
-                    // 비어 있거나 유효하지 않은 {$add_img} 템플릿 변수가 렌더링된 img 요소는 숨기거나 제외
-                    const imgEl = item.tagName === 'IMG' ? item : item.querySelector('img');
-                    if (imgEl) {
-                        const src = imgEl.getAttribute('src');
-                        if (!src || src.includes('{$') || src === '') {
-                            return; // 템플릿 껍데기 건너뜀
-                        }
-                    }
-                    cols[validIdx % colCount].appendChild(item);
-                    validIdx++;
-                });
-            }
-        }
-    });
-</script>
