@@ -411,11 +411,34 @@ img {
     fill: var(--vc-primary);
 }
 
+/* 카페24 기본 찌꺼기 완벽 리셋 (FTP 파일 삭제 없이 초기화) */
+ul.portfolio_grid.prdList::after, ul.portfolio_grid.prdList::before {
+    display: none !important;
+    content: none !important;
+}
+ul.portfolio_grid.prdList > li {
+    float: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    clear: none !important;
+}
+.pf_title span, .pf_title span * {
+    font-size: inherit !important;
+    color: inherit !important;
+    font-weight: inherit !important;
+    font-family: inherit !important;
+    background: transparent !important;
+}
+
 /* 포트폴리오 그리드 */
 .portfolio_grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 30px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .portfolio_item {
@@ -950,7 +973,6 @@ a:hover {
 .swiper-portfolio .swiper-slide {
     width: 640px !important;
     height: 360px !important;
-    margin-right: 25px !important;
 }
 
 .swiper-portfolio .portfolio_thumb {
