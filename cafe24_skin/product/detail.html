@@ -52,26 +52,8 @@
 
     /* 반응형 메이슨리(Masonry) 그리드 기본 구조 */
     .masonry_grid {
-        column-count: 3;
-        column-gap: 25px;
-        width: 100%;
-    }
-
-    @media (max-width: 1024px) {
-        .masonry_grid {
-            column-count: 2;
-            column-gap: 15px;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .masonry_grid {
-            column-count: 1;
-            column-gap: 0;
-        }
-        .masonry_grid div {
-            margin-bottom: 15px !important;
-        }
+        width: 100% !important;
+        display: block !important;
     }
 
     /* 에디터 내부의 모든 가로 테이블 및 레이아웃 상자를 수직 Masonry 흐름으로 강제 리셋 */
@@ -135,3 +117,60 @@
         display: none !important;
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const grid = document.querySelector('.masonry_grid');
+        if (grid) {
+            // 기존 렌더링된 모든 직계 이미지 및 추가이미지 박스 수집
+            const items = Array.from(grid.querySelectorAll('.add_img_box, img:not(.add_img_box img)'));
+            
+            if (items.length > 0) {
+                // 기존 레이아웃 비우기
+                grid.innerHTML = '';
+                grid.style.display = 'grid';
+                grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+                grid.style.gap = '25px';
+                grid.style.alignItems = 'start';
+                grid.style.width = '100%';
+                
+                // 3개의 열(Column) 디바이스 환경 대응 (태블릿 2열, 모바일 1열 반응형 대응)
+                const screenWidth = window.innerWidth;
+                let colCount = 3;
+                if (screenWidth <= 768) {
+                    colCount = 1;
+                    grid.style.gridTemplateColumns = '1fr';
+                } else if (screenWidth <= 1024) {
+                    colCount = 2;
+                    grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+                }
+                
+                const cols = [];
+                for (let i = 0; i < colCount; i++) {
+                    const col = document.createElement('div');
+                    col.style.display = 'flex';
+                    col.style.flexDirection = 'column';
+                    col.style.gap = '25px';
+                    col.style.width = '100%';
+                    grid.appendChild(col);
+                    cols.push(col);
+                }
+                
+                // 수평 가로(옆) 순서로 먼저 채워지도록 인덱스 분배
+                let validIdx = 0;
+                items.forEach((item) => {
+                    // 비어 있거나 유효하지 않은 {$add_img} 템플릿 변수가 렌더링된 img 요소는 숨기거나 제외
+                    const imgEl = item.tagName === 'IMG' ? item : item.querySelector('img');
+                    if (imgEl) {
+                        const src = imgEl.getAttribute('src');
+                        if (!src || src.includes('{$') || src === '') {
+                            return; // 템플릿 껍데기 건너뜀
+                        }
+                    }
+                    cols[validIdx % colCount].appendChild(item);
+                    validIdx++;
+                });
+            }
+        }
+    });
+</script>
