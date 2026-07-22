@@ -83,6 +83,16 @@
             box-sizing: border-box !important;
         }
 
+        .swiper-portfolio .swiper-slide {
+            margin-right: 25px !important;
+        }
+
+        @media (max-width: 768px) {
+            .swiper-portfolio .swiper-slide {
+                margin-right: 15px !important;
+            }
+        }
+
         .swiper-portfolio .portfolio_thumb {
             width: 100% !important;
             height: 100% !important;
@@ -529,7 +539,7 @@
 
         const swiper = new Swiper('.swiper-portfolio', {
             slidesPerView: 'auto',
-            spaceBetween: 25,
+            spaceBetween: 0,
             loop: true,
             roundLengths: true, // [버그 완벽 차단] 루프 시 서브픽셀 오차를 정수로 강제 반올림하여 밀림 현상 원천 차단
             autoplay: {
@@ -542,8 +552,8 @@
                 prevEl: '.swiper-button-prev',
             },
             breakpoints: {
-                320: { slidesPerView: 1, spaceBetween: 15 },
-                768: { slidesPerView: 'auto', spaceBetween: 25 }
+                320: { slidesPerView: 1, spaceBetween: 0 },
+                768: { slidesPerView: 'auto', spaceBetween: 0 }
             }
         });
     });
