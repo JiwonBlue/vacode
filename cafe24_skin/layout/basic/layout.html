@@ -91,13 +91,25 @@
             overflow-x: hidden;
         }
 
-        /* --- [정상 디자인 복구: 우측으로만 화면 끝까지 흘러나가는 레이아웃] --- */
+        /* --- [최종 완벽 정렬: 100% 고정 너비 + 좌측 가림막 + 우측 뚫림] --- */
         .portfolio-container-wrapper {
             position: relative;
-            width: auto !important;
-            margin-right: calc((100vw - 100%) / -2) !important; /* 오른쪽 끝 화면 너머까지 슬라이드 궤적 확장 */
-            margin-left: 0 !important; /* 좌측은 부모 패딩 라인에 완벽 고정 */
-            overflow: hidden !important; /* 왼쪽 정렬선 밖으로 넘어가는 이전/루프 슬라이드는 완벽히 클립(숨김) */
+            width: 100% !important; /* 부모(1200px)에 정확히 맞춤. 크기 변형 금지 (왼쪽 정렬 완벽 유지) */
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: visible !important; /* 우측으로 시원하게 무한 슬라이딩 허용 */
+        }
+
+        /* 래퍼 왼쪽부터 브라우저 끝까지 하얀색 벽으로 덮어서 루프되어 돌아가는 슬라이드를 가림 */
+        .portfolio-container-wrapper::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            bottom: -50px;
+            right: 100%; /* 래퍼의 왼쪽 끝(0)에서 시작 */
+            width: 100vw; /* 왼쪽 브라우저 화면 끝까지 덮음 */
+            background-color: #ffffff; /* 바디 배경색(흰색) */
+            z-index: 50; /* 슬라이더 카드 위로 덮음 */
         }
 
         .swiper-portfolio {
