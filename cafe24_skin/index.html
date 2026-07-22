@@ -1,4 +1,4 @@
-﻿<!--@layout(/layout/basic/layout.html)-->
+<!--@layout(/layout/basic/layout.html)-->
     <style>
         /* --- [?덉씠?꾩썐 ?뺣룉] --- */
         .main_full_contents {
@@ -495,7 +495,9 @@
                 for (let i = 0; i < requiredClones; i++) {
                     const clone = slides[i % slides.length].cloneNode(true);
                     const origIndex = i % slides.length;
-                    const origLink = slides[origIndex].querySelector('a').getAttribute('href');
+                    
+                    const origLink = rawSources[origIndex].querySelector('.raw_link').getAttribute('href');
+                    
                     clone.onclick = function() {
                         location.href = origLink;
                     };

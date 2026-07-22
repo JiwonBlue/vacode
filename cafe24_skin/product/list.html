@@ -57,16 +57,28 @@
     }
 
     /* 포트폴리오 리스트 그리드 강제 재정의 (ul, li 대응) */
-    .ec-base-product ul.portfolio_grid.prdList {
+    .xans-product-listcategory {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 30px !important;
-        list-style: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
+        width: 100% !important;
     }
     
-    .ec-base-product ul.portfolio_grid.prdList > li.portfolio_item {
+    .xans-product-listcategory > .xans-product-listnormal {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .xans-product-listcategory ul.portfolio_grid {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+    }
+    
+    .xans-product-listcategory ul.portfolio_grid li.portfolio_item {
         position: relative !important;
         overflow: hidden !important;
         border: none !important;
