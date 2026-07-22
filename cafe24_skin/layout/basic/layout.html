@@ -91,13 +91,25 @@
             overflow-x: hidden;
         }
 
+        /* 1. 슬라이더 래퍼 크기 왜곡 100% 제거 (정박 위치 버그 완벽 차단) */
         .portfolio-container-wrapper {
             position: relative;
-            width: 100% !important;
-            box-sizing: content-box !important;
-            padding-right: calc((100vw - 100%) / 2) !important;
+            width: 100% !important; /* 부모 컨텐츠 영역에 1px 오차 없이 고정 */
             margin: 0 !important;
-            overflow: hidden !important;
+            padding: 0 !important;
+            overflow: visible !important; /* 우측으로 시원하게 무한 슬라이딩 허용 */
+        }
+
+        /* 2. 가상요소(가림막) 트릭: 래퍼 왼쪽부터 브라우저 끝까지 하얀색 벽으로 덮어서 삐져나오는 슬라이드를 가림 */
+        .portfolio-container-wrapper::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            bottom: -50px;
+            right: 100%; /* 래퍼의 왼쪽 끝(0)에서 시작 */
+            width: 100vw; /* 왼쪽 브라우저 화면 끝까지 덮음 */
+            background-color: #ffffff; /* 바디 배경색(흰색)으로 덮어서 안 보이게 함 */
+            z-index: 50; /* 슬라이더 카드보다 위로 덮어 씌움 */
         }
 
         .swiper-portfolio {
