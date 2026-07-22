@@ -1,4 +1,4 @@
-﻿<!--@layout(/layout/basic/layout.html)-->
+<!--@layout(/layout/basic/layout.html)-->
     <style>
         /* --- [?덉씠?꾩썐 ?뺣룉] --- */
         .main_full_contents {
@@ -476,15 +476,7 @@
                         location.href = pLink;
                     };
                     
-                    slide.innerHTML = `
-                        
-                            <img src="${pImg}" class="portfolio_thumb" alt="${pName}">
-                            <div class="portfolio_info">
-                                <div class="pf_title">${pName}</div>
-                                <div class="pf_link">VIEW MORE &gt;</div>
-                            </div>
-                        </a>
-                    `;
+                    slide.innerHTML = `<img src="${pImg}" class="portfolio_thumb" alt="${pName}"><div class="portfolio_info"><div class="pf_title">${pName}</div><div class="pf_link">VIEW MORE &gt;</div></div>`;
                     targetWrapper.appendChild(slide);
                 }
             });
