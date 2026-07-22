@@ -4,9 +4,9 @@
     <aside class="VACODE_sidebar">
         <div>
             <div class="sidebar_filter_menu">
-                <a href="/product/list.html?cate_no=41">ALL</a>
-                <a href="/product/list.html?cate_no=42">INDOOR</a>
-                <a href="/product/list.html?cate_no=43">OUTDOOR</a>
+                <a href="/product/list.html?cate_no=45">ALL</a>
+                <a href="/product/list.html?cate_no=46">INDOOR</a>
+                <a href="/product/list.html?cate_no=47">OUTDOOR</a>
             </div>
         </div>
         <div class="info_footer">
@@ -26,7 +26,7 @@
             <!-- 본문 이미지 핀터레스트(Masonry) 흐름 정렬 -->
             <div class="masonry_grid">
                 <!-- 1. 대표 이미지 (상세이미지 500x500 바인딩) -->
-                <img src="{$big_img}" alt="{$name}" class="main_detail_thumb" />
+                <img src="{$big_img}" alt="{$name}" class="main_detail_thumb" onerror="this.style.display='none'; this.src='';" />
 
                 <!-- 2. 추가 이미지들 (어드민 [추가이미지등록] 탭 4장 바인딩 전용 모듈 및 공식변수 $add_img) -->
                 <div module="product_addimage">
@@ -34,7 +34,7 @@
                         $count = 30
                     -->
                     <div class="add_img_box">
-                        <img src="{$add_img}" alt="{$name}" />
+                        <img src="{$add_img}" alt="{$name}" onerror="this.style.display='none'; this.src='';" />
                     </div>
                 </div>
 

@@ -125,6 +125,18 @@
     // HTML 문서 로드가 완전히 끝난 직후 슬라이더를 구성하는 최적화 스크립트
     document.addEventListener('DOMContentLoaded', function () {
         const wrapper = document.querySelector('.swiper-portfolio .swiper-wrapper');
+        
+        // 방어 코드: 상품 슬라이드 카드가 1개 이상 존재한다면 예외 박스를 DOM에서 즉시 삭제
+        if (wrapper) {
+            const slides = wrapper.querySelectorAll('.portfolio_item');
+            if (slides.length > 0) {
+                const emptyBox = document.querySelector('[module="product_listmain_1_empty"]');
+                if (emptyBox) {
+                    emptyBox.remove();
+                }
+            }
+        }
+
         if (wrapper) {
             const slides = wrapper.querySelectorAll('.portfolio_item');
             if (slides.length > 0 && slides.length < 4) {

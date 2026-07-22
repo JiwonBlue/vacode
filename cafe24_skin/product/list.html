@@ -3,9 +3,9 @@
 <div class="VACODE_layout">
     <aside class="VACODE_sidebar">
         <div class="sidebar_filter_menu">
-            <a href="/product/list.html?cate_no=41" class="filter_btn active">ALL</a>
-            <a href="/product/list.html?cate_no=42" class="filter_btn" data-filter="indoor">INDOOR</a>
-            <a href="/product/list.html?cate_no=43" class="filter_btn" data-filter="outdoor">OUTDOOR</a>
+            <a href="/product/list.html?cate_no=45" class="filter_btn active">ALL</a>
+            <a href="/product/list.html?cate_no=46" class="filter_btn" data-filter="indoor">INDOOR</a>
+            <a href="/product/list.html?cate_no=47" class="filter_btn" data-filter="outdoor">OUTDOOR</a>
         </div>
         <div class="info_footer">
             <p>vacode00@naver.com</p>
@@ -90,18 +90,29 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const urlParams = new URLSearchParams(window.location.search);
-        const cateNo = urlParams.get('cate_no');
+        let cateNo = urlParams.get('cate_no');
         const filterButtons = document.querySelectorAll('.filter_btn');
+        
+        // ALL 기본 처리 (파라미터가 없거나 cate_no가 45번일 때 ALL로 간주)
+        if (!cateNo) {
+            cateNo = '45';
+        }
         
         filterButtons.forEach(btn => {
             btn.classList.remove('active');
             const href = btn.getAttribute('href');
-            
-            if (!cateNo && href === '/product/list.html') {
-                btn.classList.add('active');
-            } else if (cateNo && href.includes('cate_no=' + cateNo)) {
+            if (href.includes('cate_no=' + cateNo)) {
                 btn.classList.add('active');
             }
         });
+
+        // 방어 코드: 상품이 존재하면 '등록된 포트폴리오가 없습니다' 예외 처리 상자를 DOM에서 강제 삭제
+        const items = document.querySelectorAll('.portfolio_grid .portfolio_item');
+        if (items.length > 0) {
+            const emptyBox = document.querySelector('[module="product_empty"]');
+            if (emptyBox) {
+                emptyBox.remove();
+            }
+        }
     });
 </script>
