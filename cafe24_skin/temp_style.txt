@@ -1,62 +1,5 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VACODE. - MAIN</title>
-    
-    <!-- 카페24 스타일시트 로드 규격 -->
-    
-    <!-- 카페24 스타일시트 로드 규격 (이중 안전장치) -->
-    <!--@css(/css/VACODE_style.css)-->
-    <!--@css(/layout/basic/css/VACODE_style.css)-->
-    <link rel="stylesheet" href="/css/VACODE_style.css">
-    <link rel="stylesheet" href="/layout/basic/css/VACODE_style.css">
-
-    <style>
-        #VACODE_header .logo {
-            position: static !important;
-            float: none !important;
-            top: auto !important;
-            left: auto !important;
-            margin: 0 254px 0 0 !important;
-            padding: 0 !important;
-            display: flex !important;
-            align-items: center !important;
-            height: auto !important;
-        }
-        #VACODE_header .logo a {
-            padding: 0 !important;
-            margin: 0 !important;
-            height: 22px !important;
-            display: block !important;
-        }
-        #VACODE_header .logo a img {
-            margin: 0 !important;
-            padding: 0 !important;
-            height: 22px !important;
-            display: block !important;
-        }
-        #VACODE_header .sns_links a {
-            padding: 0 !important;
-            margin: 0 !important;
-            height: 22px !important;
-        }
-        #VACODE_header .sns_links a img {
-            margin: 0 !important;
-            padding: 0 !important;
-            width: 22px !important;
-            height: 22px !important;
-        }
-    </style>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- 웹폰트 SUITE 로드 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE@2/fonts/variable/woff2/SUITE-Variable.css">
-    
-    <!-- 메인페이지 인라인 스타일 유지 -->
-    <style>
+﻿    <style>
+        /* --- [?덉씠?꾩썐 ?뺣룉] --- */
         .main_full_contents {
             margin-left: 0 !important;
             padding: 0 !important;
@@ -68,12 +11,18 @@
             aspect-ratio: 16 / 9 !important;
             height: auto !important;
             min-height: unset !important;
+
+            /* ???듭떖 ?ъ씤?? 
+                ?곗깋 ?ㅻ뜑 ?곸뿭 ?뚮Ц??諛곕꼫瑜??꾨옒濡?諛?대궡??留덉쭊(margin-top: 90px)??'0'?쇰줈 吏?곷땲??
+                ?대젃寃??댁빞 ?섎Т 洹몃┝ 諛곕꼫媛 紐⑤땲??留???泥쒖옣 ?앷퉴吏 諛붿쭩 ?щ씪遺숈뼱 ?ㅻ뜑 ?룸같寃쎌쓣 梨꾩슦寃??⑸땲??
+            */
             margin-top: 0 !important;
             margin-bottom: 120px !important;
         }
 
         .main_content_inner {
             max-width: 1200px !important;
+            /* 湲곗〈 1200px ?붿옄?몄쑝濡?醫뚯륫 ?뺣젹 蹂듭썝 */
             margin: 0 auto;
             padding: 0 50px 120px 50px;
             box-sizing: border-box;
@@ -87,6 +36,7 @@
             margin-bottom: 50px;
         }
 
+        /* --- [?꾨쿋???ㅽ????ㅼ??댄띁 UI] --- */
         #VACODE_wrap {
             overflow-x: hidden;
         }
@@ -95,20 +45,23 @@
             position: relative;
             width: auto !important;
             margin-right: calc((100vw - 100%) / -2) !important;
-            /* 오른쪽 끝 화면 너머까지 슬라이드 궤적 확장 */
+            /* ?ㅻⅨ履????붾㈃ ?덈㉧源뚯? ?щ씪?대뱶 沅ㅼ쟻 ?뺤옣 */
             overflow: hidden !important;
-            /* 왼쪽 정렬선 밖으로 넘어가는 이전/루프 슬라이드는 완벽히 클립(숨김) */
+            /* ?쇱そ ?뺣젹??諛뽰쑝濡??섏뼱媛???댁쟾/猷⑦봽 ?щ씪?대뱶???꾨꼍???대┰(?④?) */
         }
 
         .swiper-portfolio {
             width: 100% !important;
             height: auto;
-            overflow: visible !important; /* 자식(스와이퍼)은 부모의 우측으로 자연스럽게 오버플로우 허용 */
+            overflow: visible !important;
+            /* 遺紐⑥쓽 overflow:hidden ?곸뿭 ?댁뿉???곗륫?쇰줈 ?먯뿰?ㅻ읇寃??ㅻ쾭?뚮줈?곕릺?꾨줉 ?ㅼ젙 */
         }
 
         .swiper-portfolio .portfolio_item {
             width: 640px !important;
+            /* ?쒖븞 怨좎젙 媛濡쒗룺 ?곸슜 */
             height: 360px !important;
+            /* ?쒖븞 怨좎젙 ?몃줈???곸슜 */
         }
 
         .swiper-portfolio .portfolio_thumb {
@@ -145,6 +98,7 @@
             right: -60px !important;
         }
 
+        /* --- ??[?띾룄 理쒖쟻??2] CLIENT 濡ㅻ쭅 ?섎뱶?⑥뼱 媛???곸슜 --- */
         .client_marquee_wrap {
             overflow: hidden;
             width: 100vw !important;
@@ -154,6 +108,7 @@
             margin-left: -50vw !important;
             margin-right: -50vw !important;
             background-color: transparent !important;
+            /* 諛곌꼍 ?쒓굅 */
             display: flex;
             padding: 30px 0 !important;
             flex-shrink: 0;
@@ -164,6 +119,7 @@
         .client_inner {
             display: flex;
             white-space: nowrap;
+            /* transform ?곗궛 ??洹몃옒?쎌뭅??GPU)瑜??곕룄濡??섏뿬 CPU 踰꾨쾮???꾩긽???먯쿇 ?쒓굅 */
             will-change: transform;
             animation: client_rolling 30s linear infinite;
         }
@@ -172,7 +128,9 @@
             width: 380px !important;
             height: 80px !important;
             background-color: #FFFFFF !important;
+            /* 諛깃렇?쇱슫???곗깋 移대뱶 蹂듭썝 */
             border: 1px solid #eaeaea;
+            /* ?뚮몢由?蹂듭썝 */
             border-radius: 4px;
             margin-right: 30px !important;
             display: inline-flex;
@@ -187,16 +145,19 @@
             0% {
                 transform: translate3d(0, 0, 0);
             }
+
             100% {
                 transform: translate3d(-50%, 0, 0);
             }
         }
 
+        /* 硫붿씤 鍮꾩＜??諛곕꼫 ?띿뒪???깆옣 ?좊땲硫붿씠??*/
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translate(-50%, -30%);
             }
+
             to {
                 opacity: 1;
                 transform: translate(-50%, -50%);
@@ -207,29 +168,44 @@
             animation: fadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
+        /* ==========================================================================
+           [異붽?] 硫붿씤?붾㈃ 媛濡??곗쭚 諛⑹? 諛??ㅻ쭏?명룿/?쒕툝由?理쒖쟻??諛섏쓳??誘뱀뒪??
+           ========================================================================== */
+
+        /* ?쒕툝由?諛??쇰컲 ?명듃遺??댁긽??(?붾㈃ ??1199px ?댄븯????諛쒕룞) */
         @media (max-width: 1199px) {
+            /* ?ㅼ??댄띁 ?붿궡?쒓? ?붾㈃ 諛뽰쑝濡??섍???怨듬갚??留뚮뱶???꾩긽 諛⑹? */
             .swiper-button-prev {
                 left: -20px !important;
             }
+
             .swiper-button-next {
                 right: -20px !important;
             }
         }
 
+        /* ?ㅻ쭏?명룿 援ш컙 (?붾㈃ ??768px ?댄븯????諛쒕룞) */
         @media (max-width: 768px) {
             .main_content_inner {
                 padding: 0 20px 80px 20px !important;
+                /* 紐⑤컮???꾩슜 ?대? 肄섑뀗痢??щ갚 */
             }
+
+            /* 硫붿씤 鍮꾩＜??諛곕꼫 ???붾㈃ 留욎땄 異뺤냼 */
             .visual_full_width {
                 height: auto !important;
                 aspect-ratio: 16 / 9 !important;
                 min-height: unset !important;
                 margin-bottom: 70px !important;
             }
+
+            /* 紐⑤컮?쇱뿉?쒕뒗 ?ㅼ??댄띁 ?몃? ?붿궡???④린怨??곗튂 ?щ씪?대뱶 ?꾩＜濡??숈옉 ?좊룄 */
             .swiper-button-next,
             .swiper-button-prev {
                 display: none !important;
             }
+
+            /* ?섎떒 臾몄쓽?ы빆 ?덉씠?꾩썐??3?댁뿉??1???몃줈 ?뺣젹濡?蹂寃?*/
             .main_content_inner section style,
             .main_content_inner div[style*="grid-template-columns"] {
                 grid-template-columns: 1fr !important;
@@ -237,6 +213,7 @@
             }
         }
 
+        /* 珥덉냼??誘몃땲 ??援ш컙 (?붾㈃ ??420px ?댄븯????諛쒕룞) */
         @media (max-width: 420px) {
             #VACODE_header .sns_links {
                 display: flex;
@@ -244,6 +221,7 @@
             }
         }
 
+        /* --- CONTACT Section Custom Styling (to match design exactly) --- */
         .custom_contact_section {
             margin-top: 160px;
             margin-bottom: 120px;
@@ -298,7 +276,6 @@
             margin-bottom: 20px;
             text-transform: uppercase;
         }
-
         .custom_contact_grid .col_content {
             font-family: var(--vc-font-suite);
             font-size: 16px;
@@ -306,7 +283,6 @@
             line-height: 1.8;
             font-weight: 400;
         }
-
         .custom_contact_grid .col_content a {
             color: #000000;
             text-decoration: none;
@@ -317,89 +293,29 @@
                 margin-left: -20px;
                 margin-right: -20px;
             }
+
             .custom_contact_section .thin_line {
                 margin-left: -20px;
                 margin-right: -20px;
             }
+
             .custom_contact_grid {
                 grid-template-columns: 1fr !important;
                 gap: 30px !important;
                 padding-left: 0;
                 padding-right: 0;
             }
+
             .custom_contact_section .contact_title {
                 padding-left: 0;
             }
+
             .custom_contact_section .thin_line_top {
                 margin-bottom: 30px;
             }
+
             .custom_contact_section .thin_line_bottom {
                 margin-top: 30px;
             }
         }
     </style>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-</head>
-
-<body>
-    <!-- 메인 페이지용 투명 헤더 -->
-    <header id="VACODE_header" class="main_header">
-        <div class="logo">
-            <a href="/index.html">
-                <img src="/img/logo_white.svg" alt="VACODE." style="height:22px; display:block;">
-            </a>
-        </div>
-        <nav class="nav_menu">
-            <a href="/VACODE/about.html">ABOUT</a>
-            <a href="/product/list.html?cate_no=45">PORTFOLIO</a>
-            <a href="/VACODE/contact.html">CONTACT</a>
-        </nav>
-        <div class="sns_links">
-            <a href="https://blog.naver.com/vacode_sign" target="_blank" aria-label="Naver Blog">
-                <img src="/img/그룹 17.svg" alt="Naver Blog" style="width:22px; height:22px; vertical-align:middle;">
-            </a>
-            <a href="https://www.instagram.com/vacode00/" target="_blank" aria-label="Instagram">
-                <img src="/img/그룹 14.svg" alt="Instagram" style="width:22px; height:22px; vertical-align:middle;">
-            </a>
-        </div>
-    </header>
-
-    <div id="VACODE_wrap">
-        <div class="VACODE_layout" style="padding-top: 0;">
-            <!--@contents-->
-        </div>
-    </div>
-
-    <!-- 메인 페이지용 하단 푸터 -->
-    <footer id="VACODE_footer">
-        <div class="footer_inner">
-            <div class="footer_info_list vc-style-1">
-                <span class="info_item">사업자등록번호 : 384-86-0****</span>
-                <span class="info_item">바코드 유한회사 대표이사 : 성현호/김대현/김원중</span>
-                <span class="info_item">TEL : 010-4738-8278</span>
-            </div>
-            <div class="footer_copyright">
-                Copyright &copy; 2026 VACODE | Powered by VACODE
-            </div>
-        </div>
-    </footer>
-
-    <!-- 스크롤 등장 애니메이션 감지 스크립트 -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-in');
-                    }
-                });
-            }, { threshold: 0.15 });
-
-            document.querySelectorAll('.scroll-animate').forEach(el => {
-                observer.observe(el);
-            });
-        });
-    </script>
-</body>
-</html>
