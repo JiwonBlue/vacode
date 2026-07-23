@@ -418,9 +418,24 @@ img {
     gap: 30px;
 }
 
-/* 카페24 엔진에서 강제 주입하는 상품 목록 항목(li)의 인라인 너비 무력화 */
-.portfolio_grid.prdList > li {
+/* 카페24 기본 찌꺼기 완벽 리셋 (FTP 파일 삭제 없이 초기화) */
+ul.portfolio_grid.prdList::after, ul.portfolio_grid.prdList::before {
+    display: none !important;
+    content: none !important;
+}
+ul.portfolio_grid.prdList > li {
+    float: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
     width: 100% !important;
+    clear: none !important;
+}
+.pf_title span, .pf_title span * {
+    font-size: inherit !important;
+    color: inherit !important;
+    font-weight: inherit !important;
+    font-family: inherit !important;
+    background: transparent !important;
 }
 
 .portfolio_item {
