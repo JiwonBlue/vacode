@@ -733,6 +733,10 @@ ul.portfolio_grid.prdList > li {
         font-size: 22px;
     }
 
+    .sidebar_filter_menu {
+        margin-top: 0;
+    }
+
     .VACODE_sidebar .info_footer {
         display: none;
     }
