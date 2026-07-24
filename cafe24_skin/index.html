@@ -353,18 +353,60 @@
 
 <main class="VACODE_contents main_full_contents">
 
-    <section id="main_visual" class="visual_full_width" style="position: relative; overflow: hidden;">
-        <iframe 
-            src="https://www.youtube.com/embed/PwIcy0SjRlQ?autoplay=1&mute=1&loop=1&playlist=PwIcy0SjRlQ&controls=0&showinfo=0&rel=0&playsinline=1" 
-            frameborder="0" 
-            allow="autoplay; encrypted-media" 
-            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; z-index: 1; pointer-events: none;"
-        ></iframe>
+    <section id="main_visual" class="visual_full_width" style="position: relative; overflow: hidden; background-color: #000000;">
+        <!-- 유튜브 영상이 들어갈 컨테이너. 로딩 중에는 투명하게(opacity: 0), 살짝 확대(scale: 1.15) -->
+        <div id="ytplayer_wrap" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.15); width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; z-index: 1; pointer-events: none; opacity: 0; transition: opacity 1s ease;">
+            <div id="ytplayer" style="width: 100%; height: 100%;"></div>
+        </div>
         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.25); z-index: 2;"></div>
         <div class="visual_txt_animate" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #FFFFFF; width: 100%; z-index: 3;">
             <h2>시각적으로 기획 · 제작 · 설치하는<br>의료공간의 첫 인상</h2>
         </div>
     </section>
+
+    <!-- 유튜브 IFrame API 스크립트 -->
+    <script>
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytplayer', {
+                videoId: 'PwIcy0SjRlQ', // 재생할 유튜브 영상 ID
+                playerVars: {
+                    'autoplay': 1,
+                    'mute': 1,
+                    'controls': 0,
+                    'rel': 0,
+                    'showinfo': 0,
+                    'modestbranding': 1,
+                    'loop': 1,
+                    'playlist': 'PwIcy0SjRlQ',
+                    'playsinline': 1,
+                    'iv_load_policy': 3,
+                    'disablekb': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        function onPlayerStateChange(event) {
+            // 영상이 실제로 재생 중일 때 (상태값 1)
+            if (event.data === 1) {
+                // 부드럽게 영상이 나타나게 함
+                document.getElementById('ytplayer_wrap').style.opacity = '1';
+            }
+        }
+    </script>
 
     <div class="main_content_inner">
 
