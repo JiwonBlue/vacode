@@ -716,7 +716,7 @@ ul.portfolio_grid.prdList > li {
 
     .VACODE_layout {
         flex-direction: column;
-        padding-top: 0px;
+        padding-top: 70px;
     }
 
     .VACODE_sidebar {
@@ -780,6 +780,10 @@ ul.portfolio_grid.prdList > li {
     #VACODE_header {
         height: 60px !important;
         padding: 0 15px !important;
+    }
+
+    .VACODE_layout {
+        padding-top: 60px;
     }
 
     #VACODE_header .logo {
