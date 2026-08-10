@@ -2,6 +2,42 @@
 
 **VACODE** 카페24 쇼핑몰 스킨 개발 및 관리 프로젝트
 
+---
+
+## 🎨 디자인 시안 (UI Design)
+
+<details>
+<summary><b>1. Main Page (클릭하여 펼치기)</b></summary>
+<br>
+<img src="./vacode_IMG/vacode_01_Main.png" alt="Main Page" width="100%">
+</details>
+
+<details>
+<summary><b>2. About Page (클릭하여 펼치기)</b></summary>
+<br>
+<img src="./vacode_IMG/vacode_02_About.png" alt="About Page" width="100%">
+</details>
+
+<details>
+<summary><b>3. Portfolio - 게시판 (클릭하여 펼치기)</b></summary>
+<br>
+<img src="./vacode_IMG/vacode_03_Portfolio(게시판).png" alt="Portfolio Board" width="100%">
+</details>
+
+<details>
+<summary><b>4. Portfolio - 게시물 (클릭하여 펼치기)</b></summary>
+<br>
+<img src="./vacode_IMG/vacode_04_Portfolio(게시물).png" alt="Portfolio Post" width="100%">
+</details>
+
+<details>
+<summary><b>5. Contact Page (클릭하여 펼치기)</b></summary>
+<br>
+<img src="./vacode_IMG/vacode_05_Contact.png" alt="Contact Page" width="100%">
+</details>
+
+---
+
 ## 📁 디렉토리 구조 및 역할
 
 이 프로젝트는 디자이너와 협업하며 크게 **로컬 개발용 파일**과 **카페24 업로드용 스킨 파일** 두 가지 버전으로 관리.
@@ -49,37 +85,3 @@
 ## 📌 주의사항
 - `cafe24_skin/` 내의 파일들을 로컬에서 열 경우, 카페24 모듈 태그가 렌더링되지 않아 화면이 깨져 보일 수 있음. 이는 정상이며 실제 서버 환경에서 확인.
 - 공통 CSS나 JS를 수정할 때에는 두 환경(로컬/카페24) 모두에 적용되도록 관리하거나, 경로 설정에 유의.
-
----
-
-## 🎨 디자인 시안 (UI Design)
-
-<details>
-<summary><b>1. Main Page (클릭하여 펼치기)</b></summary>
-<br>
-<img src="./vacode_IMG/vacode_01_Main.png" alt="Main Page" width="100%">
-</details>
-
-<details>
-<summary><b>2. About Page (클릭하여 펼치기)</b></summary>
-<br>
-<img src="./vacode_IMG/vacode_02_About.png" alt="About Page" width="100%">
-</details>
-
-<details>
-<summary><b>3. Portfolio - 게시판 (클릭하여 펼치기)</b></summary>
-<br>
-<img src="./vacode_IMG/vacode_03_Portfolio(게시판).png" alt="Portfolio Board" width="100%">
-</details>
-
-<details>
-<summary><b>4. Portfolio - 게시물 (클릭하여 펼치기)</b></summary>
-<br>
-<img src="./vacode_IMG/vacode_04_Portfolio(게시물).png" alt="Portfolio Post" width="100%">
-</details>
-
-<details>
-<summary><b>5. Contact Page (클릭하여 펼치기)</b></summary>
-<br>
-<img src="./vacode_IMG/vacode_05_Contact.png" alt="Contact Page" width="100%">
-</details>
